@@ -1,28 +1,37 @@
-
 "use client";
 
 import { motion } from "framer-motion";
 import { Send, MapPin, Phone, Mail, Rocket } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { submitContactForm } from "@/app/actions/contact";
 
 export default function Contact() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     
-    // Simulating a form submission to a Google Apps Script endpoint
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const formData = new FormData(e.currentTarget);
+    const result = await submitContactForm(formData);
     
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    if (result.success) {
+      toast({
+        title: "Message Sent!",
+        description: result.message,
+      });
+      (e.target as HTMLFormElement).reset();
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: result.message,
+      });
+    }
+    
     setLoading(false);
-    (e.target as HTMLFormElement).reset();
   };
 
   return (
@@ -58,18 +67,19 @@ export default function Contact() {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <InputGroup label="Full Name" id="name" placeholder="Jane Doe" required />
-                <InputGroup label="Email Address" id="email" type="email" placeholder="jane@company.com" required />
+                <InputGroup label="Full Name" name="name" id="name" placeholder="Jane Doe" required />
+                <InputGroup label="Email Address" name="email" id="email" type="email" placeholder="jane@company.com" required />
               </div>
-              <InputGroup label="Service Needed" id="service" type="select" options={["Web Development", "Google Automation", "Graphic Design", "Other"]} />
+              <InputGroup label="Service Needed" name="service" id="service" type="select" options={["Web Development", "Google Automation", "Graphic Design", "Other"]} />
               <div className="flex flex-col gap-2">
                 <label htmlFor="message" className="text-sm font-bold ml-1 text-muted-foreground">How can we help?</label>
                 <textarea 
                   id="message" 
+                  name="message"
                   rows={6}
                   required
                   placeholder="Tell us about your project..."
-                  className="glass rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50"
+                  className="glass rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 text-foreground"
                 ></textarea>
               </div>
               <button 
@@ -77,7 +87,7 @@ export default function Contact() {
                 disabled={loading}
                 className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4 disabled:opacity-50"
               >
-                {loading ? "Sending..." : "Send Message"} <Send size={20} />
+                {loading ? "Processing Flow..." : "Send Message"} <Send size={20} />
               </button>
             </form>
           </motion.div>
@@ -101,24 +111,26 @@ function ContactInfo({ icon, label, value }: { icon: React.ReactNode; label: str
   );
 }
 
-function InputGroup({ label, id, type = "text", placeholder, options, required = false }: any) {
+function InputGroup({ label, id, name, type = "text", placeholder, options, required = false }: any) {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={id} className="text-sm font-bold ml-1 text-muted-foreground">{label}</label>
       {type === "select" ? (
         <select 
           id={id} 
-          className="glass rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 appearance-none"
+          name={name}
+          className="glass rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 appearance-none text-foreground"
         >
-          {options.map((opt: string) => <option key={opt} value={opt}>{opt}</option>)}
+          {options.map((opt: string) => <option key={opt} value={opt} className="bg-background">{opt}</option>)}
         </select>
       ) : (
         <input 
           id={id}
+          name={name}
           type={type}
           required={required}
           placeholder={placeholder}
-          className="glass rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50"
+          className="glass rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 text-foreground"
         />
       )}
     </div>
