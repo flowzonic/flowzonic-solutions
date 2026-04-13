@@ -6,16 +6,18 @@ import { Rocket, Twitter, Linkedin, Github, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-white/30 backdrop-blur-md pt-20 pb-10 px-6 border-t border-border/50">
+    <footer className="bg-white/50 dark:bg-black/40 backdrop-blur-xl pt-20 pb-10 px-6 border-t border-primary/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
           <Link href="/" className="flex items-center gap-2 mb-6">
-            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg">
               <Rocket size={20} />
             </div>
-            <span className="font-bold text-2xl tracking-tight text-foreground">Flowzonic</span>
+            <span className="font-extrabold text-2xl tracking-tighter text-foreground">
+              FLOW<span className="text-primary">ZONIC</span>
+            </span>
           </Link>
-          <p className="text-muted-foreground leading-relaxed mb-6">
+          <p className="text-muted-foreground leading-relaxed mb-6 font-medium">
             Empowering businesses through cutting-edge automation and premium digital design.
           </p>
           <div className="flex gap-4">
@@ -27,7 +29,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-bold text-lg mb-6">Quick Links</h4>
+          <h4 className="font-bold text-lg mb-6 text-foreground">Quick Links</h4>
           <ul className="space-y-4">
             <FooterLink href="/">Home</FooterLink>
             <FooterLink href="/about">About Us</FooterLink>
@@ -37,7 +39,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-bold text-lg mb-6">Services</h4>
+          <h4 className="font-bold text-lg mb-6 text-foreground">Services</h4>
           <ul className="space-y-4">
             <FooterLink href="/services/web">Web Development</FooterLink>
             <FooterLink href="/services/automation">Google Automation</FooterLink>
@@ -47,21 +49,21 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-bold text-lg mb-6">Stay Updated</h4>
-          <p className="text-muted-foreground mb-4">Subscribe to our newsletter for insights.</p>
+          <h4 className="font-bold text-lg mb-6 text-foreground">Stay Updated</h4>
+          <p className="text-muted-foreground mb-4 font-medium">Subscribe to our newsletter for insights.</p>
           <div className="relative">
             <input 
               type="email" 
               placeholder="Your email" 
-              className="w-full glass rounded-full py-3 px-6 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+              className="w-full glass rounded-full py-3 px-6 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 dark:bg-white/5 text-foreground placeholder:text-muted-foreground"
             />
-            <button className="absolute right-1 top-1 bg-primary text-white p-2 rounded-full hover:scale-110 transition-transform">
+            <button className="absolute right-1 top-1 bg-primary text-white p-2 rounded-full hover:scale-110 transition-transform shadow-lg shadow-primary/20">
               <Rocket size={16} />
             </button>
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+      <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground font-medium">
         <p>© 2024 Flowzonic Solution. All rights reserved.</p>
         <div className="flex gap-6">
           <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
@@ -76,7 +78,7 @@ function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
   return (
     <Link 
       href={href} 
-      className="w-10 h-10 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:scale-110 transition-all"
+      className="w-10 h-10 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:scale-110 transition-all border border-primary/5"
     >
       {icon}
     </Link>
@@ -86,7 +88,7 @@ function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link href={href} className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group">
+      <Link href={href} className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 group font-medium">
         <div className="w-1 h-1 bg-primary rounded-full scale-0 group-hover:scale-100 transition-transform" />
         {children}
       </Link>
