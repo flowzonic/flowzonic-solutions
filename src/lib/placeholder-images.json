@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-3d",
+      "description": "3D Glossy Abstract Graphic",
+      "imageUrl": "https://picsum.photos/seed/flowzonic-hero/800/800",
+      "imageHint": "abstract 3d purple"
+    },
+    {
+      "id": "mockup-1",
+      "description": "SaaS Dashboard Mockup",
+      "imageUrl": "https://picsum.photos/seed/dash1/1200/800",
+      "imageHint": "dashboard ui"
+    },
+    {
+      "id": "mockup-2",
+      "description": "Mobile App Interface",
+      "imageUrl": "https://picsum.photos/seed/mobile1/1200/800",
+      "imageHint": "mobile ui"
+    },
+    {
+      "id": "mockup-3",
+      "description": "Automation Flow Diagram",
+      "imageUrl": "https://picsum.photos/seed/flow1/1200/800",
+      "imageHint": "automation system"
+    },
+    {
+      "id": "blog-1",
+      "description": "Artificial Intelligence Blog",
+      "imageUrl": "https://picsum.photos/seed/ai/600/400",
+      "imageHint": "artificial intelligence"
+    },
+    {
+      "id": "blog-2",
+      "description": "Workspace Productivity Blog",
+      "imageUrl": "https://picsum.photos/seed/work/600/400",
+      "imageHint": "workspace efficiency"
+    },
+    {
+      "id": "team-member",
+      "description": "Agency Founder",
+      "imageUrl": "https://picsum.photos/seed/founder/400/400",
+      "imageHint": "professional man"
+    }
+  ]
 }
