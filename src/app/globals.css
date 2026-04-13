@@ -10,7 +10,7 @@
     --card-foreground: 271 100% 14%;
     --popover: 0 0% 100%;
     --popover-foreground: 271 100% 14%;
-    --primary: 270 50% 58%;
+    --primary: 270 70% 58%;
     --primary-foreground: 0 0% 100%;
     --secondary: 279 100% 93%;
     --secondary-foreground: 271 100% 14%;
@@ -22,9 +22,9 @@
     --destructive-foreground: 0 0% 98%;
     --border: 279 100% 88%;
     --input: 279 100% 92%;
-    --ring: 270 50% 58%;
+    --ring: 270 70% 58%;
     --radius: 1.5rem;
-    --bg-gradient: linear-gradient(135deg, #ffffff 0%, hsla(270, 50%, 58%, 0.08) 100%);
+    --bg-gradient: linear-gradient(135deg, #ffffff 0%, #F8F4FF 100%);
   }
 
   .dark {
@@ -85,7 +85,7 @@
   position: absolute;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, hsla(270, 50%, 58%, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, hsla(270, 70%, 58%, 0.15) 0%, transparent 70%);
   filter: blur(80px);
   z-index: -1;
 }
@@ -97,4 +97,15 @@
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 rounded-full hover:bg-primary/40 transition-colors;
 }

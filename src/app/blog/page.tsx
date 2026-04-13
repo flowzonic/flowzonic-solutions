@@ -1,10 +1,9 @@
-
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Calendar, User, ArrowRight } from "lucide-react";
+import { Calendar, User, ArrowRight, Search } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const POSTS = [
@@ -48,9 +47,18 @@ export default function Blog() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">Insightful <span className="gradient-text">Resources</span></h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             Stay updated with the latest trends in automation, design, and web technology.
           </p>
+          
+          <div className="relative max-w-md mx-auto">
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
+            <input 
+              type="text" 
+              placeholder="Search articles..." 
+              className="w-full glass rounded-full py-4 pl-14 pr-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50"
+            />
+          </div>
         </div>
 
         <div className="columns-1 md:columns-2 lg:columns-2 gap-8 space-y-8">

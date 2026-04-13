@@ -12,7 +12,6 @@ const NAV_ITEMS = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -43,11 +42,10 @@ export default function Navbar() {
     document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
-  // Prevent flash of unthemed content
   if (!theme) return null;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 pointer-events-none">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8 px-4 pointer-events-none">
       <motion.div 
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -67,7 +65,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1 bg-white/10 dark:bg-black/10 rounded-full p-1 border border-white/20">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -97,6 +95,10 @@ export default function Navbar() {
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
           
+          <Link href="/contact" className="hidden sm:flex btn-primary !py-2 !px-6 text-sm">
+            Book a Call
+          </Link>
+
           <button 
             className="md:hidden w-10 h-10 flex items-center justify-center text-foreground rounded-full glass"
             onClick={() => setIsOpen(!isOpen)}
@@ -115,7 +117,7 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             className="absolute top-24 left-4 right-4 md:hidden glass-premium rounded-[2.5rem] p-4 flex flex-col gap-1 pointer-events-auto shadow-2xl"
           >
-            {NAV_ITEMS.map((item) => (
+            {[...NAV_ITEMS, { name: "Contact", href: "/contact" }].map((item) => (
               <Link 
                 key={item.name} 
                 href={item.href}
