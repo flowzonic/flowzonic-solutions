@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -19,7 +18,7 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark' | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -29,8 +28,7 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
 
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const initialTheme = savedTheme || systemTheme;
+    const initialTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     
     setTheme(initialTheme);
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
@@ -45,28 +43,31 @@ export default function Navbar() {
     document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
+  // Prevent flash of unthemed content
+  if (!theme) return null;
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8 px-6 pointer-events-none">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 pointer-events-none">
       <motion.div 
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className={cn(
-          "w-full max-w-5xl glass-premium rounded-full px-4 py-2 flex items-center justify-between transition-all duration-500 pointer-events-auto",
-          scrolled ? "shadow-[0_8px_32px_rgba(157,78,221,0.15)] bg-white/80 dark:bg-black/80" : "bg-white/40 dark:bg-black/40"
+          "w-full max-w-5xl glass-premium rounded-full px-2 py-2 flex items-center justify-between transition-all duration-500 pointer-events-auto border",
+          scrolled ? "bg-white/90 dark:bg-black/80 shadow-2xl py-2" : "bg-white/40 dark:bg-black/20 py-3"
         )}
       >
         {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-2 pl-2 group">
+        <Link href="/" className="flex items-center gap-2 pl-4 group">
           <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform duration-500">
-            <Rocket size={20} />
+            <Rocket size={18} />
           </div>
-          <span className="font-extrabold text-xl tracking-tighter text-foreground">
+          <span className="font-extrabold text-xl tracking-tighter text-foreground hidden sm:block">
             FLOW<span className="text-primary">ZONIC</span>
           </span>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-1 bg-white/20 dark:bg-black/20 rounded-full p-1 border border-white/10">
+        <div className="hidden md:flex items-center gap-1">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -74,10 +75,10 @@ export default function Navbar() {
                 key={item.name} 
                 href={item.href}
                 className={cn(
-                  "px-5 py-2 text-sm font-semibold rounded-full transition-all duration-300",
+                  "px-5 py-2 text-sm font-bold rounded-full transition-all duration-300",
                   isActive 
-                    ? "bg-white dark:bg-white/10 text-primary shadow-sm" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/50 dark:hover:bg-white/5"
+                    ? "bg-primary text-white shadow-lg" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
                 )}
               >
                 {item.name}
@@ -87,10 +88,10 @@ export default function Navbar() {
         </div>
 
         {/* Action Section */}
-        <div className="flex items-center gap-2 pr-1">
+        <div className="flex items-center gap-2 pr-2">
           <button 
             onClick={toggleTheme}
-            className="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all active:scale-90"
+            className="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-primary/10 text-foreground transition-all active:scale-90"
             aria-label="Toggle theme"
           >
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
@@ -112,15 +113,15 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="absolute top-24 left-6 right-6 md:hidden glass-premium rounded-[2rem] p-4 flex flex-col gap-1 pointer-events-auto shadow-2xl border border-primary/10"
+            className="absolute top-24 left-4 right-4 md:hidden glass-premium rounded-[2.5rem] p-4 flex flex-col gap-1 pointer-events-auto shadow-2xl"
           >
             {NAV_ITEMS.map((item) => (
               <Link 
                 key={item.name} 
                 href={item.href}
                 className={cn(
-                  "text-base font-bold px-6 py-4 rounded-2xl transition-colors",
-                  pathname === item.href ? "bg-primary/10 text-primary" : "text-foreground hover:bg-primary/5"
+                  "text-lg font-bold px-8 py-4 rounded-[1.5rem] transition-colors",
+                  pathname === item.href ? "bg-primary text-white" : "text-foreground hover:bg-primary/5"
                 )}
                 onClick={() => setIsOpen(false)}
               >
