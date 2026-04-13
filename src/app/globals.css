@@ -28,24 +28,24 @@
   }
 
   .dark {
-    --background: 271 50% 3%;
+    --background: 271 50% 2%;
     --foreground: 0 0% 98%;
-    --card: 271 50% 6% / 0.7;
+    --card: 271 50% 4% / 0.8;
     --card-foreground: 0 0% 98%;
-    --popover: 271 50% 3%;
+    --popover: 271 50% 2%;
     --popover-foreground: 0 0% 98%;
-    --primary: 270 50% 58%;
+    --primary: 270 60% 65%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 271 30% 10%;
+    --secondary: 271 40% 8%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 271 30% 8%;
-    --muted-foreground: 271 10% 65%;
-    --accent: 271 30% 12%;
+    --muted: 271 40% 6%;
+    --muted-foreground: 271 10% 70%;
+    --accent: 270 50% 40%;
     --accent-foreground: 0 0% 98%;
     --border: 271 30% 12%;
     --input: 271 30% 12%;
     --ring: 270 50% 58%;
-    --bg-gradient: linear-gradient(135deg, #0a0510 0%, hsla(270, 50%, 20%, 0.15) 100%);
+    --bg-gradient: linear-gradient(135deg, #020104 0%, hsla(270, 60%, 15%, 0.25) 100%);
   }
 }
 
@@ -64,11 +64,11 @@
 
 @layer components {
   .glass {
-    @apply backdrop-blur-md bg-white/40 border border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-300 dark:bg-black/40 dark:border-white/10;
+    @apply backdrop-blur-md bg-white/40 border border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-300 dark:bg-black/50 dark:border-white/5;
   }
   
   .glass-premium {
-    @apply backdrop-blur-xl bg-white/60 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:bg-black/60 dark:border-white/5;
+    @apply backdrop-blur-xl bg-white/60 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:bg-black/70 dark:border-white/10;
   }
 
   .btn-primary {
@@ -85,7 +85,7 @@
   position: absolute;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, hsla(270, 50%, 58%, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, hsla(270, 50%, 58%, 0.15) 0%, transparent 70%);
   filter: blur(80px);
   z-index: -1;
 }
