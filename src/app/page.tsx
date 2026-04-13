@@ -46,11 +46,11 @@ export default function Home() {
               <span className="w-2 h-2 bg-primary rounded-full animate-ping" />
               <span className="text-primary text-sm font-semibold tracking-wide uppercase">Next-Gen Digital Solutions</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-extrabold leading-tight mb-8">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-extrabold leading-tight mb-8">
               <span className="gradient-text">Automate</span> Your Vision.<br />
               <span className="text-primary italic">Design</span> Your Growth.
             </h1>
-            <p className="text-xl text-muted-foreground mb-10 max-w-lg leading-relaxed">
+            <p className="text-lg lg:text-xl text-muted-foreground mb-10 max-w-lg leading-relaxed">
               We bridge the gap between complex automation and premium aesthetics. Flowzonic turns your business manual tasks into seamless digital flows.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -69,13 +69,13 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="relative"
           >
-            <div className="relative z-10 animate-float">
+            <div className="relative z-10 animate-float max-w-[400px] lg:max-w-none mx-auto">
               <Image 
                 src={heroImage?.imageUrl || ""} 
                 alt="Glossy 3D Abstract" 
                 width={800}
                 height={800}
-                className="rounded-4xl drop-shadow-2xl"
+                className="rounded-4xl drop-shadow-2xl w-full h-auto"
                 priority
               />
             </div>
