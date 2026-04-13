@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -34,61 +33,62 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-32 pb-20 px-6 flex items-center">
+      <section className="relative min-h-[90vh] lg:min-h-screen pt-32 pb-20 px-6 flex items-center">
         <div className="mesh-gradient-1 top-0 right-0 animate-pulse" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className="text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1 mb-6">
-              <span className="w-2 h-2 bg-primary rounded-full animate-ping" />
-              <span className="text-primary text-sm font-semibold tracking-wide uppercase">Next-Gen Digital Solutions</span>
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8">
+              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-primary text-[10px] sm:text-xs font-bold tracking-widest uppercase">The Future of Automation</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-extrabold leading-tight mb-8">
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tight">
               <span className="gradient-text">Automate</span> Your Vision.<br />
-              <span className="text-primary italic">Design</span> Your Growth.
+              <span className="text-primary/90 italic font-serif">Design</span> Your Growth.
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground mb-10 max-w-lg leading-relaxed">
-              We bridge the gap between complex automation and premium aesthetics. Flowzonic turns your business manual tasks into seamless digital flows.
+            <p className="text-base lg:text-lg text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+              We bridge the gap between complex automation and premium aesthetics. Flowzonic transforms manual bottlenecks into seamless digital workflows.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="btn-primary flex items-center justify-center gap-2">
-                Book a Strategy Call <ArrowRight size={20} />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link href="/contact" className="btn-primary flex items-center justify-center gap-2 shadow-xl hover:shadow-primary/20">
+                Start My Project <ArrowRight size={20} />
               </Link>
-              <Link href="/services" className="glass py-3 px-8 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-white/80 transition-all">
-                View Services
+              <Link href="/services" className="glass py-3 px-8 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-white/80 dark:hover:bg-white/10 transition-all">
+                Explore Services
               </Link>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative"
+            className="relative flex justify-center"
           >
-            <div className="relative z-10 animate-float max-w-[400px] lg:max-w-none mx-auto">
+            <div className="relative z-10 animate-float w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[500px] xl:max-w-[600px]">
               <Image 
                 src={heroImage?.imageUrl || ""} 
                 alt="Glossy 3D Abstract" 
                 width={800}
                 height={800}
-                className="rounded-4xl drop-shadow-2xl w-full h-auto"
+                className="rounded-[2.5rem] drop-shadow-[0_20px_50px_rgba(157,78,221,0.3)] w-full h-auto"
                 priority
               />
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 rounded-full blur-3xl -z-10" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-primary/10 rounded-full blur-[100px] -z-10" />
           </motion.div>
         </div>
       </section>
 
-      {/* Efficiency Showcase (Before vs After) */}
-      <section className="py-24 px-6 bg-white/50">
+      {/* Efficiency Showcase */}
+      <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Effortless <span className="text-primary">Workflow</span></h2>
-          <p className="text-muted-foreground text-lg">See how Google Workspace Automation transforms your daily operations.</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Effortless <span className="text-primary">Workflow</span></h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">See how custom automation transforms your daily operations from chaos to clarity.</p>
         </div>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <EfficiencyCard 
@@ -108,7 +108,7 @@ export default function Home() {
               "Instant data synchronization across apps",
               "Custom Google Workspace integrations",
               "Automated client follow-up systems",
-              "Professional document generation in seconds"
+              "Professional document generation"
             ]}
           />
         </div>
@@ -116,35 +116,35 @@ export default function Home() {
 
       {/* Services Grid */}
       <section className="py-24 px-6 relative">
-        <div className="mesh-gradient-1 bottom-0 left-0 opacity-30" />
+        <div className="mesh-gradient-1 bottom-0 left-0 opacity-20" />
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">What We Do <span className="text-primary">Best</span></h2>
-              <p className="text-muted-foreground text-lg">From code to canvas, we build the foundations of your digital success.</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">What We Do <span className="text-primary">Best</span></h2>
+              <p className="text-muted-foreground text-lg">Precision engineering meets high-end creative design.</p>
             </div>
-            <Link href="/services" className="text-primary font-bold flex items-center gap-2 group">
-              Explore All Services <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+            <Link href="/services" className="text-primary font-bold flex items-center gap-2 group hover:gap-3 transition-all">
+              Explore All Services <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ServiceCard 
-              icon={<Code className="text-primary" size={32} />}
+              icon={<Code className="text-primary" size={28} />}
               title="Web Development"
               description="High-performance, scalable websites built with modern frameworks like React and NextJS."
               href="/services/web"
             />
             <ServiceCard 
-              icon={<Zap className="text-primary" size={32} />}
+              icon={<Zap className="text-primary" size={28} />}
               title="Google Automation"
               description="Custom Apps Script solutions that connect Sheets, Docs, and Gmail to save you hundreds of hours."
               href="/services/automation"
             />
             <ServiceCard 
-              icon={<Palette className="text-primary" size={32} />}
+              icon={<Palette className="text-primary" size={28} />}
               title="Graphic Design"
-              description="Glossy, premium brand identities and UI/UX designs that command attention and drive conversion."
+              description="Glossy, premium brand identities and UI/UX designs that command attention."
               href="/services/design"
             />
           </div>
@@ -154,9 +154,9 @@ export default function Home() {
       {/* Process Timeline */}
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Our <span className="text-primary">Process</span></h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center tracking-tight">Our <span className="text-primary">Process</span></h2>
           <div className="space-y-12 relative">
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-accent rounded-full -translate-x-1/2 hidden md:block" />
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/50 via-accent/50 to-transparent rounded-full -translate-x-1/2 hidden md:block" />
             
             <ProcessItem 
               icon={<Search />} 
@@ -185,7 +185,7 @@ export default function Home() {
 
       {/* Stats Banner */}
       <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto glass rounded-4xl p-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+        <div className="max-w-7xl mx-auto glass-premium rounded-[3rem] p-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           <StatItem value="500+" label="Hours Saved" icon={<Clock size={24} className="text-primary" />} />
           <StatItem value="100+" label="Custom Scripts" icon={<ShieldCheck size={24} className="text-primary" />} />
           <StatItem value="50+" label="Sites Launched" icon={<TrendingUp size={24} className="text-primary" />} />
@@ -195,7 +195,7 @@ export default function Home() {
       {/* Portfolio Showcase */}
       <section className="py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Our <span className="text-primary">Work</span></h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Our <span className="text-primary">Work</span></h2>
           <p className="text-muted-foreground text-lg">Premium results for premium clients.</p>
         </div>
         
@@ -204,27 +204,28 @@ export default function Home() {
             <CarouselContent className="-ml-4">
               {portfolioItems.map((item, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-2/3">
-                  <div className="glass rounded-4xl overflow-hidden group">
-                    <Image 
-                      src={item.imageUrl} 
-                      alt={item.description} 
-                      width={1200}
-                      height={800}
-                      className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-                    />
+                  <div className="glass rounded-[2.5rem] overflow-hidden group border border-primary/5">
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <Image 
+                        src={item.imageUrl} 
+                        alt={item.description} 
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
                     <div className="p-8">
-                      <h3 className="text-2xl font-bold mb-2">{item.description}</h3>
-                      <Link href="/services" className="text-primary font-semibold flex items-center gap-2">
-                        View Case Study <ArrowRight size={16} />
+                      <h3 className="text-2xl font-bold mb-3 tracking-tight">{item.description}</h3>
+                      <Link href="/services" className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                        View Details <ArrowRight size={18} />
                       </Link>
                     </div>
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-end gap-2 mt-8">
-              <CarouselPrevious className="relative translate-y-0 left-0" />
-              <CarouselNext className="relative translate-y-0 right-0" />
+            <div className="flex justify-end gap-3 mt-10">
+              <CarouselPrevious className="relative translate-y-0 left-0 bg-white/50 dark:bg-black/50 border-none shadow-md" />
+              <CarouselNext className="relative translate-y-0 right-0 bg-white/50 dark:bg-black/50 border-none shadow-md" />
             </div>
           </Carousel>
         </div>
@@ -232,16 +233,16 @@ export default function Home() {
 
       {/* Final CTA */}
       <section className="py-24 px-6">
-        <div className="max-w-6xl mx-auto bg-primary rounded-4xl p-12 md:p-20 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-3xl -translate-y-1/2 translate-x-1/2 rounded-full" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 blur-3xl translate-y-1/2 -translate-x-1/2 rounded-full" />
+        <div className="max-w-6xl mx-auto bg-primary rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[100px] -translate-y-1/2 translate-x-1/2 rounded-full" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 blur-[100px] translate-y-1/2 -translate-x-1/2 rounded-full" />
           
           <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">Ready to Elevate Your Flow?</h2>
-            <p className="text-primary-foreground/80 text-xl mb-12 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tight">Ready to Elevate Your Flow?</h2>
+            <p className="text-primary-foreground/90 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium">
               Join the elite businesses that have automated their vision with Flowzonic Solution.
             </p>
-            <Link href="/contact" className="bg-white text-primary hover:bg-secondary font-bold py-5 px-12 rounded-full text-xl transition-all inline-flex items-center gap-3 hover:scale-105 shadow-xl">
+            <Link href="/contact" className="bg-white text-primary hover:bg-secondary font-bold py-5 px-12 rounded-full text-lg md:text-xl transition-all inline-flex items-center gap-3 hover:scale-105 shadow-2xl">
               Get Started Now <Rocket size={24} />
             </Link>
           </div>
@@ -254,20 +255,20 @@ export default function Home() {
 function EfficiencyCard({ title, items, type }: { title: string; items: string[]; type: 'before' | 'after' }) {
   return (
     <div className={cn(
-      "p-10 rounded-3xl h-full transition-all duration-300 hover:shadow-2xl",
-      type === 'before' ? "glass border-red-200/50" : "glass border-green-200/50"
+      "p-10 rounded-[2rem] h-full transition-all duration-500",
+      type === 'before' ? "glass border-red-500/10 hover:border-red-500/20" : "glass border-green-500/10 hover:border-green-500/20 shadow-[0_20px_40px_rgba(34,197,94,0.05)]"
     )}>
-      <h3 className={cn("text-2xl font-bold mb-8", type === 'after' && "text-primary")}>{title}</h3>
+      <h3 className={cn("text-2xl font-bold mb-8 tracking-tight", type === 'after' && "text-primary")}>{title}</h3>
       <ul className="space-y-6">
         {items.map((item, i) => (
-          <li key={i} className="flex gap-4 items-start">
+          <li key={i} className="flex gap-4 items-start group">
             <div className={cn(
-              "mt-1 p-1 rounded-full",
-              type === 'before' ? "bg-red-100 text-red-500" : "bg-green-100 text-green-500"
+              "mt-1 p-1.5 rounded-full transition-colors",
+              type === 'before' ? "bg-red-100 text-red-500 dark:bg-red-500/20" : "bg-green-100 text-green-500 dark:bg-green-500/20"
             )}>
-              <CheckCircle2 size={18} />
+              <CheckCircle2 size={16} />
             </div>
-            <span className="text-muted-foreground leading-snug">{item}</span>
+            <span className="text-muted-foreground font-medium leading-relaxed group-hover:text-foreground transition-colors">{item}</span>
           </li>
         ))}
       </ul>
@@ -277,13 +278,13 @@ function EfficiencyCard({ title, items, type }: { title: string; items: string[]
 
 function ServiceCard({ icon, title, description, href }: { icon: React.ReactNode; title: string; description: string; href: string }) {
   return (
-    <div className="glass p-10 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:bg-white/90 group">
-      <div className="mb-8 p-4 bg-primary/5 rounded-2xl inline-block group-hover:bg-primary/10 transition-colors">
+    <div className="glass p-10 rounded-[2.5rem] transition-all duration-500 hover:-translate-y-2 group hover:shadow-2xl hover:border-primary/20">
+      <div className="mb-8 w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
         {icon}
       </div>
-      <h3 className="text-2xl font-bold mb-4">{title}</h3>
-      <p className="text-muted-foreground mb-8 leading-relaxed">{description}</p>
-      <Link href={href} className="text-primary font-semibold flex items-center gap-2 hover:gap-3 transition-all">
+      <h3 className="text-2xl font-bold mb-4 tracking-tight group-hover:text-primary transition-colors">{title}</h3>
+      <p className="text-muted-foreground mb-8 leading-relaxed font-medium">{description}</p>
+      <Link href={href} className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
         Learn More <ArrowRight size={18} />
       </Link>
     </div>
@@ -294,16 +295,16 @@ function ProcessItem({ icon, step, title, description, align }: { icon: React.Re
   return (
     <div className={cn(
       "flex items-center gap-8 w-full",
-      align === 'right' ? "md:flex-row-reverse" : ""
+      align === 'right' ? "md:flex-row-reverse text-right" : ""
     )}>
       <div className="hidden md:flex flex-1" />
-      <div className="relative z-10 w-12 h-12 glass rounded-full flex items-center justify-center text-primary border-primary/20 shrink-0">
+      <div className="relative z-10 w-12 h-12 glass rounded-full flex items-center justify-center text-primary border-primary/20 shrink-0 shadow-lg">
         {icon}
       </div>
-      <div className="flex-1 glass p-8 rounded-3xl text-left">
-        <span className="text-primary font-bold text-sm mb-2 block tracking-widest uppercase">Step {step}</span>
-        <h3 className="text-2xl font-bold mb-2">{title}</h3>
-        <p className="text-muted-foreground leading-relaxed">{description}</p>
+      <div className="flex-1 glass p-8 rounded-[2rem] text-left">
+        <span className="text-primary font-bold text-[10px] mb-2 block tracking-[0.2em] uppercase">Step {step}</span>
+        <h3 className="text-2xl font-bold mb-3 tracking-tight">{title}</h3>
+        <p className="text-muted-foreground leading-relaxed font-medium">{description}</p>
       </div>
     </div>
   );
@@ -312,11 +313,11 @@ function ProcessItem({ icon, step, title, description, align }: { icon: React.Re
 function StatItem({ value, label, icon }: { value: string; label: string; icon: React.ReactNode }) {
   return (
     <div className="flex flex-col items-center group">
-      <div className="mb-4 transition-transform group-hover:scale-125 duration-500">
+      <div className="mb-6 p-4 bg-primary/5 rounded-2xl transition-all group-hover:bg-primary group-hover:text-white group-hover:rotate-6">
         {icon}
       </div>
-      <span className="text-5xl font-extrabold mb-2 gradient-text">{value}</span>
-      <span className="text-muted-foreground font-medium uppercase tracking-widest text-sm">{label}</span>
+      <span className="text-5xl font-extrabold mb-2 tracking-tight gradient-text">{value}</span>
+      <span className="text-muted-foreground font-bold uppercase tracking-[0.2em] text-[10px]">{label}</span>
     </div>
   );
 }
