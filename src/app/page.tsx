@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -33,20 +34,20 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] lg:min-h-screen pt-32 pb-20 px-6 flex items-center">
-        <div className="mesh-gradient-1 top-0 right-0 animate-pulse" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <section className="relative min-h-[90vh] lg:min-h-[85vh] pt-32 pb-20 px-6 flex items-center">
+        <div className="mesh-gradient-1 top-0 right-0 animate-pulse opacity-40" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               <span className="text-primary text-[10px] sm:text-xs font-bold tracking-widest uppercase">The Future of Automation</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black leading-[1.1] mb-6 tracking-tight">
               <span className="gradient-text">Automate</span> Your Vision.<br />
               <span className="text-primary/90 italic font-serif">Design</span> Your Growth.
             </h1>
@@ -54,38 +55,38 @@ export default function Home() {
               We bridge the gap between complex automation and premium aesthetics. Flowzonic transforms manual bottlenecks into seamless digital workflows.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link href="/contact" className="btn-primary flex items-center justify-center gap-2 shadow-xl hover:shadow-primary/20">
-                Start My Project <ArrowRight size={20} />
+              <Link href="/services" className="btn-primary flex items-center justify-center gap-2 shadow-xl hover:shadow-primary/20">
+                Explore Services <ArrowRight size={20} />
               </Link>
-              <Link href="/services" className="glass py-3 px-8 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-white/80 dark:hover:bg-white/10 transition-all">
-                Explore Services
+              <Link href="/contact" className="glass py-3.5 px-8 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-white/80 dark:hover:bg-white/10 transition-all border border-primary/10">
+                Contact Us
               </Link>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
             className="relative flex justify-center"
           >
-            <div className="relative z-10 animate-float w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[500px] xl:max-w-[600px]">
+            <div className="relative z-10 animate-float w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[450px] xl:max-w-[550px]">
               <Image 
                 src={heroImage?.imageUrl || ""} 
                 alt="Glossy 3D Abstract" 
                 width={800}
                 height={800}
-                className="rounded-[2.5rem] drop-shadow-[0_20px_50px_rgba(157,78,221,0.3)] w-full h-auto"
+                className="rounded-[3rem] drop-shadow-[0_20px_50px_rgba(157,78,221,0.2)] w-full h-auto"
                 priority
               />
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-primary/10 rounded-full blur-[100px] -z-10" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 rounded-full blur-[120px] -z-10" />
           </motion.div>
         </div>
       </section>
 
       {/* Efficiency Showcase */}
-      <section className="py-24 px-6 relative overflow-hidden">
+      <section className="py-24 px-6 relative overflow-hidden bg-white/30 dark:bg-black/10">
         <div className="max-w-7xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Effortless <span className="text-primary">Workflow</span></h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">See how custom automation transforms your daily operations from chaos to clarity.</p>
@@ -116,7 +117,7 @@ export default function Home() {
 
       {/* Services Grid */}
       <section className="py-24 px-6 relative">
-        <div className="mesh-gradient-1 bottom-0 left-0 opacity-20" />
+        <div className="mesh-gradient-1 bottom-0 left-0 opacity-10" />
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-2xl">
