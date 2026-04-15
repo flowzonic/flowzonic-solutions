@@ -47,6 +47,24 @@
       "description": "Agency Founder",
       "imageUrl": "https://picsum.photos/seed/founder/400/400",
       "imageHint": "professional man"
+    },
+    {
+      "id": "tech-woman-pro",
+      "description": "Tech Strategy Expert",
+      "imageUrl": "https://picsum.photos/seed/tech-woman/800/600",
+      "imageHint": "woman technology"
+    },
+    {
+      "id": "tech-man-dev",
+      "description": "Lead Automation Engineer",
+      "imageUrl": "https://picsum.photos/seed/tech-man/800/600",
+      "imageHint": "man coding"
+    },
+    {
+      "id": "team-collab",
+      "description": "Creative Team Collaboration",
+      "imageUrl": "https://picsum.photos/seed/team-collab/1200/800",
+      "imageHint": "team meeting"
     }
   ]
 }
