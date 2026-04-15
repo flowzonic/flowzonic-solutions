@@ -162,6 +162,7 @@ export default function Home() {
             <div className="order-1 lg:order-2">
               <span className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Our Environment</span>
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight">Built on a <span className="text-primary">Tech-First</span> Foundation</h2>
+              <h3 className="text-xl font-bold mb-6 text-foreground/80">Innovation isn&apos;t just what we sell—it&apos;s how we operate.</h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 We aren't just an agency; we're a tech laboratory. Our workspace is built on the same automation principles we deliver to our clients. From AI-driven project management to custom internal neural networks, we live and breathe efficient code.
               </p>
@@ -289,41 +290,63 @@ export default function Home() {
       </section>
 
       {/* Portfolio Showcase (2nd Last) */}
-      <section className="py-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Our <span className="text-primary">Work</span></h2>
-          <p className="text-muted-foreground text-lg">Premium results for premium clients.</p>
-        </div>
-        
-        <div className="px-6">
-          <Carousel className="w-full max-w-7xl mx-auto">
-            <CarouselContent className="-ml-4">
+      <section className="py-24 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <Carousel className="w-full">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Featured <span className="text-primary">Projects</span></h2>
+                <p className="text-muted-foreground text-lg">A showcase of premium digital experiences and automated ecosystems.</p>
+              </div>
+              <div className="flex gap-3">
+                <CarouselPrevious className="static translate-y-0 h-12 w-12 rounded-2xl glass hover:bg-primary hover:text-white transition-all border-none shadow-lg" />
+                <CarouselNext className="static translate-y-0 h-12 w-12 rounded-2xl glass hover:bg-primary hover:text-white transition-all border-none shadow-lg" />
+              </div>
+            </div>
+            
+            <CarouselContent className="-ml-6">
               {portfolioItems.map((item, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-2/3">
-                  <div className="glass rounded-[2.5rem] overflow-hidden group border border-primary/5">
+                <CarouselItem key={index} className="pl-6 basis-full md:basis-1/2 lg:basis-1/3">
+                  <motion.div 
+                    whileHover={{ y: -10 }}
+                    className="glass-premium rounded-[2.5rem] overflow-hidden group border border-primary/5 h-full flex flex-col"
+                  >
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <Image 
                         src={item.imageUrl} 
                         alt={item.description} 
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
                         data-ai-hint={item.imageHint}
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                        <span className="text-white font-bold text-sm tracking-widest uppercase">Case Study</span>
+                      </div>
                     </div>
-                    <div className="p-8">
-                      <h3 className="text-2xl font-bold mb-3 tracking-tight">{item.description}</h3>
-                      <Link href="/services" className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
-                        View Details <ArrowRight size={18} />
-                      </Link>
+                    <div className="p-8 flex-1 flex flex-col">
+                      <h3 className="text-2xl font-bold mb-4 tracking-tight group-hover:text-primary transition-colors">{item.description}</h3>
+                      <div className="mt-auto pt-4 flex items-center justify-between">
+                        <Link href="/services" className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                          View Details <ArrowRight size={18} />
+                        </Link>
+                        <div className="flex -space-x-2">
+                          {[1, 2].map((i) => (
+                            <div key={i} className="w-8 h-8 rounded-full border-2 border-background glass overflow-hidden">
+                              <Image 
+                                src={`https://picsum.photos/seed/tech-${i}/100/100`} 
+                                alt="tech stack" 
+                                width={32} 
+                                height={32} 
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-end gap-3 mt-10">
-              <CarouselPrevious className="relative translate-y-0 left-0 bg-white/50 dark:bg-black/50 border-none shadow-md" />
-              <CarouselNext className="relative translate-y-0 right-0 bg-white/50 dark:bg-black/50 border-none shadow-md" />
-            </div>
           </Carousel>
         </div>
       </section>
