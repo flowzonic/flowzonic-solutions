@@ -19,7 +19,8 @@ import {
   Globe,
   Database,
   Terminal,
-  Cpu as Chip
+  Cpu as Chip,
+  Search
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -99,18 +100,6 @@ export default function Home() {
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 rounded-full blur-[120px] -z-10" />
           </motion.div>
-        </div>
-      </section>
-
-      {/* Tech Stack Marquee */}
-      <section className="py-10 border-y border-primary/5 bg-white/10 dark:bg-black/20 overflow-hidden">
-        <div className="flex whitespace-nowrap animate-marquee items-center gap-12">
-          {[...techStack, ...techStack].map((tech, i) => (
-            <div key={i} className="flex items-center gap-3 grayscale hover:grayscale-0 transition-all cursor-default">
-              <div className="text-primary">{tech.icon}</div>
-              <span className="text-lg font-bold text-muted-foreground/60">{tech.name}</span>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -275,7 +264,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Portfolio Showcase */}
+      {/* Tech Stack Marquee (Repositioned to 3rd Last) */}
+      <section className="py-20 px-6 overflow-hidden relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-primary/5 rounded-full blur-[120px] -z-10" />
+        <div className="max-w-7xl mx-auto">
+          <div className="glass-premium rounded-[3rem] p-10 md:p-14 overflow-hidden border border-primary/10 relative">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/10 blur-3xl rounded-full" />
+            
+            <div className="flex whitespace-nowrap animate-marquee items-center gap-16 md:gap-24">
+              {[...techStack, ...techStack].map((tech, i) => (
+                <div key={i} className="flex items-center gap-4 group cursor-default">
+                  <div className="p-3 bg-white/40 dark:bg-white/5 glass rounded-2xl text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-purple-glow">
+                    {tech.icon}
+                  </div>
+                  <span className="text-xl md:text-2xl font-black text-muted-foreground/40 group-hover:text-primary transition-colors duration-500 tracking-tight">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Showcase (2nd Last) */}
       <section className="py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Our <span className="text-primary">Work</span></h2>
@@ -315,7 +328,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Final CTA (Last) */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto bg-primary rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[100px] -translate-y-1/2 translate-x-1/2 rounded-full" />
@@ -334,10 +347,6 @@ export default function Home() {
       </section>
     </main>
   );
-}
-
-function Search() {
-  return <Globe size={20} />;
 }
 
 function EfficiencyCard({ title, items, type }: { title: string; items: string[]; type: 'before' | 'after' }) {
