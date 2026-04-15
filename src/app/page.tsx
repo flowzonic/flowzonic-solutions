@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <main className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] lg:min-h-[85vh] pt-32 pb-20 px-6 flex items-center">
+      <section className="relative min-h-[80vh] lg:min-h-[75vh] pt-24 lg:pt-32 pb-12 px-6 flex items-center">
         <div className="mesh-gradient-1 top-0 right-0 animate-pulse opacity-40" />
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
@@ -80,9 +80,9 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, base: "easeOut" }}
-            className="relative flex justify-center"
+            className="relative flex justify-center lg:justify-end"
           >
-            <div className="relative z-10 animate-float w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[450px] xl:max-w-[550px]">
+            <div className="relative z-10 animate-float w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[380px] xl:max-w-[480px]">
               <Image 
                 src={heroImage?.imageUrl || ""} 
                 alt="Glossy 3D Abstract" 
@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* Efficiency Showcase */}
-      <section className="py-24 px-6 relative overflow-hidden bg-white/30 dark:bg-black/10">
+      <section className="py-20 px-6 relative overflow-hidden bg-white/30 dark:bg-black/10">
         <div className="max-w-7xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Effortless <span className="text-primary">Workflow</span></h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">See how custom automation transforms your daily operations from chaos to clarity.</p>
@@ -131,15 +131,15 @@ export default function Home() {
       {/* Inside the Flow - Agency Tech Section */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div className="relative order-2 lg:order-1">
-              <div className="glass p-4 rounded-[3rem] relative overflow-hidden group">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+            <div className="relative order-2 lg:order-1 flex justify-center lg:justify-start">
+              <div className="glass p-4 rounded-[3rem] relative overflow-hidden group max-w-xl">
                 <Image 
                   src={techEnvImage?.imageUrl || ""} 
                   alt="Agency Environment" 
                   width={800} 
                   height={600} 
-                  className="rounded-[2.5rem] transition-transform duration-700 group-hover:scale-105"
+                  className="rounded-[2.5rem] transition-transform duration-700 group-hover:scale-105 w-full h-auto"
                   data-ai-hint="modern office"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
