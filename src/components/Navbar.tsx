@@ -45,66 +45,70 @@ export default function Navbar() {
   if (!theme) return null;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8 px-4 pointer-events-none">
+    <nav className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
       <motion.div 
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className={cn(
-          "w-full max-w-5xl glass-premium rounded-full px-2 py-2 flex items-center justify-between transition-all duration-500 pointer-events-auto border",
-          scrolled ? "bg-white/90 dark:bg-black/80 shadow-2xl py-2" : "bg-white/40 dark:bg-black/20 py-3"
+          "w-full glass-premium border-b transition-all duration-500 pointer-events-auto",
+          scrolled 
+            ? "bg-white/90 dark:bg-black/90 shadow-xl py-2" 
+            : "bg-white/60 dark:bg-black/40 py-4"
         )}
       >
-        {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-2 pl-4 group">
-          <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform duration-500">
-            <Rocket size={18} />
-          </div>
-          <span className="font-extrabold text-xl tracking-tighter text-foreground hidden sm:block">
-            FLOW<span className="text-primary">ZONIC</span>
-          </span>
-        </Link>
-
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-1 bg-white/10 dark:bg-black/10 rounded-full p-1 border border-white/20">
-          {NAV_ITEMS.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link 
-                key={item.name} 
-                href={item.href}
-                className={cn(
-                  "px-5 py-2 text-sm font-bold rounded-full transition-all duration-300",
-                  isActive 
-                    ? "bg-primary text-white shadow-lg" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
-                )}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* Action Section */}
-        <div className="flex items-center gap-2 pr-2">
-          <button 
-            onClick={toggleTheme}
-            className="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-primary/10 text-foreground transition-all active:scale-90"
-            aria-label="Toggle theme"
-          >
-            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-          </button>
-          
-          <Link href="/contact" className="hidden sm:flex btn-primary !py-2 !px-6 text-sm">
-            Book a Call
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          {/* Logo Section */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform duration-500">
+              <Rocket size={18} />
+            </div>
+            <span className="font-extrabold text-xl tracking-tighter text-foreground hidden sm:block">
+              FLOW<span className="text-primary">ZONIC</span>
+            </span>
           </Link>
 
-          <button 
-            className="md:hidden w-10 h-10 flex items-center justify-center text-foreground rounded-full glass"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-2">
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link 
+                  key={item.name} 
+                  href={item.href}
+                  className={cn(
+                    "px-4 py-2 text-sm font-bold rounded-lg transition-all duration-300",
+                    isActive 
+                      ? "text-primary bg-primary/10" 
+                      : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
+                  )}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Action Section */}
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={toggleTheme}
+              className="w-10 h-10 flex items-center justify-center rounded-xl glass hover:bg-primary/10 text-foreground transition-all active:scale-90"
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+            </button>
+            
+            <Link href="/contact" className="hidden sm:flex btn-primary !py-2.5 !px-6 text-sm">
+              Book a Call
+            </Link>
+
+            <button 
+              className="md:hidden w-10 h-10 flex items-center justify-center text-foreground rounded-xl glass"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </motion.div>
 
@@ -112,17 +116,17 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="absolute top-24 left-4 right-4 md:hidden glass-premium rounded-[2.5rem] p-4 flex flex-col gap-1 pointer-events-auto shadow-2xl"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-[calc(100%-1px)] left-0 right-0 md:hidden glass-premium border-b p-6 flex flex-col gap-2 pointer-events-auto shadow-2xl"
           >
             {[...NAV_ITEMS, { name: "Contact", href: "/contact" }].map((item) => (
               <Link 
                 key={item.name} 
                 href={item.href}
                 className={cn(
-                  "text-lg font-bold px-8 py-4 rounded-[1.5rem] transition-colors",
+                  "text-lg font-bold px-4 py-4 rounded-xl transition-colors",
                   pathname === item.href ? "bg-primary text-white" : "text-foreground hover:bg-primary/5"
                 )}
                 onClick={() => setIsOpen(false)}
