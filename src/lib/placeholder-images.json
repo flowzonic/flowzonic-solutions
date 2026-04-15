@@ -25,6 +25,12 @@
       "imageHint": "automation system"
     },
     {
+      "id": "tech-env",
+      "description": "Modern Tech Office Environment",
+      "imageUrl": "https://picsum.photos/seed/office-flow/1200/800",
+      "imageHint": "modern office"
+    },
+    {
       "id": "blog-1",
       "description": "Artificial Intelligence Blog",
       "imageUrl": "https://picsum.photos/seed/ai/600/400",

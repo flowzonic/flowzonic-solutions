@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -9,12 +10,16 @@ import {
   Zap, 
   Palette, 
   CheckCircle2, 
-  Search, 
   Cpu, 
   Rocket,
   ShieldCheck,
   TrendingUp,
-  Clock
+  Clock,
+  Layers,
+  Globe,
+  Database,
+  Terminal,
+  Cpu as Chip
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -28,7 +33,19 @@ import {
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(img => img.id === "hero-3d");
+  const techEnvImage = PlaceHolderImages.find(img => img.id === "tech-env");
   const portfolioItems = PlaceHolderImages.filter(img => img.id.startsWith("mockup-"));
+
+  const techStack = [
+    { name: "Next.js", icon: <Globe size={20} /> },
+    { name: "React", icon: <Layers size={20} /> },
+    { name: "Tailwind", icon: <Palette size={20} /> },
+    { name: "TypeScript", icon: <Code size={20} /> },
+    { name: "Genkit AI", icon: <Chip size={20} /> },
+    { name: "Apps Script", icon: <Terminal size={20} /> },
+    { name: "Firebase", icon: <Database size={20} /> },
+    { name: "Cloud Ops", icon: <Cpu size={20} /> },
+  ];
 
   return (
     <main className="overflow-hidden">
@@ -77,10 +94,23 @@ export default function Home() {
                 height={800}
                 className="rounded-[3rem] drop-shadow-[0_20px_50px_rgba(157,78,221,0.2)] w-full h-auto"
                 priority
+                data-ai-hint="abstract 3d purple"
               />
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 rounded-full blur-[120px] -z-10" />
           </motion.div>
+        </div>
+      </section>
+
+      {/* Tech Stack Marquee */}
+      <section className="py-10 border-y border-primary/5 bg-white/10 dark:bg-black/20 overflow-hidden">
+        <div className="flex whitespace-nowrap animate-marquee items-center gap-12">
+          {[...techStack, ...techStack].map((tech, i) => (
+            <div key={i} className="flex items-center gap-3 grayscale hover:grayscale-0 transition-all cursor-default">
+              <div className="text-primary">{tech.icon}</div>
+              <span className="text-lg font-bold text-muted-foreground/60">{tech.name}</span>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -111,6 +141,59 @@ export default function Home() {
               "Professional document generation"
             ]}
           />
+        </div>
+      </section>
+
+      {/* Inside the Flow - Agency Tech Section */}
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="relative order-2 lg:order-1">
+              <div className="glass p-4 rounded-[3rem] relative overflow-hidden group">
+                <Image 
+                  src={techEnvImage?.imageUrl || ""} 
+                  alt="Agency Environment" 
+                  width={800} 
+                  height={600} 
+                  className="rounded-[2.5rem] transition-transform duration-700 group-hover:scale-105"
+                  data-ai-hint="modern office"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <div className="absolute -top-6 -left-6 glass p-6 rounded-3xl hidden md:block animate-bounce shadow-xl">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-primary rounded-xl text-white"><Zap size={24} /></div>
+                  <div>
+                    <p className="text-xs font-bold text-muted-foreground">AGENCY STATUS</p>
+                    <p className="font-black">ALWAYS FLOWING</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <span className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Our Environment</span>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight">Built on a <span className="text-primary">Tech-First</span> Foundation</h2>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                We aren't just an agency; we're a tech laboratory. Our workspace is built on the same automation principles we deliver to our clients. From AI-driven project management to custom internal neural networks, we live and breathe efficient code.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="flex gap-4 items-start">
+                  <div className="p-2 bg-primary/5 rounded-lg text-primary"><Database size={20} /></div>
+                  <div>
+                    <h4 className="font-bold mb-1">Data-Centric</h4>
+                    <p className="text-sm text-muted-foreground">Every design decision is backed by real-time user flow data.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="p-2 bg-primary/5 rounded-lg text-primary"><ShieldCheck size={20} /></div>
+                  <div>
+                    <h4 className="font-bold mb-1">Cloud Native</h4>
+                    <p className="text-sm text-muted-foreground">Distributed global systems ensuring 99.9% uptime for all scripts.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -211,6 +294,7 @@ export default function Home() {
                         alt={item.description} 
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-ai-hint={item.imageHint}
                       />
                     </div>
                     <div className="p-8">
@@ -250,6 +334,10 @@ export default function Home() {
       </section>
     </main>
   );
+}
+
+function Search() {
+  return <Globe size={20} />;
 }
 
 function EfficiencyCard({ title, items, type }: { title: string; items: string[]; type: 'before' | 'after' }) {
