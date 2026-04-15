@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -60,10 +59,6 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-primary text-[10px] sm:text-xs font-bold tracking-widest uppercase">The Future of Automation</span>
-            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black leading-[1.1] mb-6 tracking-tight">
               <span className="gradient-text">Automate</span> Your Vision.<br />
               <span className="text-primary/90 italic font-serif">Design</span> Your Growth.
@@ -84,7 +79,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 1, base: "easeOut" }}
             className="relative flex justify-center"
           >
             <div className="relative z-10 animate-float w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[450px] xl:max-w-[550px]">
