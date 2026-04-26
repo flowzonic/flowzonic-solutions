@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -19,7 +20,12 @@ import {
   Database,
   Terminal,
   Cpu as Chip,
-  Search
+  Search,
+  MessageSquare,
+  Network,
+  Activity,
+  Award,
+  Star
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -128,6 +134,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Infrastructure Section - The "Neural Network" */}
+      <section className="py-24 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <span className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">The Infrastructure</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">The <span className="gradient-text">Neural Network</span> of Flow</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Our systems are designed to think, adapt, and scale alongside your business objectives.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <FeatureCard 
+              icon={<Network size={24} />} 
+              title="Global Grid" 
+              desc="Edge-computing nodes ensure zero latency for your automated scripts." 
+            />
+            <FeatureCard 
+              icon={<ShieldCheck size={24} />} 
+              title="Secure Flow" 
+              desc="Enterprise-grade encryption for every byte of data moving through your system." 
+            />
+            <FeatureCard 
+              icon={<Activity size={24} />} 
+              title="Live Pulse" 
+              desc="Real-time monitoring and self-healing automation routines." 
+            />
+            <FeatureCard 
+              icon={<Chip size={24} />} 
+              title="AI Native" 
+              desc="Deep integration with Gemini AI for predictive decision making." 
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Inside the Flow - Agency Tech Section */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
@@ -182,6 +222,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials - Social Proof */}
+      <section className="py-24 px-6 bg-primary/5 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Trusted by <span className="text-primary">Visionaries</span></h2>
+            <p className="text-muted-foreground text-lg">Don't just take our word for it—see the impact on businesses like yours.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <TestimonialCard 
+              quote="Flowzonic didn't just build a site; they engineered a growth machine. Our conversion rate tripled in 90 days." 
+              author="Elena Vance" 
+              role="CEO, Lumina Tech" 
+              avatar="https://picsum.photos/seed/face1/100/100"
+            />
+            <TestimonialCard 
+              quote="The Google Workspace automation saved our operations team 15 hours a week. It's like having 3 extra employees." 
+              author="Marcus Thorne" 
+              role="COO, Global Logistics" 
+              avatar="https://picsum.photos/seed/face2/100/100"
+            />
+            <TestimonialCard 
+              quote="Their design philosophy is light years ahead. Our brand now commands the premium attention it deserves." 
+              author="Sofia Rossi" 
+              role="Founder, Aura Design" 
+              avatar="https://picsum.photos/seed/face3/100/100"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Services Grid */}
       <section className="py-24 px-6 relative">
         <div className="mesh-gradient-1 bottom-0 left-0 opacity-10" />
@@ -215,6 +286,50 @@ export default function Home() {
               description="Glossy, premium brand identities and UI/UX designs that command attention."
               href="/services/design"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Global Reach Section */}
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/5 -z-10" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight">A <span className="text-primary">Global</span> Ecosystem</h2>
+            <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
+              We operate as a decentralized agency, serving clients from Silicon Valley to Singapore. Our infrastructure ensures that your automation never sleeps, operating at the speed of global business 24/7.
+            </p>
+            <div className="space-y-6">
+              <div className="flex gap-4 items-center">
+                <div className="w-12 h-12 glass rounded-full flex items-center justify-center text-primary"><Globe size={20} /></div>
+                <div>
+                  <h4 className="font-bold">Distributed Talent</h4>
+                  <p className="text-sm text-muted-foreground">Expert developers across 4 continents.</p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-center">
+                <div className="w-12 h-12 glass rounded-full flex items-center justify-center text-primary"><Award size={20} /></div>
+                <div>
+                  <h4 className="font-bold">Global Standards</h4>
+                  <p className="text-sm text-muted-foreground">Adhering to international data and design benchmarks.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="glass aspect-video rounded-[3rem] overflow-hidden p-2">
+              <Image 
+                src="https://picsum.photos/seed/world-map/1200/800" 
+                alt="Global Network" 
+                width={1200} 
+                height={800} 
+                className="w-full h-full object-cover rounded-[2.5rem] opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+                data-ai-hint="world map"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                 <div className="w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -260,7 +375,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tech Stack Marquee (Repositioned to 3rd Last) */}
+      {/* Tech Stack Marquee (3rd Last) */}
       <section className="py-20 px-6 overflow-hidden relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-primary/5 rounded-full blur-[120px] -z-10" />
         <div className="max-w-7xl mx-auto">
@@ -402,6 +517,39 @@ function ServiceCard({ icon, title, description, href }: { icon: React.ReactNode
       <Link href={href} className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
         Learn More <ArrowRight size={18} />
       </Link>
+    </div>
+  );
+}
+
+function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
+  return (
+    <div className="glass p-8 rounded-[2.5rem] group hover:bg-white/80 dark:hover:bg-white/10 transition-all border border-primary/5 hover:border-primary/20">
+      <div className="mb-6 w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">{icon}</div>
+      <h4 className="text-xl font-bold mb-3">{title}</h4>
+      <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+    </div>
+  );
+}
+
+function TestimonialCard({ quote, author, role, avatar }: { quote: string; author: string; role: string; avatar: string }) {
+  return (
+    <div className="glass-premium p-10 rounded-[3rem] border border-primary/10 relative">
+      <div className="absolute -top-4 -left-4 w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg">
+        <MessageSquare size={20} />
+      </div>
+      <div className="flex gap-1 mb-6 text-primary">
+        {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={14} fill="currentColor" />)}
+      </div>
+      <p className="text-lg font-medium italic mb-10 leading-relaxed text-foreground/80">&ldquo;{quote}&rdquo;</p>
+      <div className="flex items-center gap-4">
+        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20">
+          <Image src={avatar} alt={author} width={48} height={48} className="object-cover" />
+        </div>
+        <div>
+          <p className="font-bold text-sm">{author}</p>
+          <p className="text-xs text-muted-foreground">{role}</p>
+        </div>
+      </div>
     </div>
   );
 }
