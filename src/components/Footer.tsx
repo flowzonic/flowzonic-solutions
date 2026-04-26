@@ -1,21 +1,22 @@
-
 "use client";
 
 import Link from "next/link";
-import { Rocket, Twitter, Linkedin, Github, Mail } from "lucide-react";
+import Image from "next/image";
+import { Twitter, Linkedin, Github, Mail, Rocket } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-white/50 dark:bg-black/40 backdrop-blur-xl pt-20 pb-10 px-6 border-t border-primary/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
-          <Link href="/" className="flex items-center gap-2 mb-6">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white shadow-lg">
-              <Rocket size={20} />
-            </div>
-            <span className="font-extrabold text-2xl tracking-tighter text-foreground">
-              FLOW<span className="text-primary">ZONIC</span>
-            </span>
+          <Link href="/" className="inline-block mb-6 transition-transform active:scale-95">
+            <Image 
+              src="/flowzonic-website-logo.png" 
+              alt="Flowzonic Logo" 
+              width={160} 
+              height={40} 
+              className="w-auto h-10 object-contain"
+            />
           </Link>
           <p className="text-muted-foreground leading-relaxed mb-6 font-medium">
             Empowering businesses through cutting-edge automation and premium digital design.

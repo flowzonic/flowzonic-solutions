@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Rocket, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
@@ -56,13 +57,15 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo Section */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform duration-500">
-              <Rocket size={18} />
-            </div>
-            <span className="font-extrabold text-xl tracking-tighter text-foreground hidden sm:block">
-              FLOW<span className="text-primary">ZONIC</span>
-            </span>
+          <Link href="/" className="flex items-center gap-2 group transition-transform active:scale-95">
+            <Image 
+              src="/flowzonic-website-logo.png" 
+              alt="Flowzonic Logo" 
+              width={160} 
+              height={40} 
+              className="w-auto h-8 sm:h-10 object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation Links */}
