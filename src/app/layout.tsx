@@ -7,6 +7,9 @@ import PageTransition from '@/components/PageTransition';
 export const metadata: Metadata = {
   title: 'Flowzonic Solution | Automate Your Vision',
   description: 'Expert Web Development, Google Workspace Automation, and High-End Graphic Design.',
+  icons: {
+    icon: '/flowzonic-icon.png',
+  },
 };
 
 export default function RootLayout({
