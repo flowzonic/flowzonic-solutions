@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Flowzonic Solution | Automate Your Vision',
   description: 'Expert Web Development, Google Workspace Automation, and High-End Graphic Design.',
   icons: {
-    icon: '/flowzonic-icon.png',
+    icon: '/flowzone-icon.png',
   },
 };
 

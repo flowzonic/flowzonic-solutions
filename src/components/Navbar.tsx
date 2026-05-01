@@ -59,7 +59,7 @@ export default function Navbar() {
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-2 group transition-transform active:scale-95">
             <Image 
-              src="/flowzonic-website-logo.png" 
+              src="/header-logo.png" 
               alt="Flowzonic Logo" 
               width={160} 
               height={40} 

@@ -9,11 +9,10 @@ export async function submitContactForm(formData: FormData) {
   const message = formData.get('message') as string;
 
   try {
-    // 1. Generate Personalized AI Reply content
+    // 1. Generate Personalized AI Reply content using Genkit
     const aiReply = await generateContactReply({ name, service, message });
 
     // 2. Integration: Google Apps Script (as per PRD)
-    // In production, set APPS_SCRIPT_URL in your environment variables
     const scriptUrl = process.env.APPS_SCRIPT_URL;
     
     if (scriptUrl) {
@@ -37,7 +36,11 @@ export async function submitContactForm(formData: FormData) {
     console.log(`Content: ${aiReply.body}`);
     console.log('-------------------------');
 
-    return { success: true, message: "Flow initiated. Check your email soon!" };
+    return { 
+      success: true, 
+      message: "Flow initiated. Check your email soon!",
+      aiReply: aiReply 
+    };
   } catch (error) {
     console.error('Contact submission error:', error);
     return { success: false, message: "The flow was interrupted. Please try again." };

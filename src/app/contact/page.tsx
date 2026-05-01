@@ -1,14 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Send, MapPin, Phone, Mail, Rocket } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, MapPin, Phone, Mail, Rocket, CheckCircle2, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { submitContactForm } from "@/app/actions/contact";
+import Link from "next/link";
 
 export default function Contact() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [successData, setSuccessData] = useState<any>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,7 +24,7 @@ export default function Contact() {
         title: "Message Sent!",
         description: result.message,
       });
-      (e.target as HTMLFormElement).reset();
+      setSuccessData(result.aiReply);
     } else {
       toast({
         variant: "destructive",
@@ -37,61 +39,116 @@ export default function Contact() {
   return (
     <main className="pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Let&apos;s <span className="gradient-text">Connect</span></h1>
-            <p className="text-xl text-muted-foreground mb-12">
-              Have a project in mind? We&apos;d love to hear how we can help you automate your vision.
-            </p>
+        <AnimatePresence mode="wait">
+          {!successData ? (
+            <motion.div 
+              key="form"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-20"
+            >
+              <div>
+                <h1 className="text-5xl md:text-6xl font-bold mb-6">Let&apos;s <span className="gradient-text">Connect</span></h1>
+                <p className="text-xl text-muted-foreground mb-12">
+                  Have a project in mind? We&apos;d love to hear how we can help you automate your vision.
+                </p>
 
-            <div className="space-y-8">
-              <ContactInfo icon={<Mail />} label="Email" value="hello@flowzonic.com" />
-              <ContactInfo icon={<Phone />} label="Phone" value="+1 (555) FLOW-ZONIC" />
-              <ContactInfo icon={<MapPin />} label="Office" value="San Francisco, CA (Remote Friendly)" />
-            </div>
+                <div className="space-y-8">
+                  <ContactInfo icon={<Mail />} label="Email" value="hello@flowzonic.com" />
+                  <ContactInfo icon={<Phone />} label="Phone" value="+1 (555) FLOW-ZONIC" />
+                  <ContactInfo icon={<MapPin />} label="Office" value="San Francisco, CA (Remote Friendly)" />
+                </div>
 
-            <div className="mt-20 p-8 glass rounded-4xl border-primary/20 bg-primary/5">
-              <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <Rocket className="text-primary" /> Why wait?
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Most companies save over 10 hours a week within the first month of implementing our custom automation scripts.
-              </p>
-            </div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="glass p-10 rounded-4xl"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <InputGroup label="Full Name" name="name" id="name" placeholder="Jane Doe" required />
-                <InputGroup label="Email Address" name="email" id="email" type="email" placeholder="jane@company.com" required />
+                <div className="mt-20 p-8 glass rounded-4xl border-primary/20 bg-primary/5">
+                  <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Rocket className="text-primary" /> Why wait?
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Most companies save over 10 hours a week within the first month of implementing our custom automation scripts.
+                  </p>
+                </div>
               </div>
-              <InputGroup label="Service Needed" name="service" id="service" type="select" options={["Web Development", "Google Automation", "Graphic Design", "Other"]} />
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-sm font-bold ml-1 text-muted-foreground">How can we help?</label>
-                <textarea 
-                  id="message" 
-                  name="message"
-                  rows={6}
-                  required
-                  placeholder="Tell us about your project..."
-                  className="glass rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 text-foreground"
-                ></textarea>
-              </div>
-              <button 
-                type="submit" 
-                disabled={loading}
-                className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4 disabled:opacity-50"
+
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="glass p-10 rounded-4xl"
               >
-                {loading ? "Processing Flow..." : "Send Message"} <Send size={20} />
-              </button>
-            </form>
-          </motion.div>
-        </div>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <InputGroup label="Full Name" name="name" id="name" placeholder="Jane Doe" required />
+                    <InputGroup label="Email Address" name="email" id="email" type="email" placeholder="jane@company.com" required />
+                  </div>
+                  <InputGroup label="Service Needed" name="service" id="service" type="select" options={["Web Development", "Google Automation", "Graphic Design", "Other"]} />
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="message" className="text-sm font-bold ml-1 text-muted-foreground">How can we help?</label>
+                    <textarea 
+                      id="message" 
+                      name="message"
+                      rows={6}
+                      required
+                      placeholder="Tell us about your project..."
+                      className="glass rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 text-foreground"
+                    ></textarea>
+                  </div>
+                  <button 
+                    type="submit" 
+                    disabled={loading}
+                    className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4 disabled:opacity-50"
+                  >
+                    {loading ? "Processing Flow..." : "Send Message"} <Send size={20} />
+                  </button>
+                </form>
+              </motion.div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="success"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="max-w-3xl mx-auto text-center py-20"
+            >
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-8">
+                <CheckCircle2 size={40} />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Flow <span className="text-primary">Initiated!</span></h2>
+              <p className="text-xl text-muted-foreground mb-12">
+                Your request has been captured. Our AI has already drafted a preliminary response for you:
+              </p>
+              
+              <div className="glass p-10 rounded-[2.5rem] text-left mb-12 border-primary/20 bg-white/60 dark:bg-black/40">
+                <div className="flex items-center gap-3 mb-6 pb-6 border-b border-primary/10">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
+                    <Rocket size={20} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">AI Auto-Reply Preview</p>
+                    <p className="font-bold text-primary">{successData.subject}</p>
+                  </div>
+                </div>
+                <p className="whitespace-pre-wrap text-foreground/80 leading-relaxed italic">
+                  &quot;{successData.body}&quot;
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => setSuccessData(null)}
+                  className="glass py-4 px-8 rounded-full font-bold hover:bg-white/80 transition-all"
+                >
+                  Send Another Message
+                </button>
+                <Link 
+                  href="/services" 
+                  className="btn-primary flex items-center justify-center gap-2"
+                >
+                  Explore Services <ArrowRight size={20} />
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </main>
   );
