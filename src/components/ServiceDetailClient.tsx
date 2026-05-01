@@ -70,7 +70,7 @@ export default function ServiceDetailClient({ service }: { service: any }) {
             {service.process.map((step: any, i: number) => (
               <div key={i} className="relative">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-14 h-14 bg-white dark:bg-black/40 glass-premium rounded-full flex items-center justify-center text-primary font-black mb-6 z-10 shadow-lg border-primary/20">
+                  <div className="w-14 h-14 bg-white glass-premium rounded-full flex items-center justify-center text-primary font-black mb-6 z-10 shadow-lg border-primary/20">
                     {i + 1}
                   </div>
                   <h3 className="text-xl font-bold mb-3">{step.title}</h3>
