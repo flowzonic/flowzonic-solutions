@@ -8,7 +8,7 @@ import {
   Code, 
   Zap, 
   Palette, 
-  CheckCircle, 
+  CheckCircle2, 
   Cpu, 
   Rocket,
   ShieldCheck,
@@ -33,8 +33,6 @@ import {
   CarouselNext, 
   CarouselPrevious 
 } from "@/components/ui/carousel";
-
-const Chip = Cpu;
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(img => img.id === "hero-3d");
@@ -94,7 +92,6 @@ export default function Home() {
                 height={800}
                 className="rounded-[3rem] drop-shadow-[0_20px_50px_rgba(157,78,221,0.2)] w-full h-auto"
                 priority
-                data-ai-hint="abstract 3d purple"
               />
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/10 rounded-full blur-[120px] -z-10" />
@@ -156,7 +153,7 @@ export default function Home() {
               desc="Real-time monitoring and self-healing automation routines." 
             />
             <FeatureCard 
-              icon={<Chip size={24} />} 
+              icon={<Cpu size={24} />} 
               title="Scalable Design" 
               desc="Built with performance and future-proof scaling at the core." 
             />
@@ -175,7 +172,6 @@ export default function Home() {
                   width={800} 
                   height={600} 
                   className="rounded-[2.5rem] transition-transform duration-700 group-hover:scale-105 w-full h-auto"
-                  data-ai-hint="modern office"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
@@ -316,7 +312,6 @@ export default function Home() {
                 width={1200} 
                 height={800} 
                 className="w-full h-full object-cover rounded-[2.5rem] opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
-                data-ai-hint="world map"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                  <div className="w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse" />
@@ -415,7 +410,6 @@ export default function Home() {
                         alt={item.description} 
                         fill
                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                        data-ai-hint={item.imageHint}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
                         <span className="text-white font-bold text-sm tracking-widest uppercase">Case Study</span>
@@ -483,7 +477,7 @@ function EfficiencyCard({ title, items, type }: { title: string; items: string[]
               "mt-1 p-1.5 rounded-full transition-colors",
               type === 'before' ? "bg-red-100 text-red-500" : "bg-green-100 text-green-500"
             )}>
-              <CheckCircle size={16} />
+              <CheckCircle2 size={16} />
             </div>
             <span className="text-muted-foreground font-medium leading-relaxed group-hover:text-foreground transition-colors">{item}</span>
           </li>
