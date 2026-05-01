@@ -20,12 +20,12 @@ import {
   Database,
   Terminal,
   Cpu as Chip,
-  Search,
   MessageSquare,
   Network,
   Activity,
   Award,
-  Star
+  Star,
+  Search
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -47,10 +47,10 @@ export default function Home() {
     { name: "React", icon: <Layers size={20} /> },
     { name: "Tailwind", icon: <Palette size={20} /> },
     { name: "TypeScript", icon: <Code size={20} /> },
-    { name: "Genkit AI", icon: <Chip size={20} /> },
     { name: "Apps Script", icon: <Terminal size={20} /> },
     { name: "Firebase", icon: <Database size={20} /> },
     { name: "Cloud Ops", icon: <Cpu size={20} /> },
+    { name: "UI/UX", icon: <Layers size={20} /> },
   ];
 
   return (
@@ -161,8 +161,8 @@ export default function Home() {
             />
             <FeatureCard 
               icon={<Chip size={24} />} 
-              title="AI Native" 
-              desc="Deep integration with Gemini AI for predictive decision making." 
+              title="Scalable Design" 
+              desc="Built with performance and future-proof scaling at the core." 
             />
           </div>
         </div>
@@ -199,7 +199,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tight">Built on a <span className="text-primary">Tech-First</span> Foundation</h2>
               <h3 className="text-xl font-bold mb-6 text-foreground/80">Innovation isn&apos;t just what we sell—it&apos;s how we operate.</h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                We aren't just an agency; we're a tech laboratory. Our workspace is built on the same automation principles we deliver to our clients. From AI-driven project management to custom internal neural networks, we live and breathe efficient code.
+                We aren't just an agency; we're a tech laboratory. Our workspace is built on the same automation principles we deliver to our clients. From data-driven project management to custom internal neural networks, we live and breathe efficient code.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="flex gap-4 items-start">

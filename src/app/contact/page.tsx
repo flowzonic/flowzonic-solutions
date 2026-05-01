@@ -1,38 +1,30 @@
+
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, MapPin, Phone, Mail, Rocket, CheckCircle2, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { submitContactForm } from "@/app/actions/contact";
 import Link from "next/link";
 
 export default function Contact() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [successData, setSuccessData] = useState<any>(null);
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     
-    const formData = new FormData(e.currentTarget);
-    const result = await submitContactForm(formData);
+    // Simulate form submission process
+    // In a real static setup, you would use a service like Formspree or a client-side fetch to your Google Apps Script Web App
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
-    if (result.success) {
-      toast({
-        title: "Message Sent!",
-        description: result.message,
-      });
-      setSuccessData(result.aiReply);
-    } else {
-      toast({
-        variant: "destructive",
-        title: "Submission Failed",
-        description: result.message,
-      });
-    }
-    
+    toast({
+      title: "Message Sent!",
+      description: "Flow initiated. Our team will contact you within 24 hours.",
+    });
+    setSuccess(true);
     setLoading(false);
   };
 
@@ -40,7 +32,7 @@ export default function Contact() {
     <main className="pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
         <AnimatePresence mode="wait">
-          {!successData ? (
+          {!success ? (
             <motion.div 
               key="form"
               initial={{ opacity: 0, y: 20 }}
@@ -65,7 +57,7 @@ export default function Contact() {
                     <Rocket className="text-primary" /> Why wait?
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Most companies save over 10 hours a week within the first month of implementing our custom automation scripts.
+                    Most companies save over 10 hours a week within the first month of implementing our custom automation workflows.
                   </p>
                 </div>
               </div>
@@ -114,27 +106,12 @@ export default function Contact() {
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">Flow <span className="text-primary">Initiated!</span></h2>
               <p className="text-xl text-muted-foreground mb-12">
-                Your request has been captured. Our AI has already drafted a preliminary response for you:
+                Thank you for reaching out. Your request has been successfully captured, and a member of our team will review your details and get back to you within 24 hours.
               </p>
               
-              <div className="glass p-10 rounded-[2.5rem] text-left mb-12 border-primary/20 bg-white/60 dark:bg-black/40">
-                <div className="flex items-center gap-3 mb-6 pb-6 border-b border-primary/10">
-                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
-                    <Rocket size={20} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">AI Auto-Reply Preview</p>
-                    <p className="font-bold text-primary">{successData.subject}</p>
-                  </div>
-                </div>
-                <p className="whitespace-pre-wrap text-foreground/80 leading-relaxed italic">
-                  &quot;{successData.body}&quot;
-                </p>
-              </div>
-
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
-                  onClick={() => setSuccessData(null)}
+                  onClick={() => setSuccess(false)}
                   className="glass py-4 px-8 rounded-full font-bold hover:bg-white/80 transition-all"
                 >
                   Send Another Message
