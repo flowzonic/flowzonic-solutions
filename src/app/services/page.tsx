@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -155,7 +154,7 @@ export default function Services() {
                   data-ai-hint="woman technology"
                 />
               </div>
-              <div className="absolute -bottom-10 -left-10 glass p-8 rounded-3xl z-20 hidden md:block border-primary/20 bg-white/60 dark:bg-black/60">
+              <div className="absolute -bottom-10 -left-10 glass p-8 rounded-3xl z-20 hidden md:block border-primary/20 bg-white/60">
                 <p className="text-2xl font-bold text-primary">Strategy First</p>
                 <p className="text-sm text-muted-foreground">Data-driven roadmaps for every project.</p>
               </div>
@@ -194,7 +193,7 @@ export default function Services() {
                   </div>
                 </div>
                 <div className="pt-8 space-y-4">
-                  <div className="glass p-3 rounded-2xl h-40 flex items-center justify-center bg-white/80 dark:bg-black/40 text-center">
+                  <div className="glass p-3 rounded-2xl h-40 flex items-center justify-center bg-white/80 text-center">
                     <div>
                       <Users className="mx-auto text-primary mb-2" />
                       <p className="text-sm font-bold">Client-First Approach</p>

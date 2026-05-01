@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
-  ArrowRight, Rocket, TrendingUp, HelpCircle
+  ArrowRight, Rocket, TrendingUp, CircleHelp
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -108,7 +108,7 @@ export default function ServiceDetailClient({ service }: { service: any }) {
         {/* FAQ Section */}
         <section className="max-w-4xl mx-auto mb-32">
           <div className="text-center mb-16">
-            <HelpCircle className="mx-auto text-primary mb-4" size={40} />
+            <CircleHelp className="mx-auto text-primary mb-4" size={40} />
             <h2 className="text-3xl md:text-5xl font-bold">Frequently Asked <span className="text-primary">Questions</span></h2>
           </div>
           <Accordion type="single" collapsible className="w-full space-y-4">

@@ -6,7 +6,7 @@ import { Twitter, Linkedin, Github, Mail, Rocket } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-white/50 dark:bg-black/40 backdrop-blur-xl pt-20 pb-10 px-6 border-t border-primary/10 transition-colors duration-300">
+    <footer className="bg-white/50 backdrop-blur-xl pt-20 pb-10 px-6 border-t border-primary/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
           <Link href="/" className="inline-block mb-6 transition-transform active:scale-95">
@@ -56,7 +56,7 @@ export default function Footer() {
             <input 
               type="email" 
               placeholder="Your email" 
-              className="w-full glass rounded-full py-3 px-6 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 dark:bg-white/5 text-foreground placeholder:text-muted-foreground"
+              className="w-full glass rounded-full py-3 px-6 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 text-foreground placeholder:text-muted-foreground"
             />
             <button className="absolute right-1 top-1 bg-primary text-white p-2 rounded-full hover:scale-110 transition-transform shadow-lg shadow-primary/20">
               <Rocket size={16} />

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
@@ -18,7 +18,6 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark' | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -26,24 +25,8 @@ export default function Navbar() {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
-
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    const initialTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    
-    setTheme(initialTheme);
-    document.documentElement.classList.toggle("dark", initialTheme === "dark");
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
-
-  if (!theme) return null;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -51,7 +34,7 @@ export default function Navbar() {
         className={cn(
           "w-full transition-all duration-500 border-b",
           scrolled 
-            ? "bg-white/70 dark:bg-black/70 backdrop-blur-lg border-primary/10 shadow-sm py-3" 
+            ? "bg-white/70 backdrop-blur-lg border-primary/10 shadow-sm py-3" 
             : "bg-transparent border-transparent py-6"
         )}
       >
@@ -88,14 +71,6 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button 
-              onClick={toggleTheme}
-              className="w-10 h-10 flex items-center justify-center rounded-xl border border-transparent hover:border-primary/20 hover:bg-primary/5 text-foreground transition-all active:scale-90"
-              aria-label="Toggle theme"
-            >
-              {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-            </button>
-            
             <Link href="/contact" className="hidden sm:flex btn-primary !py-2.5 !px-6 text-sm">
               Book a Call
             </Link>
@@ -116,7 +91,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-xl border-b border-primary/10 p-6 flex flex-col gap-2 shadow-2xl"
+            className="absolute top-full left-0 right-0 md:hidden bg-white/95 backdrop-blur-xl border-b border-primary/10 p-6 flex flex-col gap-2 shadow-2xl"
           >
             {[...NAV_ITEMS, { name: "Contact", href: "/contact" }].map((item) => (
               <Link 

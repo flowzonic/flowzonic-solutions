@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,27 +26,6 @@
     --radius: 1.5rem;
     --bg-gradient: linear-gradient(135deg, #ffffff 0%, #F8F4FF 100%);
   }
-
-  .dark {
-    --background: 271 50% 2%;
-    --foreground: 0 0% 98%;
-    --card: 271 50% 4% / 0.8;
-    --card-foreground: 0 0% 98%;
-    --popover: 271 50% 2%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 270 60% 65%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 271 40% 8%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 271 40% 6%;
-    --muted-foreground: 271 10% 70%;
-    --accent: 270 50% 40%;
-    --accent-foreground: 0 0% 98%;
-    --border: 271 30% 12%;
-    --input: 271 30% 12%;
-    --ring: 270 50% 58%;
-    --bg-gradient: linear-gradient(135deg, #020104 0%, hsla(270, 60%, 15%, 0.25) 100%);
-  }
 }
 
 @layer base {
@@ -59,17 +37,16 @@
     background: var(--bg-gradient);
     background-attachment: fixed;
     min-height: 100vh;
-    transition: background 0.3s ease, color 0.3s ease;
   }
 }
 
 @layer components {
   .glass {
-    @apply backdrop-blur-md bg-white/40 border border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-300 dark:bg-black/50 dark:border-white/5;
+    @apply backdrop-blur-md bg-white/40 border border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-300;
   }
   
   .glass-premium {
-    @apply backdrop-blur-xl bg-white/60 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:bg-black/70 dark:border-white/10;
+    @apply backdrop-blur-xl bg-white/60 border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
   }
 
   .btn-primary {
@@ -109,7 +86,6 @@
   animation: marquee 30s linear infinite;
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }

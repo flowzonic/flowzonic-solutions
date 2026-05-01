@@ -8,7 +8,7 @@ import {
   Code, 
   Zap, 
   Palette, 
-  CheckCircle2, 
+  CheckCircle, 
   Cpu, 
   Rocket,
   ShieldCheck,
@@ -21,7 +21,6 @@ import {
   MessageSquare,
   Network,
   Activity,
-  Award,
   Star,
   Search
 } from "lucide-react";
@@ -75,7 +74,7 @@ export default function Home() {
               <Link href="/services" className="btn-primary flex items-center justify-center gap-2 shadow-xl hover:shadow-primary/20">
                 Explore Services <ArrowRight size={20} />
               </Link>
-              <Link href="/contact" className="glass py-3.5 px-8 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-white/80 dark:hover:bg-white/10 transition-all border border-primary/10">
+              <Link href="/contact" className="glass py-3.5 px-8 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-white/80 transition-all border border-primary/10">
                 Contact Us
               </Link>
             </div>
@@ -103,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 px-6 relative overflow-hidden bg-white/30 dark:bg-black/10">
+      <section className="py-20 px-6 relative overflow-hidden bg-white/30">
         <div className="max-w-7xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Effortless <span className="text-primary">Workflow</span></h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">See how custom automation transforms your daily operations from chaos to clarity.</p>
@@ -301,7 +300,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex gap-4 items-center">
-                <div className="w-12 h-12 glass rounded-full flex items-center justify-center text-primary"><Award size={20} /></div>
+                <div className="w-12 h-12 glass rounded-full flex items-center justify-center text-primary"><Star size={20} /></div>
                 <div>
                   <h4 className="font-bold">Global Standards</h4>
                   <p className="text-sm text-muted-foreground">Adhering to international data and design benchmarks.</p>
@@ -376,7 +375,7 @@ export default function Home() {
             <div className="flex whitespace-nowrap animate-marquee items-center gap-16 md:gap-24">
               {[...techStack, ...techStack].map((tech, i) => (
                 <div key={i} className="flex items-center gap-4 group cursor-default">
-                  <div className="p-3 bg-white/40 dark:bg-white/5 glass rounded-2xl text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-purple-glow">
+                  <div className="p-3 bg-white/40 glass rounded-2xl text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm group-hover:shadow-purple-glow">
                     {tech.icon}
                   </div>
                   <span className="text-xl md:text-2xl font-black text-muted-foreground/40 group-hover:text-primary transition-colors duration-500 tracking-tight">
@@ -482,9 +481,9 @@ function EfficiencyCard({ title, items, type }: { title: string; items: string[]
           <li key={i} className="flex gap-4 items-start group">
             <div className={cn(
               "mt-1 p-1.5 rounded-full transition-colors",
-              type === 'before' ? "bg-red-100 text-red-500 dark:bg-red-500/20" : "bg-green-100 text-green-500 dark:bg-green-500/20"
+              type === 'before' ? "bg-red-100 text-red-500" : "bg-green-100 text-green-500"
             )}>
-              <CheckCircle2 size={16} />
+              <CheckCircle size={16} />
             </div>
             <span className="text-muted-foreground font-medium leading-relaxed group-hover:text-foreground transition-colors">{item}</span>
           </li>
@@ -511,7 +510,7 @@ function ServiceCard({ icon, title, description, href }: { icon: React.ReactNode
 
 function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
   return (
-    <div className="glass p-8 rounded-[2.5rem] group hover:bg-white/80 dark:hover:bg-white/10 transition-all border border-primary/5 hover:border-primary/20">
+    <div className="glass p-8 rounded-[2.5rem] group hover:bg-white/80 transition-all border border-primary/5 hover:border-primary/20">
       <div className="mb-6 w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">{icon}</div>
       <h4 className="text-xl font-bold mb-3">{title}</h4>
       <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
