@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -19,7 +18,6 @@ import {
   Globe,
   Database,
   Terminal,
-  Cpu as Chip,
   MessageSquare,
   Network,
   Activity,
@@ -36,6 +34,8 @@ import {
   CarouselNext, 
   CarouselPrevious 
 } from "@/components/ui/carousel";
+
+const Chip = Cpu;
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(img => img.id === "hero-3d");
@@ -55,7 +55,6 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
-      {/* Hero Section */}
       <section className="relative min-h-[80vh] lg:min-h-[75vh] pt-24 lg:pt-32 pb-12 px-6 flex items-center">
         <div className="mesh-gradient-1 top-0 right-0 animate-pulse opacity-40" />
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -104,7 +103,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Efficiency Showcase */}
       <section className="py-20 px-6 relative overflow-hidden bg-white/30 dark:bg-black/10">
         <div className="max-w-7xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Effortless <span className="text-primary">Workflow</span></h2>
@@ -134,7 +132,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Infrastructure Section - The "Neural Network" */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -168,7 +165,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Inside the Flow - Agency Tech Section */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
@@ -222,7 +218,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials - Social Proof */}
       <section className="py-24 px-6 bg-primary/5 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -253,7 +248,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Grid */}
       <section className="py-24 px-6 relative">
         <div className="mesh-gradient-1 bottom-0 left-0 opacity-10" />
         <div className="max-w-7xl mx-auto">
@@ -290,7 +284,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Global Reach Section */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 -z-10" />
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -334,7 +327,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process Timeline */}
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center tracking-tight">Our <span className="text-primary">Process</span></h2>
@@ -366,7 +358,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Banner */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto glass-premium rounded-[3rem] p-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           <StatItem value="500+" label="Hours Saved" icon={<Clock size={24} className="text-primary" />} />
@@ -375,7 +366,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tech Stack Marquee (3rd Last) */}
       <section className="py-20 px-6 overflow-hidden relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-primary/5 rounded-full blur-[120px] -z-10" />
         <div className="max-w-7xl mx-auto">
@@ -399,7 +389,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Portfolio Showcase (2nd Last) */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <Carousel className="w-full">
@@ -461,7 +450,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA (Last) */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto bg-primary rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[100px] -translate-y-1/2 translate-x-1/2 rounded-full" />

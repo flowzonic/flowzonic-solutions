@@ -6,11 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
-  Code, Zap, Palette, CheckCircle, 
-  Globe, Server, Database, Layers, 
-  Mail, FileText, Table as TableIcon, Bot,
-  TrendingUp, Search, Rocket, HelpCircle,
-  ArrowRight
+  Globe, Bot, Layers, TrendingUp, HelpCircle,
+  ArrowRight, Rocket
 } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -95,6 +92,15 @@ const SERVICE_DATA: Record<string, any> = {
     ]
   }
 };
+
+// This function is required for static export to generate the paths for dynamic segments
+export async function generateStaticParams() {
+  return [
+    { slug: 'web' },
+    { slug: 'automation' },
+    { slug: 'design' },
+  ];
+}
 
 export default function ServicePage() {
   const { slug } = useParams();

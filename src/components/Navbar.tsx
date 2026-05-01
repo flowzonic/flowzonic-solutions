@@ -56,10 +56,9 @@ export default function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo Section */}
           <Link href="/" className="flex items-center gap-2 group transition-transform active:scale-95">
             <Image 
-              src="/header-logo.png" 
+              src="/flowzonic-website-logo.png" 
               alt="Flowzonic Logo" 
               width={160} 
               height={40} 
@@ -68,7 +67,6 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-2">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
@@ -89,7 +87,6 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Action Section */}
           <div className="flex items-center gap-3">
             <button 
               onClick={toggleTheme}
@@ -113,7 +110,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
