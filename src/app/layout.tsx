@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
-  title: 'Flowzonic Solution | Automate Your Vision',
+  title: 'Flowzonic Solutions | Automate Your Vision',
   description: 'Expert Web Development, Google Workspace Automation, and High-End Graphic Design.',
   icons: {
     icon: '/flowzonic-icon.png',
@@ -18,13 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ scrollBehavior: 'smooth' }}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased selection:bg-primary/20 selection:text-primary overflow-x-hidden">
+      <body className="bg-[#FAFBFF] text-[#4B5563] antialiased selection:bg-[#7B2FBE]/20 selection:text-[#7B2FBE] overflow-x-hidden">
         <Navbar />
         <PageTransition>
           {children}

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,11 +14,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    
-    // Simulate form submission process
-    // In a real static setup, you would use a service like Formspree or a client-side fetch to your Google Apps Script Web App
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
     toast({
       title: "Message Sent!",
       description: "Flow initiated. Our team will contact you within 24 hours.",
@@ -29,7 +24,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="pt-32 pb-20 px-6">
+    <main className="pt-32 pb-20 px-6 bg-[#FAFBFF]">
       <div className="max-w-7xl mx-auto">
         <AnimatePresence mode="wait">
           {!success ? (
@@ -41,8 +36,9 @@ export default function Contact() {
               className="grid grid-cols-1 lg:grid-cols-2 gap-20"
             >
               <div>
-                <h1 className="text-5xl md:text-6xl font-bold mb-6">Let&apos;s <span className="gradient-text">Connect</span></h1>
-                <p className="text-xl text-muted-foreground mb-12">
+                <span className="badge-pill">Get in Touch</span>
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#1A1035]">Let&apos;s <span className="gradient-text">Connect</span></h1>
+                <p className="text-xl text-[#4B5563] mb-12 font-medium">
                   Have a project in mind? We&apos;d love to hear how we can help you automate your vision.
                 </p>
 
@@ -52,11 +48,11 @@ export default function Contact() {
                   <ContactInfo icon={<MapPin />} label="Office" value="San Francisco, CA (Remote Friendly)" />
                 </div>
 
-                <div className="mt-20 p-8 glass rounded-4xl border-primary/20 bg-primary/5">
-                  <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Rocket className="text-primary" /> Why wait?
+                <div className="mt-20 p-8 bg-[#F0EEFF] border border-[#EDE9FE] rounded-2xl">
+                  <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-[#1A1035]">
+                    <Rocket className="text-[#7B2FBE]" /> Why wait?
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-[#4B5563] leading-relaxed font-medium">
                     Most companies save over 10 hours a week within the first month of implementing our custom automation workflows.
                   </p>
                 </div>
@@ -65,7 +61,7 @@ export default function Contact() {
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="glass p-10 rounded-4xl"
+                className="bg-white border border-[#EDE9FE] p-10 rounded-2xl shadow-xl"
               >
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -74,20 +70,20 @@ export default function Contact() {
                   </div>
                   <InputGroup label="Service Needed" name="service" id="service" type="select" options={["Web Development", "Google Automation", "Graphic Design", "Other"]} />
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="message" className="text-sm font-bold ml-1 text-muted-foreground">How can we help?</label>
+                    <label htmlFor="message" className="block text-sm font-medium text-[#1A1035] mb-2">How can we help?</label>
                     <textarea 
                       id="message" 
                       name="message"
                       rows={6}
                       required
                       placeholder="Tell us about your project..."
-                      className="glass rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 text-foreground"
+                      className="w-full px-4 py-3 rounded-xl border border-[#EDE9FE] bg-white text-[#1A1035] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/10 transition-all duration-200"
                     ></textarea>
                   </div>
                   <button 
                     type="submit" 
                     disabled={loading}
-                    className="btn-primary w-full flex items-center justify-center gap-2 text-lg py-4 disabled:opacity-50"
+                    className="px-6 py-4 rounded-full font-medium text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 w-full flex items-center justify-center gap-2 text-lg disabled:opacity-50"
                   >
                     {loading ? "Processing Flow..." : "Send Message"} <Send size={20} />
                   </button>
@@ -101,24 +97,24 @@ export default function Contact() {
               animate={{ opacity: 1, scale: 1 }}
               className="max-w-3xl mx-auto text-center py-20"
             >
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-8">
+              <div className="w-20 h-20 bg-[#DCFCE7] border border-[#BBF7D0] rounded-full flex items-center justify-center text-[#15803D] mx-auto mb-8">
                 <CheckCircle2 size={40} />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Flow <span className="text-primary">Initiated!</span></h2>
-              <p className="text-xl text-muted-foreground mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1A1035]">Flow <span className="text-[#7B2FBE]">Initiated!</span></h2>
+              <p className="text-xl text-[#4B5563] mb-12 font-medium">
                 Thank you for reaching out. Your request has been successfully captured, and a member of our team will review your details and get back to you within 24 hours.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={() => setSuccess(false)}
-                  className="glass py-4 px-8 rounded-full font-bold hover:bg-white/80 transition-all"
+                  className="px-6 py-4 rounded-full font-medium text-[#7B2FBE] bg-[#F0EEFF] hover:bg-[#EDE9FE] transition-all duration-200"
                 >
                   Send Another Message
                 </button>
                 <Link 
                   href="/services" 
-                  className="btn-primary flex items-center justify-center gap-2"
+                  className="px-6 py-4 rounded-full font-medium text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   Explore Services <ArrowRight size={20} />
                 </Link>
@@ -134,12 +130,12 @@ export default function Contact() {
 function ContactInfo({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="flex gap-6 items-center">
-      <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center text-primary">
+      <div className="w-14 h-14 bg-[#F0EEFF] rounded-2xl flex items-center justify-center text-[#7B2FBE] border border-[#EDE9FE]">
         {icon}
       </div>
       <div>
-        <p className="text-sm text-muted-foreground font-bold uppercase tracking-widest">{label}</p>
-        <p className="text-xl font-bold">{value}</p>
+        <p className="text-xs text-[#9CA3AF] font-bold uppercase tracking-widest">{label}</p>
+        <p className="text-xl font-bold text-[#1A1035]">{value}</p>
       </div>
     </div>
   );
@@ -148,14 +144,14 @@ function ContactInfo({ icon, label, value }: { icon: React.ReactNode; label: str
 function InputGroup({ label, id, name, type = "text", placeholder, options, required = false }: any) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-sm font-bold ml-1 text-muted-foreground">{label}</label>
+      <label htmlFor={id} className="block text-sm font-medium text-[#1A1035] mb-2">{label}</label>
       {type === "select" ? (
         <select 
           id={id} 
           name={name}
-          className="glass rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 appearance-none text-foreground"
+          className="w-full px-4 py-3 rounded-xl border border-[#EDE9FE] bg-white text-[#1A1035] appearance-none focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/10 transition-all duration-200"
         >
-          {options.map((opt: string) => <option key={opt} value={opt} className="bg-background">{opt}</option>)}
+          {options.map((opt: string) => <option key={opt} value={opt} className="bg-white">{opt}</option>)}
         </select>
       ) : (
         <input 
@@ -164,7 +160,7 @@ function InputGroup({ label, id, name, type = "text", placeholder, options, requ
           type={type}
           required={required}
           placeholder={placeholder}
-          className="glass rounded-full py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white/50 text-foreground"
+          className="w-full px-4 py-3 rounded-xl border border-[#EDE9FE] bg-white text-[#1A1035] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/10 transition-all duration-200"
         />
       )}
     </div>
