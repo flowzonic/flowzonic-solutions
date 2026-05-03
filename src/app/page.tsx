@@ -48,8 +48,8 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
-      {/* Section 1: Hero Area - bg-[#FAFBFF] */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 bg-[#FAFBFF]">
+      {/* Section 1: Hero Area - Adjusted for laptop viewport fit */}
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 bg-[#FAFBFF]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -57,94 +57,94 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="z-20"
           >
-            <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] mb-8 text-[#1A1035]">
-              We Build Digital <br />
-              Experiences That <br />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-[#1A1035]">
+              We Build Digital <br className="hidden xl:block" />
+              Experiences That <br className="hidden xl:block" />
               <span className="gradient-text">Drive Results</span>
             </h1>
-            <p className="text-xl text-[#4B5563] mb-12 max-w-lg leading-relaxed font-medium">
+            <p className="text-lg text-[#4B5563] mb-8 max-w-lg leading-relaxed font-medium">
               Web development, Google automation, and graphic design for brands that refuse to be ordinary.
             </p>
-            <div className="flex flex-col sm:flex-row gap-5">
-              <Link href="/contact" className="px-8 py-4 rounded-full font-bold text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 flex items-center justify-center text-lg">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/contact" className="px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 flex items-center justify-center text-base">
                 Start Your Project
               </Link>
-              <Link href="/services" className="px-8 py-4 rounded-full font-bold text-[#7B2FBE] border-2 border-[#7B2FBE] bg-transparent hover:bg-[#F0EEFF] transition-all duration-200 flex items-center justify-center text-lg">
+              <Link href="/services" className="px-8 py-3.5 rounded-full font-bold text-[#7B2FBE] border-2 border-[#7B2FBE] bg-transparent hover:bg-[#F0EEFF] transition-all duration-200 flex items-center justify-center text-base">
                 View Our Work
               </Link>
             </div>
           </motion.div>
 
-          {/* Complex Visual Hero Image Section */}
+          {/* Complex Visual Hero Image Section - Scaled down for laptop fit */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative h-[400px] md:h-[600px] flex items-center justify-center"
+            className="relative h-[350px] md:h-[450px] lg:h-[500px] flex items-center justify-center"
           >
             {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-purple-100/50 rounded-full blur-[120px] -z-10" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-purple-100/40 rounded-full blur-[100px] -z-10" />
             
             {/* Main Browser Window Mockup */}
-            <div className="relative z-10 w-[90%] md:w-[100%] aspect-[4/3] bg-white rounded-3xl shadow-2xl border border-[#EDE9FE] overflow-hidden p-3 md:p-6 animate-float">
+            <div className="relative z-10 w-[95%] lg:w-full aspect-[4/3] bg-white rounded-3xl shadow-2xl border border-[#EDE9FE] overflow-hidden p-4 md:p-6 animate-float">
               <div className="flex gap-1.5 mb-4 px-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+                <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
+                <div className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
+                <div className="w-2 h-2 rounded-full bg-[#28C840]" />
               </div>
-              <div className="space-y-4">
-                <div className="h-6 w-3/4 bg-gray-50 rounded-lg" />
-                <div className="h-4 w-full bg-gray-50 rounded-lg" />
-                <div className="h-4 w-5/6 bg-gray-50 rounded-lg" />
+              <div className="space-y-3">
+                <div className="h-5 w-3/4 bg-gray-50 rounded-lg" />
+                <div className="h-3.5 w-full bg-gray-50 rounded-lg" />
+                <div className="h-3.5 w-5/6 bg-gray-50 rounded-lg" />
                 <div className="pt-4 grid grid-cols-2 gap-4">
-                  <div className="h-12 rounded-xl bg-purple-500/10" />
-                  <div className="h-12 rounded-xl bg-gray-50" />
+                  <div className="h-10 rounded-xl bg-purple-500/10" />
+                  <div className="h-10 rounded-xl bg-gray-50" />
                 </div>
               </div>
             </div>
 
             {/* Floating Card: Clean Code */}
             <motion.div
-              animate={{ y: [0, -15, 0] }}
+              animate={{ y: [0, -12, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-4 md:-left-12 z-20 bg-white/90 backdrop-blur-md border border-[#EDE9FE] p-4 rounded-2xl shadow-xl flex items-center gap-4 min-w-[200px]"
+              className="absolute -top-2 -left-2 md:-left-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[160px] md:min-w-[180px]"
             >
-              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Code size={24} />
+              <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
+                <Code size={20} />
               </div>
               <div>
-                <p className="font-bold text-[#1A1035] text-sm">Clean Code</p>
-                <p className="text-xs text-[#9CA3AF]">Next.js & React</p>
+                <p className="font-bold text-[#1A1035] text-xs md:text-sm">Clean Code</p>
+                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Next.js & React</p>
               </div>
             </motion.div>
 
             {/* Floating Card: Automated Workflows */}
             <motion.div
-              animate={{ y: [0, 15, 0] }}
+              animate={{ y: [0, 12, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-10 -left-6 md:-left-20 z-20 bg-white/90 backdrop-blur-md border border-[#EDE9FE] p-4 rounded-2xl shadow-xl flex items-center gap-4 min-w-[220px]"
+              className="absolute bottom-10 -left-4 md:-left-16 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[180px] md:min-w-[200px]"
             >
-              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Zap size={24} />
+              <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
+                <Zap size={20} />
               </div>
               <div>
-                <p className="font-bold text-[#1A1035] text-sm">Automated Workflows</p>
-                <p className="text-xs text-[#9CA3AF]">Saving 20hrs/week</p>
+                <p className="font-bold text-[#1A1035] text-xs md:text-sm">Automated Workflows</p>
+                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Saving 20hrs/week</p>
               </div>
             </motion.div>
 
             {/* Floating Card: Stunning Design */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-10 -right-4 md:-right-12 z-20 bg-white/90 backdrop-blur-md border border-[#EDE9FE] p-4 rounded-2xl shadow-xl flex items-center gap-4 min-w-[200px]"
+              className="absolute -bottom-6 -right-2 md:-right-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[160px] md:min-w-[180px]"
             >
-              <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Sparkles size={24} />
+              <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
+                <Sparkles size={20} />
               </div>
               <div>
-                <p className="font-bold text-[#1A1035] text-sm">Stunning Design</p>
-                <p className="text-xs text-[#9CA3AF]">Figma to Web</p>
+                <p className="font-bold text-[#1A1035] text-xs md:text-sm">Stunning Design</p>
+                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Figma to Web</p>
               </div>
             </motion.div>
           </motion.div>
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* Section 2: Client Logos - bg-white */}
-      <section className="py-12 bg-white border-y border-[#EDE9FE]">
+      <section className="py-10 bg-white border-y border-[#EDE9FE]">
         <div className="max-w-7xl mx-auto px-6 overflow-hidden">
           <div className="flex whitespace-nowrap animate-marquee items-center gap-16 md:gap-24">
             {[...techStack, ...techStack].map((tech, i) => (
