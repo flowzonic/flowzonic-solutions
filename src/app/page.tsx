@@ -23,7 +23,6 @@ import {
   Rocket 
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { 
   Carousel, 
   CarouselContent, 
@@ -147,7 +146,7 @@ export default function Home() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-4 right-2 md:right-4 lg:right-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-2 md:gap-3 min-w-[120px] md:min-w-[160px] scale-90 md:scale-100"
+              className="absolute -bottom-4 -right-4 md:-right-8 lg:-right-12 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-2 md:gap-3 min-w-[120px] md:min-w-[160px] scale-90 md:scale-100"
             >
               <div className="w-8 md:w-10 h-8 md:h-10 bg-purple-100 rounded-lg md:rounded-xl flex items-center justify-center text-[#7B2FBE]">
                 <Sparkles size={16} />
