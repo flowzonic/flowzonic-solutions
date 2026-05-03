@@ -46,8 +46,8 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
-      {/* Section 1: Hero Area - Fixed for visibility and responsiveness */}
-      <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 lg:pt-40 lg:pb-24 px-6 bg-[#FAFBFF]">
+      {/* Section 1: Hero Area */}
+      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-32 px-6 bg-[#FAFBFF]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -74,12 +74,12 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Refined Mockup Visual - Better responsive scaling */}
+          {/* Refined Mockup Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative flex items-center justify-center w-full max-w-[500px] lg:max-w-none mx-auto"
+            className="relative flex items-center justify-center w-full max-w-[440px] lg:max-w-none mx-auto"
           >
             {/* Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-purple-100/40 rounded-full blur-[80px] -z-10" />
@@ -115,7 +115,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Floating Cards - Hidden on small mobile for clarity, scaled for larger screens */}
+            {/* Floating Cards */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -147,7 +147,7 @@ export default function Home() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-4 -right-4 md:-right-8 lg:-right-12 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-2 md:gap-3 min-w-[120px] md:min-w-[160px] scale-90 md:scale-100"
+              className="absolute -bottom-4 right-2 md:right-4 lg:right-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl flex items-center gap-2 md:gap-3 min-w-[120px] md:min-w-[160px] scale-90 md:scale-100"
             >
               <div className="w-8 md:w-10 h-8 md:h-10 bg-purple-100 rounded-lg md:rounded-xl flex items-center justify-center text-[#7B2FBE]">
                 <Sparkles size={16} />
