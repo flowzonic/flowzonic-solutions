@@ -39,7 +39,7 @@ export default function About() {
           >
             <div className="card-standard p-4 rounded-4xl bg-white/50 backdrop-blur-sm">
               <Image 
-                src={visionImage?.imageUrl || ""} 
+                src={visionImage?.imageUrl || "https://picsum.photos/seed/about1/800/600"} 
                 alt="About our vision" 
                 width={800} 
                 height={600} 
@@ -48,7 +48,7 @@ export default function About() {
             </div>
             <div className="absolute -bottom-10 -right-10 bg-white border border-[#EDE9FE] shadow-2xl p-8 rounded-3xl hidden md:block z-20">
               <p className="text-4xl font-bold text-[#7B2FBE]">5+</p>
-              <p className="text-[#9CA3AF] font-bold uppercase tracking-widest text-[10px]">Years of Flow</p>
+              <p className="text-[#4B5563] font-bold uppercase tracking-widest text-[10px]">Years of Flow</p>
             </div>
           </motion.div>
           
@@ -57,7 +57,7 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-[#7B2FBE] uppercase tracking-widest text-xs font-bold mb-4 block">Our Identity</span>
+            <span className="text-[#7B2FBE] uppercase tracking-widest text-xs font-semibold mb-4 block">Our Identity</span>
             <h2 className="text-4xl md:text-5xl font-bold mb-8 text-[#1A1035]">The &ldquo;Flow&rdquo; Philosophy</h2>
             <p className="text-lg text-[#4B5563] mb-8 leading-relaxed font-medium">
               In a world drowning in data and manual tasks, we believe in the power of elegant automation. Our mission is to empower visionaries to focus on what matters most—growth and innovation—while we handle the technical current.
@@ -108,12 +108,18 @@ export default function About() {
               Flowzonic was founded on the principle that technology should be invisible. We are a boutique team of specialists who treat every client project as a piece of digital architecture.
             </p>
             <div className="flex items-center gap-6 p-6 bg-white border border-[#EDE9FE] rounded-2xl shadow-sm">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20">
-                <Image src={founderImage?.imageUrl || ""} alt="Founder" width={64} height={64} className="object-cover" />
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 bg-gray-50 flex items-center justify-center">
+                <Image 
+                  src={founderImage?.imageUrl || "https://picsum.photos/seed/alexflow/400/400"} 
+                  alt="Founder" 
+                  width={64} 
+                  height={64} 
+                  className="object-cover" 
+                />
               </div>
               <div>
                 <p className="font-bold text-[#1A1035]">Alex Flow</p>
-                <p className="text-sm text-[#9CA3AF]">Founder & Lead Architect</p>
+                <p className="text-sm text-[#4B5563]">Founder & Lead Architect</p>
               </div>
             </div>
           </motion.div>
@@ -121,14 +127,14 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-[#1A1035] p-12 rounded-4xl text-white relative overflow-hidden"
+            className="bg-[#1A1035] p-12 rounded-4xl text-white relative overflow-hidden shadow-2xl"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl rounded-full" />
-            <Users className="text-primary mb-6" size={48} />
-            <h3 className="text-2xl font-bold mb-4">Join the Network</h3>
+            <Users className="text-[#A855F7] mb-6" size={48} />
+            <h3 className="text-2xl font-bold mb-4 text-white">Join the Network</h3>
             <p className="text-[#C4B5FD] mb-8 font-medium">We're always looking for elite talent to help us redefine the digital landscape.</p>
             <button className="px-8 py-3 rounded-full font-bold text-[#7B2FBE] bg-white hover:bg-[#F0EEFF] transition-all">
-              Careers
+              View Careers
             </button>
           </motion.div>
         </section>
