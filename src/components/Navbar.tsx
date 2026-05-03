@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
+  { name: "Portfolio", href: "/portfolio" },
   { name: "Blog", href: "/blog" },
 ];
 
@@ -52,14 +53,14 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-2">
             {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
               return (
                 <Link 
                   key={item.name} 
                   href={item.href}
                   className={cn(
                     "relative px-4 py-2 text-sm font-bold transition-all duration-300 text-[#4B5563] hover:text-[#7B2FBE]",
-                    isActive && "text-[#7B2FBE] font-medium"
+                    isActive && "text-[#7B2FBE]"
                   )}
                 >
                   {item.name}
