@@ -33,8 +33,6 @@ import {
 } from "@/components/ui/carousel";
 
 export default function Home() {
-  const mockupImage = PlaceHolderImages.find(img => img.id === "mockup-1");
-  
   const techStack = [
     { name: "Next.js", icon: <Globe size={20} /> },
     { name: "React", icon: <Layers size={20} /> },
@@ -48,14 +46,14 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
-      {/* Section 1: Hero Area - Adjusted for higher placement and refined visual */}
-      <section className="relative pt-16 pb-12 md:pt-24 md:pb-20 px-6 bg-[#FAFBFF]">
+      {/* Section 1: Hero Area - Tuned for laptop viewports */}
+      <section className="relative pt-12 pb-8 md:pt-20 md:pb-12 px-6 bg-[#FAFBFF]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="z-20 -mt-6"
+            className="z-20 -mt-10 lg:-mt-16"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-[#1A1035]">
               We Build Digital <br className="hidden xl:block" />
@@ -75,18 +73,18 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Complex Visual Hero Image Section - Refined Mockup */}
+          {/* Refined Mockup Visual - Compact for Laptops */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative h-[350px] md:h-[450px] lg:h-[480px] flex items-center justify-center -mt-4"
+            className="relative h-[280px] md:h-[350px] lg:h-[400px] flex items-center justify-center -mt-8 lg:-mt-12"
           >
             {/* Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-purple-100/40 rounded-full blur-[100px] -z-10" />
             
-            {/* Main Browser Window Mockup */}
-            <div className="relative z-10 w-[95%] lg:w-full aspect-[4/3] bg-white rounded-3xl shadow-2xl border border-[#EDE9FE] overflow-hidden p-4 md:p-6 animate-float">
+            {/* Main Browser Window Mockup - Scaled down */}
+            <div className="relative z-10 w-[90%] lg:w-[95%] aspect-[16/10] lg:aspect-[4/3] bg-white rounded-3xl shadow-2xl border border-[#EDE9FE] overflow-hidden p-4 md:p-5 animate-float">
               <div className="flex gap-1.5 mb-4 px-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
@@ -102,13 +100,13 @@ export default function Home() {
                   <div className="h-3.5 w-2/3 bg-gray-50 rounded-lg" />
                 </div>
                 <div className="pt-4 grid grid-cols-2 gap-4">
-                  <div className="h-24 rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-purple-100/50 p-4">
-                    <div className="w-8 h-8 rounded-lg bg-purple-100 mb-2" />
+                  <div className="h-20 rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-purple-100/50 p-3">
+                    <div className="w-6 h-6 rounded-lg bg-purple-100 mb-2" />
                     <div className="w-full h-1.5 bg-purple-100 rounded-full mb-1" />
                     <div className="w-2/3 h-1.5 bg-purple-100 rounded-full" />
                   </div>
-                  <div className="h-24 rounded-2xl bg-gray-50/50 border border-gray-100 p-4">
-                    <div className="w-8 h-8 rounded-lg bg-gray-100 mb-2" />
+                  <div className="h-20 rounded-2xl bg-gray-50/50 border border-gray-100 p-3">
+                    <div className="w-6 h-6 rounded-lg bg-gray-100 mb-2" />
                     <div className="w-full h-1.5 bg-gray-100 rounded-full mb-1" />
                     <div className="w-2/3 h-1.5 bg-gray-100 rounded-full" />
                   </div>
@@ -120,14 +118,14 @@ export default function Home() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-2 md:-left-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[150px] md:min-w-[170px]"
+              className="absolute top-2 -left-2 md:-left-6 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 min-w-[140px] md:min-w-[160px]"
             >
-              <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Code size={18} />
+              <div className="w-9 h-9 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
+                <Code size={16} />
               </div>
               <div>
-                <p className="font-bold text-[#1A1035] text-xs md:text-sm">Clean Code</p>
-                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Next.js & React</p>
+                <p className="font-bold text-[#1A1035] text-[11px] md:text-xs">Clean Code</p>
+                <p className="text-[9px] md:text-[10px] text-[#9CA3AF]">Next.js & React</p>
               </div>
             </motion.div>
 
@@ -135,14 +133,14 @@ export default function Home() {
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-6 -left-6 md:-left-12 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[170px] md:min-w-[190px]"
+              className="absolute bottom-10 -left-6 md:-left-10 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 min-w-[160px] md:min-w-[180px]"
             >
-              <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Zap size={18} />
+              <div className="w-9 h-9 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
+                <Zap size={16} />
               </div>
               <div>
-                <p className="font-bold text-[#1A1035] text-xs md:text-sm">Automated Workflows</p>
-                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Reclaiming Hours</p>
+                <p className="font-bold text-[#1A1035] text-[11px] md:text-xs">Automated Workflows</p>
+                <p className="text-[9px] md:text-[10px] text-[#9CA3AF]">Reclaiming Hours</p>
               </div>
             </motion.div>
 
@@ -150,21 +148,21 @@ export default function Home() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-4 -right-2 md:-right-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[150px] md:min-w-[170px]"
+              className="absolute -bottom-2 -right-2 md:-right-6 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 min-w-[140px] md:min-w-[160px]"
             >
-              <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Sparkles size={18} />
+              <div className="w-9 h-9 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
+                <Sparkles size={16} />
               </div>
               <div>
-                <p className="font-bold text-[#1A1035] text-xs md:text-sm">Stunning Design</p>
-                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Figma to Web</p>
+                <p className="font-bold text-[#1A1035] text-[11px] md:text-xs">Stunning Design</p>
+                <p className="text-[9px] md:text-[10px] text-[#9CA3AF]">Figma to Web</p>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 2: Client Logos - bg-white */}
+      {/* Section 2: Client Logos */}
       <section className="py-10 bg-white border-y border-[#EDE9FE]">
         <div className="max-w-7xl mx-auto px-6 overflow-hidden">
           <div className="flex whitespace-nowrap animate-marquee items-center gap-16 md:gap-24">
@@ -182,7 +180,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 3: Services Overview - bg-[#F0EEFF] */}
+      {/* Section 3: Services Overview */}
       <section className="py-20 px-6 bg-[#F0EEFF]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -214,7 +212,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 4: Why Us/Stats - bg-[#1A1035] (Dark) */}
+      {/* Section 4: Why Us/Stats */}
       <section className="py-20 px-6 bg-[#1A1035] text-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -254,7 +252,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 5: Process - bg-white */}
+      {/* Section 5: Process */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
@@ -291,7 +289,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 6: Portfolio - bg-[#FAFBFF] */}
+      {/* Section 6: Portfolio */}
       <section className="py-20 px-6 bg-[#FAFBFF]">
         <div className="max-w-7xl mx-auto">
           <Carousel className="w-full">
@@ -334,7 +332,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 7: Testimonials - bg-[#F0EEFF] */}
+      {/* Section 7: Testimonials */}
       <section className="py-20 px-6 bg-[#F0EEFF]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -366,7 +364,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 8: Blog Preview - bg-white */}
+      {/* Section 8: Blog Preview */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto text-center">
           <span className="badge-pill">Insights</span>
@@ -393,7 +391,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 9: CTA Banner - bg-[#1A1035] */}
+      {/* Section 9: CTA Banner */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#1A1035] to-[#2D1B69] rounded-4xl p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
           <div className="relative z-10">
