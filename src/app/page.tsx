@@ -48,14 +48,14 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
-      {/* Section 1: Hero Area - Adjusted for laptop viewport fit */}
-      <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 px-6 bg-[#FAFBFF]">
+      {/* Section 1: Hero Area - Adjusted for higher placement and refined visual */}
+      <section className="relative pt-16 pb-12 md:pt-24 md:pb-20 px-6 bg-[#FAFBFF]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="z-20"
+            className="z-20 -mt-6"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-6 text-[#1A1035]">
               We Build Digital <br className="hidden xl:block" />
@@ -75,12 +75,12 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Complex Visual Hero Image Section - Scaled down for laptop fit */}
+          {/* Complex Visual Hero Image Section - Refined Mockup */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative h-[350px] md:h-[450px] lg:h-[500px] flex items-center justify-center"
+            className="relative h-[350px] md:h-[450px] lg:h-[480px] flex items-center justify-center -mt-4"
           >
             {/* Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-purple-100/40 rounded-full blur-[100px] -z-10" />
@@ -88,29 +88,42 @@ export default function Home() {
             {/* Main Browser Window Mockup */}
             <div className="relative z-10 w-[95%] lg:w-full aspect-[4/3] bg-white rounded-3xl shadow-2xl border border-[#EDE9FE] overflow-hidden p-4 md:p-6 animate-float">
               <div className="flex gap-1.5 mb-4 px-2">
-                <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
-                <div className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
-                <div className="w-2 h-2 rounded-full bg-[#28C840]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
               </div>
-              <div className="space-y-3">
-                <div className="h-5 w-3/4 bg-gray-50 rounded-lg" />
-                <div className="h-3.5 w-full bg-gray-50 rounded-lg" />
-                <div className="h-3.5 w-5/6 bg-gray-50 rounded-lg" />
+              <div className="space-y-4">
+                <div className="h-6 w-3/4 bg-gray-50 rounded-lg flex items-center px-3">
+                  <div className="w-20 h-2 bg-purple-200 rounded-full" />
+                </div>
+                <div className="space-y-2">
+                  <div className="h-3.5 w-full bg-gray-50 rounded-lg" />
+                  <div className="h-3.5 w-full bg-gray-50 rounded-lg" />
+                  <div className="h-3.5 w-2/3 bg-gray-50 rounded-lg" />
+                </div>
                 <div className="pt-4 grid grid-cols-2 gap-4">
-                  <div className="h-10 rounded-xl bg-purple-500/10" />
-                  <div className="h-10 rounded-xl bg-gray-50" />
+                  <div className="h-24 rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-purple-100/50 p-4">
+                    <div className="w-8 h-8 rounded-lg bg-purple-100 mb-2" />
+                    <div className="w-full h-1.5 bg-purple-100 rounded-full mb-1" />
+                    <div className="w-2/3 h-1.5 bg-purple-100 rounded-full" />
+                  </div>
+                  <div className="h-24 rounded-2xl bg-gray-50/50 border border-gray-100 p-4">
+                    <div className="w-8 h-8 rounded-lg bg-gray-100 mb-2" />
+                    <div className="w-full h-1.5 bg-gray-100 rounded-full mb-1" />
+                    <div className="w-2/3 h-1.5 bg-gray-100 rounded-full" />
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Floating Card: Clean Code */}
             <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-2 -left-2 md:-left-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[160px] md:min-w-[180px]"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-4 -left-2 md:-left-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[150px] md:min-w-[170px]"
             >
               <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Code size={20} />
+                <Code size={18} />
               </div>
               <div>
                 <p className="font-bold text-[#1A1035] text-xs md:text-sm">Clean Code</p>
@@ -120,27 +133,27 @@ export default function Home() {
 
             {/* Floating Card: Automated Workflows */}
             <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute bottom-10 -left-4 md:-left-16 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[180px] md:min-w-[200px]"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute bottom-6 -left-6 md:-left-12 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[170px] md:min-w-[190px]"
             >
               <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Zap size={20} />
+                <Zap size={18} />
               </div>
               <div>
                 <p className="font-bold text-[#1A1035] text-xs md:text-sm">Automated Workflows</p>
-                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Saving 20hrs/week</p>
+                <p className="text-[10px] md:text-xs text-[#9CA3AF]">Reclaiming Hours</p>
               </div>
             </motion.div>
 
             {/* Floating Card: Stunning Design */}
             <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-6 -right-2 md:-right-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[160px] md:min-w-[180px]"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute -bottom-4 -right-2 md:-right-8 z-20 bg-white/95 backdrop-blur-md border border-[#EDE9FE] p-3 rounded-2xl shadow-xl flex items-center gap-3 min-w-[150px] md:min-w-[170px]"
             >
               <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-[#7B2FBE]">
-                <Sparkles size={20} />
+                <Sparkles size={18} />
               </div>
               <div>
                 <p className="font-bold text-[#1A1035] text-xs md:text-sm">Stunning Design</p>
