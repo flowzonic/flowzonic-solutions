@@ -1,48 +1,44 @@
 
 # Flowzonic Solution
 
-Modern agency website built with Next.js, featuring high-end glossy design and optimized for deployment on Vercel or Hostinger.
+Modern agency website built with Next.js, featuring high-end glossy design and optimized for deployment on Vercel.
 
-## 🚀 Deployment to Vercel (Recommended)
+## 🚀 Deployment to Vercel
 
-1. **Push your code to GitHub** (see instructions below).
+1. **Push your code to GitHub**.
 2. Go to [Vercel](https://vercel.com/new).
 3. Import your repository.
-4. Vercel will automatically detect Next.js settings and deploy your site.
+4. **Environment Variables**: Add the following in the Vercel dashboard:
+   - `NEXT_PUBLIC_APPS_SCRIPT_URL`: Your deployed Google Apps Script URL.
+   - `GOOGLE_GENAI_API_KEY`: Your Gemini API Key from [AI Studio](https://aistudio.google.com/).
+5. Vercel will automatically deploy your site.
 
-## 🛠 Deployment to Hostinger (Static Export)
+## 🛠 Local Setup
 
-If you still wish to use Hostinger's static hosting:
-
-1. Re-add `output: 'export'` to your `next.config.ts`.
-2. Ensure `images: { unoptimized: true }` is set in the config.
-3. Run the build command:
+1. **Install Dependencies**:
    ```bash
-   npm run build
+   npm install
    ```
-4. Upload the contents of the `out` folder to your Hostinger `public_html` directory.
+2. **Environment Variables**: Rename `.env.example` to `.env` (or use the existing `.env`) and add your keys.
+3. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+## 📋 Features
+- **Glossy Modern UI**: Built with Next.js 15, ShadCN, and Tailwind.
+- **Dynamic Content**: Blog and Services powered by **Firebase Firestore**.
+- **Automation Engine**: Contact form connected to **Google Sheets** and **Automated Emails**.
+- **Seeder Tool**: Visit `/seed` to populate your database instantly.
 
 ## 🚀 How to push to GitHub
 
-Follow these steps in your local terminal:
-
 1. **Create a new repository** on [GitHub](https://github.com/new).
-2. **Open your terminal** in the root of this project.
-3. **Initialize Git**:
-   ```bash
-   git init
-   ```
-4. **Stage and commit your files**:
-   ```bash
-   git add .
-   git commit -m "Initial commit of Flowzonic Solution"
-   ```
-5. **Connect to your repository** (replace `<your-username>` and `<your-repo-name>`):
+2. **Initialize Git**: `git init`
+3. **Stage and commit**: `git add .` && `git commit -m "Initial commit"`
+4. **Connect and push**:
    ```bash
    git branch -M main
    git remote add origin https://github.com/<your-username>/<your-repo-name>.git
-   ```
-6. **Push to GitHub**:
-   ```bash
    git push -u origin main
    ```

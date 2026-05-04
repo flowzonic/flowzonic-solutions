@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,8 +10,8 @@ import { useFirestore } from "@/firebase";
 import { collection } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 
-// Replace this with your deployed Google Apps Script Web App URL
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXx1zLdZtsiN05t_9BEgipM04sIQHh9A5mb8TPZQqQSLj5j-xg13xLS8w-YUjWnZkx/exec"; 
+// Pulled from environment variables for security and Vercel compatibility
+const APPS_SCRIPT_URL = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL; 
 
 export default function Contact() {
   const { toast } = useToast();
@@ -44,8 +45,6 @@ export default function Contact() {
 
       // 2. Send to Google Apps Script (Sheets + Email Automation)
       if (APPS_SCRIPT_URL) {
-        // Use 'no-cors' mode for Apps Script to avoid preflight issues if just sending data
-        // For a full response, the Apps Script needs specific CORS headers
         await fetch(APPS_SCRIPT_URL, {
           method: "POST",
           mode: "no-cors", 
