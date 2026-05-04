@@ -5,10 +5,10 @@ import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
-  title: 'Flowzonic Solutions | Automate Your Vision',
+  title: 'Flowzonic Solutions | Automate, Build, Grow',
   description: 'Expert Web Development, Google Workspace Automation, and High-End Graphic Design.',
   icons: {
-    icon: '/flowzonic-icon.png',
+    icon: '/flowzone-icon.png',
   },
 };
 

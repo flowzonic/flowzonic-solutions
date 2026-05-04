@@ -92,7 +92,7 @@ function SocialIcon({ href, icon }: { href: string; icon: React.ReactNode }) {
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link href={href} className="text-[#C4B5FD] hover:text-white transition-colors flex items-center gap-2 group font-medium">
+      <Link href={href} className="text-[#C4B5FD] hover:text-white transition-colors flex items-center gap-2 group font-medium w-fit">
         <div className="w-1 h-1 bg-[#A855F7] rounded-full scale-0 group-hover:scale-100 transition-transform" />
         {children}
       </Link>

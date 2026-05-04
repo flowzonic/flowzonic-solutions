@@ -43,7 +43,7 @@ export default function Contact() {
                 </p>
 
                 <div className="space-y-8">
-                  <ContactInfo icon={<Mail />} label="Email" value="hello@flowzonic.com" />
+                  <ContactInfo icon={<Mail />} label="Email" value="flowzonicsolutions@gmail.com" />
                   <ContactInfo icon={<Phone />} label="Phone" value="+1 (555) FLOW-ZONIC" />
                   <ContactInfo icon={<MapPin />} label="Office" value="San Francisco, CA (Remote Friendly)" />
                 </div>
