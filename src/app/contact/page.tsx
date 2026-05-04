@@ -2,13 +2,14 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MapPin, Phone, Mail, Rocket, CheckCircle2, ArrowRight } from "lucide-react";
+import { Send, MapPin, Phone, Mail, Rocket, CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { useFirestore } from "@/firebase";
 import { collection } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
+import { analyzeLead } from "@/ai/flows/analyze-lead-flow";
 
 // Pulled from environment variables for security and Vercel compatibility
 const APPS_SCRIPT_URL = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL; 
@@ -25,25 +26,43 @@ export default function Contact() {
 
     const formData = new FormData(e.currentTarget);
     const submissionId = crypto.randomUUID();
-    const submissionData = {
-      id: submissionId,
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      phone: (formData.get("phone") as string) || "",
-      service: formData.get("service") as string,
-      message: formData.get("message") as string,
-      submissionDateTime: new Date().toISOString(),
-      status: "new"
-    };
+    
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const phone = (formData.get("phone") as string) || "";
+    const service = formData.get("service") as string;
+    const message = formData.get("message") as string;
 
     try {
-      // 1. Save to Firestore (Persistent Backup)
+      // 1. AI Analysis (Uses GOOGLE_GENAI_API_KEY)
+      let aiAnalysis = null;
+      try {
+        aiAnalysis = await analyzeLead({ name, service, message });
+      } catch (aiError) {
+        console.warn("AI Analysis skipped or failed:", aiError);
+      }
+
+      const submissionData = {
+        id: submissionId,
+        name,
+        email,
+        phone,
+        service,
+        message,
+        submissionDateTime: new Date().toISOString(),
+        status: "new",
+        aiPriority: aiAnalysis?.priority || "medium",
+        aiSummary: aiAnalysis?.summary || "No summary available",
+        aiNextStep: aiAnalysis?.suggestedNextStep || "Review manually"
+      };
+
+      // 2. Save to Firestore (Persistent Backup)
       if (db) {
         const colRef = collection(db, "contact_submissions");
         addDocumentNonBlocking(colRef, submissionData);
       }
 
-      // 2. Send to Google Apps Script (Sheets + Email Automation)
+      // 3. Send to Google Apps Script (Sheets + Email Automation)
       if (APPS_SCRIPT_URL) {
         await fetch(APPS_SCRIPT_URL, {
           method: "POST",
@@ -99,10 +118,10 @@ export default function Contact() {
 
                 <div className="mt-20 p-8 bg-[#F0EEFF] border border-[#EDE9FE] rounded-2xl">
                   <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-[#1A1035]">
-                    <Rocket className="text-[#7B2FBE]" /> Why wait?
+                    <Sparkles className="text-[#7B2FBE]" /> AI-Powered Flow
                   </h3>
                   <p className="text-[#4B5563] leading-relaxed font-medium">
-                    Most companies save over 10 hours a week within the first month of implementing our custom automation workflows.
+                    Your inquiry is analyzed by our AI engine to ensure it reaches the right specialist instantly.
                   </p>
                 </div>
               </div>
@@ -137,7 +156,7 @@ export default function Contact() {
                     disabled={loading}
                     className="px-6 py-3 rounded-full font-medium text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 w-full flex items-center justify-center gap-2 text-lg disabled:opacity-50"
                   >
-                    {loading ? "Processing Flow..." : "Send Message"} <Send size={20} />
+                    {loading ? "Analyzing Flow..." : "Send Message"} <Send size={20} />
                   </button>
                 </form>
               </motion.div>
@@ -154,7 +173,7 @@ export default function Contact() {
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1A1035]">Flow <span className="text-[#7B2FBE]">Initiated!</span></h2>
               <p className="text-xl text-[#4B5563] mb-12 font-medium">
-                Thank you for reaching out. Your request has been successfully captured. Our automation engine is now syncing this to our team dashboard.
+                Thank you for reaching out. Your request has been successfully captured and analyzed. Our automation engine is now syncing this to our team dashboard.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
