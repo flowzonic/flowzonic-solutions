@@ -1,15 +1,18 @@
+
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useFirestore, useCollection, useMemoFirebase } from "@/firebase";
+import { collection } from "firebase/firestore";
 
 const CATEGORIES = ["All", "Web Development", "Google Automation", "Graphic Design"];
 
-const PROJECTS = [
+const STATIC_PROJECTS = [
   {
     title: "Enterprise Dashboard Transformation",
     category: "Web Development",
@@ -23,42 +26,30 @@ const PROJECTS = [
     image: "https://picsum.photos/seed/project-auto-1/800/500",
     description: "Custom Apps Script solution syncing real-time sales data from Sheets to Salesforce.",
     tech: ["Apps Script", "Salesforce API", "Gemini AI"]
-  },
-  {
-    title: "Lumina Brand Identity",
-    category: "Graphic Design",
-    image: "https://picsum.photos/seed/project-design-1/800/500",
-    description: "Premium visual identity and 3D asset collection for a tech consultancy.",
-    tech: ["Figma", "Blender", "After Effects"]
-  },
-  {
-    title: "E-commerce Growth Engine",
-    category: "Web Development",
-    image: "https://picsum.photos/seed/project-web-2/800/500",
-    description: "Headless commerce platform optimized for high conversion rates.",
-    tech: ["Next.js", "Tailwind", "Shopify Plus"]
-  },
-  {
-    title: "Intelligent Gmail Workflow",
-    category: "Google Automation",
-    image: "https://picsum.photos/seed/project-auto-2/800/500",
-    description: "AI-driven email processing script that automates customer support routing.",
-    tech: ["Apps Script", "Gmail API", "OpenAI"]
-  },
-  {
-    title: "Aura UI/UX System",
-    category: "Graphic Design",
-    image: "https://picsum.photos/seed/project-design-2/800/500",
-    description: "A comprehensive design system for a multi-platform SaaS product.",
-    tech: ["Figma", "Prototyping", "UI Engineering"]
   }
 ];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const firestore = useFirestore();
+  
+  const portfolioQuery = useMemoFirebase(() => {
+    if (!firestore) return null;
+    return collection(firestore, "portfolio_items");
+  }, [firestore]);
 
-  const filteredProjects = PROJECTS.filter(
-    project => activeCategory === "All" || project.category === activeCategory
+  const { data: dbProjects, isLoading } = useCollection(portfolioQuery);
+
+  const displayProjects = dbProjects && dbProjects.length > 0 
+    ? dbProjects.map(p => ({
+        ...p,
+        image: p.mockupImageUrl || "https://picsum.photos/seed/default/800/500",
+        tech: [] // Add tech tags from your entity if they exist
+      }))
+    : STATIC_PROJECTS;
+
+  const filteredProjects = displayProjects.filter(
+    (project: any) => activeCategory === "All" || project.category === activeCategory
   );
 
   return (
@@ -107,54 +98,62 @@ export default function Portfolio() {
         </section>
 
         {/* Projects Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-                className="card-standard group p-0 overflow-hidden flex flex-col h-full"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image 
-                    src={project.image} 
-                    alt={project.title} 
-                    fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1035]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <span className="text-white text-sm font-bold flex items-center gap-2">
-                      View Case Study <ExternalLink size={16} />
-                    </span>
-                  </div>
-                </div>
-                <div className="p-8 flex-1 flex flex-col">
-                  <span className="badge-category mb-4 w-fit">{project.category}</span>
-                  <h3 className="text-2xl font-bold mb-3 text-[#1A1035] group-hover:text-[#7B2FBE] transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-[#4B5563] text-sm leading-relaxed mb-6 font-medium">
-                    {project.description}
-                  </p>
-                  <div className="mt-auto pt-6 border-t border-[#EDE9FE] flex flex-wrap gap-2">
-                    {project.tech.map(t => (
-                      <span key={t} className="text-[10px] font-bold uppercase tracking-wider text-[#9CA3AF]">
-                        {t}
+        {isLoading ? (
+          <div className="flex justify-center py-20">
+            <Loader2 className="animate-spin text-primary" size={40} />
+          </div>
+        ) : (
+          <motion.div 
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project: any, index: number) => (
+                <motion.div
+                  key={project.title || project.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4 }}
+                  className="card-standard group p-0 overflow-hidden flex flex-col h-full"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image 
+                      src={project.image} 
+                      alt={project.title} 
+                      fill 
+                      className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A1035]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                      <span className="text-white text-sm font-bold flex items-center gap-2">
+                        View Case Study <ExternalLink size={16} />
                       </span>
-                    ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                  <div className="p-8 flex-1 flex flex-col">
+                    <span className="badge-category mb-4 w-fit">{project.category}</span>
+                    <h3 className="text-2xl font-bold mb-3 text-[#1A1035] group-hover:text-[#7B2FBE] transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-[#4B5563] text-sm leading-relaxed mb-6 font-medium">
+                      {project.description}
+                    </p>
+                    {project.tech && project.tech.length > 0 && (
+                      <div className="mt-auto pt-6 border-t border-[#EDE9FE] flex flex-wrap gap-2">
+                        {project.tech.map((t: string) => (
+                          <span key={t} className="text-[10px] font-bold uppercase tracking-wider text-[#9CA3AF]">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
 
         {/* Call to Action */}
         <section className="mt-24 text-center">

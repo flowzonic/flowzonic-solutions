@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -5,22 +6,55 @@ import { Send, MapPin, Phone, Mail, Rocket, CheckCircle2, ArrowRight } from "luc
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { useFirestore } from "@/firebase";
+import { collection, doc } from "firebase/firestore";
+import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 
 export default function Contact() {
   const { toast } = useToast();
+  const db = useFirestore();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    toast({
-      title: "Message Sent!",
-      description: "Flow initiated. Our team will contact you within 24 hours.",
-    });
-    setSuccess(true);
-    setLoading(false);
+
+    const formData = new FormData(e.currentTarget);
+    const submissionData = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone") || "",
+      service: formData.get("service"),
+      message: formData.get("message"),
+      submissionDateTime: new Date().toISOString(),
+      status: "new"
+    };
+
+    try {
+      if (db) {
+        const colRef = collection(db, "contact_submissions");
+        addDocumentNonBlocking(colRef, submissionData);
+        
+        // Note: For Google Sheets/Email integration, you would typically 
+        // trigger a Cloud Function or Google Apps Script here.
+        // For now, we save to Firestore.
+        
+        toast({
+          title: "Message Sent!",
+          description: "Flow initiated. Our team will contact you within 24 hours.",
+        });
+        setSuccess(true);
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Something went wrong. Please try again or contact us via email.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -68,7 +102,10 @@ export default function Contact() {
                     <InputGroup label="Full Name" name="name" id="name" placeholder="Jane Doe" required />
                     <InputGroup label="Email Address" name="email" id="email" type="email" placeholder="jane@company.com" required />
                   </div>
-                  <InputGroup label="Service Needed" name="service" id="service" type="select" options={["Web Development", "Google Automation", "Graphic Design", "Other"]} />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <InputGroup label="Phone Number" name="phone" id="phone" placeholder="+91 ..." />
+                    <InputGroup label="Service Needed" name="service" id="service" type="select" options={["Web Development", "Google Automation", "Graphic Design", "Other"]} />
+                  </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="message" className="block text-sm font-medium text-[#1A1035] mb-2">How can we help?</label>
                     <textarea 

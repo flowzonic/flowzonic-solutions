@@ -1,12 +1,15 @@
+
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Code, Zap, Palette, Shield, Database, Layout, ArrowRight, Users, Sparkles, Cpu } from "lucide-react";
+import { Code, Zap, Palette, Shield, Database, Layout, ArrowRight, Users, Sparkles, Cpu, Loader2 } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { useFirestore, useCollection, useMemoFirebase } from "@/firebase";
+import { collection } from "firebase/firestore";
 
-const SERVICES = [
+const STATIC_SERVICES = [
   {
     icon: <Code size={40} />,
     title: "Web Development",
@@ -49,6 +52,23 @@ const SERVICES = [
 ];
 
 export default function Services() {
+  const firestore = useFirestore();
+  const servicesQuery = useMemoFirebase(() => {
+    if (!firestore) return null;
+    return collection(firestore, "services");
+  }, [firestore]);
+
+  const { data: dbServices, isLoading } = useCollection(servicesQuery);
+
+  const displayServices = dbServices && dbServices.length > 0 
+    ? dbServices.map(s => ({
+        ...s,
+        icon: s.iconName === "Code" ? <Code size={40} /> : s.iconName === "Zap" ? <Zap size={40} /> : <Palette size={40} />,
+        slug: s.id,
+        offers: s.shortDescription ? [s.shortDescription] : []
+      }))
+    : STATIC_SERVICES;
+
   const techWoman = PlaceHolderImages.find(img => img.id === "tech-woman-pro");
   const techMan = PlaceHolderImages.find(img => img.id === "tech-man-dev");
   const teamCollab = PlaceHolderImages.find(img => img.id === "team-collab");
@@ -69,42 +89,47 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
-          {SERVICES.map((service, i) => (
-            <motion.div
-              key={service.slug}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-premium p-10 rounded-4xl group hover:shadow-2xl transition-all h-full flex flex-col"
-            >
-              <div className="text-primary mb-8 group-hover:scale-110 transition-transform">
-                {service.icon}
-              </div>
-              <h2 className="text-3xl font-bold mb-4">{service.title}</h2>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                {service.description}
-              </p>
-              
-              <div className="flex-1">
-                <p className="text-xs font-bold uppercase tracking-widest text-primary mb-4">What we offer</p>
-                <ul className="space-y-3 mb-8">
-                  {service.offers.map((offer) => (
-                    <li key={offer} className="flex items-center gap-2 text-sm text-foreground/80">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      {offer}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        {isLoading ? (
+          <div className="flex justify-center py-20">
+            <Loader2 className="animate-spin text-primary" size={40} />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
+            {displayServices.map((service: any, i) => (
+              <motion.div
+                key={service.slug || service.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-premium p-10 rounded-4xl group hover:shadow-2xl transition-all h-full flex flex-col"
+              >
+                <div className="text-primary mb-8 group-hover:scale-110 transition-transform">
+                  {service.icon}
+                </div>
+                <h2 className="text-3xl font-bold mb-4">{service.title}</h2>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  {service.description || service.shortDescription}
+                </p>
+                
+                <div className="flex-1">
+                  <p className="text-xs font-bold uppercase tracking-widest text-primary mb-4">What we offer</p>
+                  <ul className="space-y-3 mb-8">
+                    {(service.offers || []).map((offer: string) => (
+                      <li key={offer} className="flex items-center gap-2 text-sm text-foreground/80">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        {offer}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              <Link href={`/services/${service.slug}`} className="btn-primary w-full flex justify-center items-center gap-2">
-                Explore Details <ArrowRight size={16} />
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+                <Link href={`/services/${service.slug}`} className="btn-primary w-full flex justify-center items-center gap-2">
+                  Explore Details <ArrowRight size={16} />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Human-Centric Tech Section */}
         <section className="mb-32">

@@ -1,8 +1,10 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: 'Flowzonic Solutions | Automate, Build, Grow',
@@ -25,11 +27,13 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-[#FAFBFF] text-[#4B5563] antialiased selection:bg-[#7B2FBE]/20 selection:text-[#7B2FBE] overflow-x-hidden">
-        <Navbar />
-        <PageTransition>
-          {children}
-        </PageTransition>
-        <Footer />
+        <FirebaseClientProvider>
+          <Navbar />
+          <PageTransition>
+            {children}
+          </PageTransition>
+          <Footer />
+        </FirebaseClientProvider>
       </body>
     </html>
   );
