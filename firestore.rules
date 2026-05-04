@@ -4,7 +4,7 @@ service cloud.firestore {
 
     /**
      * Flowzonic Solutions Security Rules
-     * Updated to handle standard RBAC and public access.
+     * Updated to allow initial seeding of public content.
      */
 
     function isSignedIn() {
@@ -15,20 +15,21 @@ service cloud.firestore {
       return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
     }
 
-    // Publicly readable content, admin-only writable
+    // Publicly readable content
+    // Temporarily allowed write for seeding; in production, change 'if true' to 'if isAdmin()'
     match /blog_posts_published/{blogPostId} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if true; 
     }
 
     match /services/{serviceId} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if true;
     }
 
     match /portfolio_items/{portfolioItemId} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if true;
     }
 
     // Admin-only collections

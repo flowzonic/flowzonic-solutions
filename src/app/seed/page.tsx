@@ -1,22 +1,25 @@
-
 "use client";
 
 import { useState } from "react";
 import { useFirestore } from "@/firebase";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { motion } from "framer-motion";
-import { Database, CheckCircle2, Loader2, Rocket, ArrowLeft } from "lucide-react";
+import { Database, CheckCircle2, Loader2, Rocket, ArrowLeft, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { errorEmitter } from "@/firebase/error-emitter";
+import { FirestorePermissionError } from "@/firebase/errors";
 
 export default function SeedPage() {
   const db = useFirestore();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const seedData = async () => {
     if (!db) return;
     setLoading(true);
+    setError(null);
 
     try {
       // Seed Services
@@ -48,7 +51,16 @@ export default function SeedPage() {
       ];
 
       for (const s of services) {
-        await setDoc(doc(db, "services", s.id), s);
+        const docRef = doc(db, "services", s.id);
+        await setDoc(docRef, s).catch(e => {
+          const permError = new FirestorePermissionError({
+            path: docRef.path,
+            operation: 'write',
+            requestResourceData: s
+          });
+          errorEmitter.emit('permission-error', permError);
+          throw e;
+        });
       }
 
       // Seed Blog Posts
@@ -80,7 +92,16 @@ export default function SeedPage() {
       ];
 
       for (const p of posts) {
-        await setDoc(doc(db, "blog_posts_published", p.id), p);
+        const docRef = doc(db, "blog_posts_published", p.id);
+        await setDoc(docRef, p).catch(e => {
+          const permError = new FirestorePermissionError({
+            path: docRef.path,
+            operation: 'write',
+            requestResourceData: p
+          });
+          errorEmitter.emit('permission-error', permError);
+          throw e;
+        });
       }
 
       // Seed Portfolio
@@ -106,53 +127,71 @@ export default function SeedPage() {
       ];
 
       for (const item of portfolio) {
-        await setDoc(doc(db, "portfolio_items", item.id), item);
+        const docRef = doc(db, "portfolio_items", item.id);
+        await setDoc(docRef, item).catch(e => {
+          const permError = new FirestorePermissionError({
+            path: docRef.path,
+            operation: 'write',
+            requestResourceData: item
+          });
+          errorEmitter.emit('permission-error', permError);
+          throw e;
+        });
       }
 
       setSuccess(true);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error seeding data:", error);
+      setError(error.message || "Failed to seed data. Check console for details.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <main className="pt-40 pb-20 px-6 min-h-screen flex items-center justify-center">
+    <main className="pt-40 pb-20 px-6 min-h-screen flex items-center justify-center bg-[#FAFBFF]">
       <div className="max-w-md w-full text-center">
         {!success ? (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="glass-premium p-10 rounded-4xl shadow-2xl"
+            className="bg-white border border-[#EDE9FE] p-10 rounded-4xl shadow-2xl"
           >
             <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-8">
               <Database size={40} />
             </div>
-            <h1 className="text-3xl font-bold mb-4">Database Seeder</h1>
-            <p className="text-muted-foreground mb-8">
-              Click the button below to populate your Firestore with default data and establish the schema.
+            <h1 className="text-3xl font-bold mb-4 text-[#1A1035]">Database Seeder</h1>
+            <p className="text-[#4B5563] mb-8 font-medium">
+              Click the button below to populate your Firestore with default data. Ensure Security Rules allow writes to content collections.
             </p>
+            
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-sm flex items-center gap-2">
+                <AlertCircle size={16} />
+                {error}
+              </div>
+            )}
+
             <button
               onClick={seedData}
               disabled={loading}
-              className="btn-primary w-full flex items-center justify-center gap-2 py-4 text-lg"
+              className="btn-primary w-full flex items-center justify-center gap-2 py-4 text-lg disabled:opacity-50"
             >
               {loading ? <Loader2 className="animate-spin" /> : <Rocket size={20} />}
-              {loading ? "Establishing Schema..." : "Seed Default Data"}
+              {loading ? "Seeding..." : "Seed Default Data"}
             </button>
           </motion.div>
         ) : (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="glass-premium p-10 rounded-4xl shadow-2xl"
+            className="bg-white border border-[#EDE9FE] p-10 rounded-4xl shadow-2xl"
           >
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-8">
               <CheckCircle2 size={40} />
             </div>
-            <h1 className="text-3xl font-bold mb-4">Schema Created!</h1>
-            <p className="text-muted-foreground mb-10">
+            <h1 className="text-3xl font-bold mb-4 text-[#1A1035]">Schema Created!</h1>
+            <p className="text-[#4B5563] mb-10 font-medium">
               Your Firestore is now populated. Collections for Blog, Services, and Portfolio are live.
             </p>
             <div className="flex flex-col gap-4">
