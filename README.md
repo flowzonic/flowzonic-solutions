@@ -9,8 +9,8 @@ Modern agency website built with Next.js, featuring high-end glossy design and o
 2. Go to [Vercel](https://vercel.com/new).
 3. Import your repository.
 4. **Environment Variables**: Add the following in the Vercel dashboard:
-   - `NEXT_PUBLIC_APPS_SCRIPT_URL`: Your deployed Google Apps Script URL.
-   - `GOOGLE_GENAI_API_KEY`: Your Gemini API Key from [AI Studio](https://aistudio.google.com/).
+   - `NEXT_PUBLIC_APPS_SCRIPT_URL`: Your deployed Google Apps Script URL (for Sheets & Email).
+   - `GOOGLE_GENAI_API_KEY`: Your API Key from [Google AI Studio](https://aistudio.google.com/) (powers the AI features).
 5. Vercel will automatically deploy your site.
 
 ## 🛠 Local Setup
@@ -19,7 +19,11 @@ Modern agency website built with Next.js, featuring high-end glossy design and o
    ```bash
    npm install
    ```
-2. **Environment Variables**: Rename `.env.example` to `.env` (or use the existing `.env`) and add your keys.
+2. **Environment Variables**: Create a `.env` file and add:
+   ```env
+   NEXT_PUBLIC_APPS_SCRIPT_URL=your_url_here
+   GOOGLE_GENAI_API_KEY=your_key_here
+   ```
 3. **Run Development Server**:
    ```bash
    npm run dev
@@ -27,9 +31,9 @@ Modern agency website built with Next.js, featuring high-end glossy design and o
 
 ## 📋 Features
 - **Glossy Modern UI**: Built with Next.js 15, ShadCN, and Tailwind.
-- **Dynamic Content**: Blog and Services powered by **Firebase Firestore**.
+- **AI Lead Analysis**: Integrated Genkit flow to prioritize incoming inquiries.
 - **Automation Engine**: Contact form connected to **Google Sheets** and **Automated Emails**.
-- **Seeder Tool**: Visit `/seed` to populate your database instantly.
+- **Dynamic Content**: Blog and Services powered by **Firebase Firestore**.
 
 ## 🚀 How to push to GitHub
 
