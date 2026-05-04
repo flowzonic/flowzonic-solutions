@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -21,7 +20,9 @@ export default function Contact() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
+    const submissionId = crypto.randomUUID();
     const submissionData = {
+      id: submissionId,
       name: formData.get("name"),
       email: formData.get("email"),
       phone: formData.get("phone") || "",
@@ -34,17 +35,16 @@ export default function Contact() {
     try {
       if (db) {
         const colRef = collection(db, "contact_submissions");
+        // We use the ID as the document ID for consistency
         addDocumentNonBlocking(colRef, submissionData);
-        
-        // Note: For Google Sheets/Email integration, you would typically 
-        // trigger a Cloud Function or Google Apps Script here.
-        // For now, we save to Firestore.
         
         toast({
           title: "Message Sent!",
           description: "Flow initiated. Our team will contact you within 24 hours.",
         });
         setSuccess(true);
+      } else {
+        throw new Error("Firestore not initialized");
       }
     } catch (error) {
       toast({
@@ -139,7 +139,7 @@ export default function Contact() {
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1A1035]">Flow <span className="text-[#7B2FBE]">Initiated!</span></h2>
               <p className="text-xl text-[#4B5563] mb-12 font-medium">
-                Thank you for reaching out. Your request has been successfully captured, and a member of our team will review your details and get back to you within 24 hours.
+                Thank you for reaching out. Your request has been successfully captured. For full automation (Spreadsheet/Email), please ensure your Google Apps Script is connected to this Firestore collection.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
