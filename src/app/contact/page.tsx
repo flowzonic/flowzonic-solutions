@@ -2,8 +2,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MapPin, Phone, Mail, Rocket, CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
-import { useState } from "react";
+import { Send, MapPin, Phone, Mail, Rocket, CheckCircle2, ArrowRight, Sparkles, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { useFirestore } from "@/firebase";
@@ -19,6 +19,13 @@ export default function Contact() {
   const db = useFirestore();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [debugUrlMissing, setDebugUrlMissing] = useState(false);
+
+  useEffect(() => {
+    if (!APPS_SCRIPT_URL && process.env.NODE_ENV === 'development') {
+      setDebugUrlMissing(true);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,7 +46,7 @@ export default function Contact() {
       try {
         aiAnalysis = await analyzeLead({ name, service, message });
       } catch (aiError) {
-        console.warn("AI Analysis skipped or failed:", aiError);
+        console.warn("AI Analysis skipped or failed (Check GOOGLE_GENAI_API_KEY):", aiError);
       }
 
       const submissionData = {
@@ -63,15 +70,22 @@ export default function Contact() {
       }
 
       // 3. Send to Google Apps Script (Sheets + Email Automation)
+      // We use text/plain and mode: no-cors to avoid preflight CORS issues with Google
       if (APPS_SCRIPT_URL) {
-        await fetch(APPS_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors", 
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(submissionData),
-        });
+        try {
+          await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors", 
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+            body: JSON.stringify(submissionData),
+          });
+        } catch (fetchError) {
+          console.error("Apps Script link failed:", fetchError);
+        }
+      } else {
+        console.warn("NEXT_PUBLIC_APPS_SCRIPT_URL is missing. Email and Spreadsheet update skipped.");
       }
 
       toast({
@@ -94,6 +108,13 @@ export default function Contact() {
   return (
     <main className="pt-32 pb-20 px-6 bg-[#FAFBFF]">
       <div className="max-w-7xl mx-auto">
+        {debugUrlMissing && (
+          <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-700 text-sm flex items-center gap-2">
+            <Sparkles size={16} className="shrink-0" />
+            <span><strong>Dev Hint:</strong> Your <code>NEXT_PUBLIC_APPS_SCRIPT_URL</code> is not set in <code>.env</code>. The form will save to Firestore, but won&apos;t update your Google Sheet.</span>
+          </div>
+        )}
+
         <AnimatePresence mode="wait">
           {!success ? (
             <motion.div 
@@ -120,7 +141,7 @@ export default function Contact() {
                   <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-[#1A1035]">
                     <Sparkles className="text-[#7B2FBE]" /> AI-Powered Flow
                   </h3>
-                  <p className="text-[#4B5563] leading-relaxed font-medium">
+                  <p className="text-[#4B5563] leading-relaxed font-medium text-sm">
                     Your inquiry is analyzed by our AI engine to ensure it reaches the right specialist instantly.
                   </p>
                 </div>
@@ -156,7 +177,15 @@ export default function Contact() {
                     disabled={loading}
                     className="px-6 py-3 rounded-full font-medium text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 w-full flex items-center justify-center gap-2 text-lg disabled:opacity-50"
                   >
-                    {loading ? "Analyzing Flow..." : "Send Message"} <Send size={20} />
+                    {loading ? (
+                      <span className="flex items-center gap-2">
+                        <Loader2 className="animate-spin" size={20} /> Analyzing Flow...
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-2">
+                        Send Message <Send size={20} />
+                      </span>
+                    )}
                   </button>
                 </form>
               </motion.div>
@@ -217,13 +246,18 @@ function InputGroup({ label, id, name, type = "text", placeholder, options, requ
     <div className="flex flex-col gap-2">
       <label htmlFor={id} className="block text-sm font-medium text-[#1A1035] mb-2">{label}</label>
       {type === "select" ? (
-        <select 
-          id={id} 
-          name={name}
-          className="w-full px-4 py-3 rounded-xl border border-[#EDE9FE] bg-white text-[#1A1035] appearance-none focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/10 transition-all duration-200"
-        >
-          {options.map((opt: string) => <option key={opt} value={opt} className="bg-white">{opt}</option>)}
-        </select>
+        <div className="relative">
+          <select 
+            id={id} 
+            name={name}
+            className="w-full px-4 py-3 rounded-xl border border-[#EDE9FE] bg-white text-[#1A1035] appearance-none focus:outline-none focus:border-[#A855F7] focus:ring-2 focus:ring-[#A855F7]/10 transition-all duration-200"
+          >
+            {options.map((opt: string) => <option key={opt} value={opt} className="bg-white">{opt}</option>)}
+          </select>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#9CA3AF]">
+            <Rocket size={14} className="rotate-90" />
+          </div>
+        </div>
       ) : (
         <input 
           id={id}
