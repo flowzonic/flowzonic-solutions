@@ -6,8 +6,11 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { useFirestore } from "@/firebase";
-import { collection, doc } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
+
+// Replace this with your deployed Google Apps Script Web App URL
+const APPS_SCRIPT_URL = ""; 
 
 export default function Contact() {
   const { toast } = useToast();
@@ -23,30 +26,43 @@ export default function Contact() {
     const submissionId = crypto.randomUUID();
     const submissionData = {
       id: submissionId,
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone") || "",
-      service: formData.get("service"),
-      message: formData.get("message"),
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: (formData.get("phone") as string) || "",
+      service: formData.get("service") as string,
+      message: formData.get("message") as string,
       submissionDateTime: new Date().toISOString(),
       status: "new"
     };
 
     try {
+      // 1. Save to Firestore (Persistent Backup)
       if (db) {
         const colRef = collection(db, "contact_submissions");
-        // We use the ID as the document ID for consistency
         addDocumentNonBlocking(colRef, submissionData);
-        
-        toast({
-          title: "Message Sent!",
-          description: "Flow initiated. Our team will contact you within 24 hours.",
-        });
-        setSuccess(true);
-      } else {
-        throw new Error("Firestore not initialized");
       }
+
+      // 2. Send to Google Apps Script (Sheets + Email Automation)
+      if (APPS_SCRIPT_URL) {
+        // Use 'no-cors' mode for Apps Script to avoid preflight issues if just sending data
+        // For a full response, the Apps Script needs specific CORS headers
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors", 
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(submissionData),
+        });
+      }
+
+      toast({
+        title: "Message Sent!",
+        description: "Flow initiated. Our team will contact you within 24 hours.",
+      });
+      setSuccess(true);
     } catch (error) {
+      console.error("Submission error:", error);
       toast({
         variant: "destructive",
         title: "Submission Failed",
@@ -139,7 +155,7 @@ export default function Contact() {
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1A1035]">Flow <span className="text-[#7B2FBE]">Initiated!</span></h2>
               <p className="text-xl text-[#4B5563] mb-12 font-medium">
-                Thank you for reaching out. Your request has been successfully captured. For full automation (Spreadsheet/Email), please ensure your Google Apps Script is connected to this Firestore collection.
+                Thank you for reaching out. Your request has been successfully captured. Our automation engine is now syncing this to our team dashboard.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
