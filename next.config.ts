@@ -1,10 +1,10 @@
+
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: 'export',
+  // Removed output: 'export' to enable full Next.js features on Vercel
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

@@ -10,7 +10,7 @@ import { collection } from "firebase/firestore";
 import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 
 // Replace this with your deployed Google Apps Script Web App URL
-const APPS_SCRIPT_URL = ""; 
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXx1zLdZtsiN05t_9BEgipM04sIQHh9A5mb8TPZQqQSLj5j-xg13xLS8w-YUjWnZkx/exec"; 
 
 export default function Contact() {
   const { toast } = useToast();
