@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Twitter, Linkedin, Github, Mail, Rocket } from "lucide-react";
+import { Instagram, Linkedin, Github, Mail, Rocket } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -22,10 +22,10 @@ export default function Footer() {
             Empowering businesses through cutting-edge automation and premium digital design.
           </p>
           <div className="flex gap-4">
-            <SocialIcon href="#" icon={<Twitter size={20} />} />
+            <SocialIcon href="https://www.instagram.com/flowzonicsolutions/" icon={<Instagram size={20} />} />
             <SocialIcon href="#" icon={<Linkedin size={20} />} />
             <SocialIcon href="#" icon={<Github size={20} />} />
-            <SocialIcon href="#" icon={<Mail size={20} />} />
+            <SocialIcon href="mailto:flowzonicsolutions@gmail.com" icon={<Mail size={20} />} />
           </div>
         </div>
 

@@ -352,7 +352,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Mockup Visual — unchanged */}
+          {/* Mockup Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -821,7 +821,7 @@ export default function Home() {
           <p className="text-center text-sm text-[#9CA3AF] mt-10">
             Still have questions?{" "}
             <a
-              href={`https://wa.me/91XXXXXXXXXX?text=Hi, I have a question about your services`}
+              href={`https://wa.me/918881907942?text=Hi, I have a question about your services`}
               className="text-[#7B2FBE] font-semibold hover:underline"
             >
               Chat with us on WhatsApp →
