@@ -1,0 +1,310 @@
+{
+  "entities": {
+    "BlogPost": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "BlogPost",
+      "type": "object",
+      "description": "Represents a blog article published on the Flowzonic Solution website, managed via Firebase.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the BlogPost entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The main title of the blog post."
+        },
+        "slug": {
+          "type": "string",
+          "description": "A URL-friendly identifier for the blog post, used for clean permalinks."
+        },
+        "content": {
+          "type": "string",
+          "description": "The full content of the blog post, typically stored in markdown or HTML format."
+        },
+        "publishDate": {
+          "type": "string",
+          "description": "The date and time when the blog post was published.",
+          "format": "date-time"
+        },
+        "authorName": {
+          "type": "string",
+          "description": "The name of the author of the blog post (e.g., 'Flowzonic Team')."
+        },
+        "thumbnailImageUrl": {
+          "type": "string",
+          "description": "URL to the thumbnail image displayed for the blog post on listings.",
+          "format": "uri"
+        },
+        "seoDescription": {
+          "type": "string",
+          "description": "A concise description optimized for search engines (meta description)."
+        },
+        "tags": {
+          "type": "array",
+          "description": "A list of tags or categories associated with the blog post.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "The publication status of the blog post (e.g., 'draft', 'published', 'archived')."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "slug",
+        "content",
+        "publishDate",
+        "authorName",
+        "status"
+      ]
+    },
+    "Service": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Service",
+      "type": "object",
+      "description": "Defines a service offered by Flowzonic Solution, displayed on service pages and cards, managed via Firebase.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Service entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The name of the service (e.g., 'Web Development', 'Google Automation')."
+        },
+        "shortDescription": {
+          "type": "string",
+          "description": "A brief summary of the service, suitable for service cards on the homepage."
+        },
+        "longDescription": {
+          "type": "string",
+          "description": "A detailed description of the service, for its dedicated individual service page."
+        },
+        "iconName": {
+          "type": "string",
+          "description": "The name of the Lucide icon representing the service."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL to an illustrative image or graphic for the service.",
+          "format": "uri"
+        },
+        "callToActionText": {
+          "type": "string",
+          "description": "Text for a call-to-action button related to this service (e.g., 'Learn More')."
+        },
+        "callToActionLink": {
+          "type": "string",
+          "description": "URL for the service-specific call-to-action button.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "shortDescription",
+        "longDescription",
+        "iconName"
+      ]
+    },
+    "PortfolioItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PortfolioItem",
+      "type": "object",
+      "description": "Represents a project showcased in the agency's portfolio, including device mockups.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the PortfolioItem entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title or name of the portfolio project."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the project, its goals, and Flowzonic's contribution."
+        },
+        "mockupImageUrl": {
+          "type": "string",
+          "description": "URL to the glossy device mockup image for the project, used in the carousel.",
+          "format": "uri"
+        },
+        "projectUrl": {
+          "type": "string",
+          "description": "Optional URL to the live project or a more detailed case study page.",
+          "format": "uri"
+        },
+        "serviceIds": {
+          "type": "array",
+          "description": "References to Service entities associated with this portfolio item. (Relationship: Service N:N PortfolioItem)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "mockupImageUrl"
+      ]
+    },
+    "ContactSubmission": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ContactSubmission",
+      "type": "object",
+      "description": "Records a submission from the website's contact form, primarily for Google Sheets/Email integration, but structured for potential internal storage.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the ContactSubmission entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the person submitting the contact form."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address of the person submitting the form.",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The optional phone number provided by the person submitting the form."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message or inquiry content from the submission."
+        },
+        "submissionDateTime": {
+          "type": "string",
+          "description": "The date and time when the contact form was submitted.",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "The current processing status of the contact submission (e.g., 'new', 'in progress', 'resolved', 'archived')."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "message",
+        "submissionDateTime"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/blog_posts_published/{blogPostId}",
+        "definition": {
+          "entityName": "BlogPost",
+          "schema": {
+            "$ref": "#/backend/entities/BlogPost"
+          },
+          "description": "Publicly accessible blog posts that have been published. Documents in this collection implicitly have a 'published' status. Includes `status: 'published'` as an explicit field for data consistency, but the collection's path primarily dictates its public security posture.",
+          "params": [
+            {
+              "name": "blogPostId",
+              "description": "Unique identifier for a published blog post."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/blog_posts_drafts/{blogPostId}",
+        "definition": {
+          "entityName": "BlogPost",
+          "schema": {
+            "$ref": "#/backend/entities/BlogPost"
+          },
+          "description": "Admin-only accessible blog posts that are in draft status. Documents in this collection implicitly have a 'draft' status. Includes `status: 'draft'` as an explicit field, with access restricted to administrative users.",
+          "params": [
+            {
+              "name": "blogPostId",
+              "description": "Unique identifier for a draft blog post."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/services/{serviceId}",
+        "definition": {
+          "entityName": "Service",
+          "schema": {
+            "$ref": "#/backend/entities/Service"
+          },
+          "description": "Publicly accessible services offered by Flowzonic Solution. This collection is readable by all users and writable only by administrators.",
+          "params": [
+            {
+              "name": "serviceId",
+              "description": "Unique identifier for a service."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/portfolio_items/{portfolioItemId}",
+        "definition": {
+          "entityName": "PortfolioItem",
+          "schema": {
+            "$ref": "#/backend/entities/PortfolioItem"
+          },
+          "description": "Publicly accessible portfolio items showcased by Flowzonic Solution. This collection is readable by all users and writable only by administrators.",
+          "params": [
+            {
+              "name": "portfolioItemId",
+              "description": "Unique identifier for a portfolio item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/contact_submissions/{submissionId}",
+        "definition": {
+          "entityName": "ContactSubmission",
+          "schema": {
+            "$ref": "#/backend/entities/ContactSubmission"
+          },
+          "description": "Admin-only accessible records of contact form submissions. Submissions are typically created via a backend function and are not publicly readable.",
+          "params": [
+            {
+              "name": "submissionId",
+              "description": "Unique identifier for a contact form submission."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roles_admin/{userId}",
+        "definition": {
+          "entityName": "AdminUser",
+          "schema": {
+            "$ref": "#/backend/entities/AdminUser"
+          },
+          "description": "Defines users who have administrative privileges within the Flowzonic Solution application. The existence of a document at this path for a specific `userId` grants administrative access (DBAC).",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique Firebase Authentication UID of an administrator."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The recommended Firestore structure is designed following the core principles of Authorization Independence, Structural Segregation, and DBAC, prioritizing simple, robust, and debuggable security rules. Each data entity (BlogPost, Service, PortfolioItem, ContactSubmission) is assigned to a top-level collection, with additional segregation for different security postures of Blog Posts.\n\n**Authorization Independence (Denormalization Strategy):**\nThis structure achieves authorization independence by ensuring that all necessary authorization context is either embedded within the document itself or derived from the document's path or the user's global role. No security rules will rely on `get()` calls to traverse parent collections or related documents for authorization. For instance, administrative access to content is determined solely by checking the requesting user's UID against the `/roles_admin/{userId}` collection. This eliminates hierarchical authorization dependencies, enabling atomic operations and simplifying rule evaluation.\n\n**QAPs (Rules are not Filters):**\n1.  **Segregation for Blog Posts:** Blog posts are split into two distinct collections: `/blog_posts_published` and `/blog_posts_drafts`. This structural segregation directly supports the 'Rules are not Filters' principle. Public `list` queries on `/blog_posts_published` will *only* return published content, as the collection itself implies the 'published' status. Similarly, `list` queries on `/blog_posts_drafts` will only show draft content to authorized administrators. This avoids the need for complex security rules that attempt to filter documents based on a `status` field, which can be insecure and inefficient for `list` operations.\n2.  **Dedicated Collections for Public Data:** Collections like `/services` and `/portfolio_items` are intended for public consumption. Their security rules can be straightforward, allowing public reads (`allow read: true`), ensuring that `list` operations on these collections inherently return publicly available data without requiring rule-based filtering.\n3.  **Dedicated Collections for Admin Data:** The `/contact_submissions` collection is exclusively for administrators. Its security rules will explicitly grant read/write access only to authenticated administrators, ensuring that `list` operations on this collection only expose sensitive data to authorized personnel.\n4.  **DBAC with Global Roles:** The `/roles_admin/{userId}` collection serves as the central point for defining administrative users. Security rules will use `exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid))` to check for admin privileges. This ensures that admin-specific collections and write operations are securely managed by explicitly defined roles, satisfying QAPs for privileged data access.\n\nThis design ensures clarity of intent in security rules, simplifies debugging, and enhances performance by making authorization decisions explicit in the data structure itself."
+  }
+}

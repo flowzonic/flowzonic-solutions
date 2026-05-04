@@ -1,0 +1,135 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * CORE PHILOSOPHY
+     * This ruleset implements a Role-Based Access Control (RBAC) model specifically designed for a CMS-style application.
+     * It prioritizes high authorization security for administrative actions while maintaining public availability
+     * for published content.
+     *
+     * DATA STRUCTURE
+     * The database is organized into top-level collections representing distinct entities: Blog Posts (split by 
+     * publication status), Services, Portfolio Items, and Contact Submissions. Access is controlled via a 
+     * specialized global roles collection (/roles_admin).
+     *
+     * KEY SECURITY DECISIONS
+     * 1. Structural Segregation: Published content and drafts are stored in separate collections to ensure 
+     *    that public 'list' queries never accidentally return sensitive draft data.
+     * 2. Document-Based Access Control (DBAC): Administrative privileges are determined by the existence of a 
+     *    user's UID within the /roles_admin collection.
+     * 3. Public Read/Admin Write: Core business offerings (Services, Portfolio) are globally readable to 
+     *    unauthenticated users but strictly protected against unauthorized modifications.
+     * 4. Secure Submission Handling: Contact form data is treated as admin-only, assuming an external 
+     *    integration (like a Cloud Function) or admin dashboard is used for management.
+     *
+     * DENORMALIZATION FOR AUTHORIZATION
+     * To ensure high performance and avoid complex rule filtering, content status is inherent to the collection 
+     * path. Administrative status is checked via a single global lookup.
+     */
+
+    // --- Helper Functions ---
+
+    /** @description Checks if the request is from an authenticated user. */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /** @description Checks if the authenticated user has administrative privileges via DBAC. */
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
+
+    /** @description Verifies a document exists before performing state-changing operations. */
+    function existsAndIsAdmin() {
+      return resource != null && isAdmin();
+    }
+
+    // --- Collection Rules ---
+
+    /**
+     * @description Publicly accessible blog posts. Writable only by administrators.
+     * @path /blog_posts_published/{blogPostId}
+     * @allow (get) Any user requesting a specific published post.
+     * @deny (create) An unauthenticated user attempting to publish a post.
+     * @principle Public read with admin-only writes.
+     */
+    match /blog_posts_published/{blogPostId} {
+      allow get, list: if true;
+      allow create: if isAdmin() && request.resource.data.id == blogPostId;
+      allow update: if existsAndIsAdmin() && request.resource.data.id == resource.data.id;
+      allow delete: if existsAndIsAdmin();
+    }
+
+    /**
+     * @description Private draft blog posts. Accessible and writable only by administrators.
+     * @path /blog_posts_drafts/{blogPostId}
+     * @allow (list) An administrator viewing the content pipeline.
+     * @deny (get) A public visitor trying to find a leaked draft ID.
+     * @principle Structural segregation for draft content.
+     */
+    match /blog_posts_drafts/{blogPostId} {
+      allow get, list: if isAdmin();
+      allow create: if isAdmin() && request.resource.data.id == blogPostId;
+      allow update: if existsAndIsAdmin() && request.resource.data.id == resource.data.id;
+      allow delete: if existsAndIsAdmin();
+    }
+
+    /**
+     * @description Public list of agency services. Writable only by administrators.
+     * @path /services/{serviceId}
+     * @allow (list) A visitor browsing the homepage services section.
+     * @deny (update) A malicious user attempting to change service descriptions.
+     * @principle Public read with admin-only writes.
+     */
+    match /services/{serviceId} {
+      allow get, list: if true;
+      allow create: if isAdmin() && request.resource.data.id == serviceId;
+      allow update: if existsAndIsAdmin() && request.resource.data.id == resource.data.id;
+      allow delete: if existsAndIsAdmin();
+    }
+
+    /**
+     * @description Public portfolio showcase. Writable only by administrators.
+     * @path /portfolio_items/{portfolioItemId}
+     * @allow (get) A visitor viewing a specific project detail.
+     * @deny (delete) Anyone other than an administrator removing portfolio items.
+     * @principle Public read with admin-only writes.
+     */
+    match /portfolio_items/{portfolioItemId} {
+      allow get, list: if true;
+      allow create: if isAdmin() && request.resource.data.id == portfolioItemId;
+      allow update: if existsAndIsAdmin() && request.resource.data.id == resource.data.id;
+      allow delete: if existsAndIsAdmin();
+    }
+
+    /**
+     * @description Secure storage for contact form submissions. Admin-only read/write.
+     * @path /contact_submissions/{submissionId}
+     * @allow (get) An admin reviewing a lead in an internal dashboard.
+     * @deny (list) A public user attempting to scrape contact information.
+     * @principle Restricted access to sensitive user-submitted inquiries.
+     */
+    match /contact_submissions/{submissionId} {
+      allow get, list: if isAdmin();
+      allow create: if isAdmin() && request.resource.data.id == submissionId;
+      allow update: if existsAndIsAdmin() && request.resource.data.id == resource.data.id;
+      allow delete: if existsAndIsAdmin();
+    }
+
+    /**
+     * @description Global registry for administrative users.
+     * @path /roles_admin/{userId}
+     * @allow (get) An admin verifying their own status or checking another admin.
+     * @deny (create) A user attempting to grant themselves administrative rights.
+     * @principle DBAC (Document-Based Access Control) for global application roles.
+     */
+    match /roles_admin/{userId} {
+      allow get: if isAdmin();
+      allow list: if isAdmin();
+      allow create: if isAdmin() && request.resource.data.id == userId;
+      allow update: if existsAndIsAdmin() && request.resource.data.id == resource.data.id;
+      allow delete: if existsAndIsAdmin();
+    }
+  }
+}
