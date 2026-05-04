@@ -45,7 +45,7 @@ export default function Contact() {
                 <div className="space-y-8">
                   <ContactInfo icon={<Mail />} label="Email" value="flowzonicsolutions@gmail.com" />
                   <ContactInfo icon={<Phone />} label="Phone" value="+91 8881907942" />
-                  <ContactInfo icon={<MapPin />} label="Office" value="San Francisco, CA (Remote Friendly)" />
+                  <ContactInfo icon={<MapPin />} label="Office" value="Lucknow, Uttar Pradesh, India" />
                 </div>
 
                 <div className="mt-20 p-8 bg-[#F0EEFF] border border-[#EDE9FE] rounded-2xl">
@@ -83,7 +83,7 @@ export default function Contact() {
                   <button 
                     type="submit" 
                     disabled={loading}
-                    className="px-6 py-4 rounded-full font-medium text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 w-full flex items-center justify-center gap-2 text-lg disabled:opacity-50"
+                    className="px-6 py-3 rounded-full font-medium text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 w-full flex items-center justify-center gap-2 text-lg disabled:opacity-50"
                   >
                     {loading ? "Processing Flow..." : "Send Message"} <Send size={20} />
                   </button>
@@ -108,13 +108,13 @@ export default function Contact() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={() => setSuccess(false)}
-                  className="px-6 py-4 rounded-full font-medium text-[#7B2FBE] bg-[#F0EEFF] hover:bg-[#EDE9FE] transition-all duration-200"
+                  className="px-6 py-3 rounded-full font-medium text-[#7B2FBE] bg-[#F0EEFF] hover:bg-[#EDE9FE] transition-all duration-200"
                 >
                   Send Another Message
                 </button>
                 <Link 
                   href="/services" 
-                  className="px-6 py-4 rounded-full font-medium text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 flex items-center justify-center gap-2"
+                  className="px-6 py-3 rounded-full font-medium text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   Explore Services <ArrowRight size={20} />
                 </Link>
