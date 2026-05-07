@@ -25,7 +25,7 @@ export default function Footer() {
             <SocialIcon href="https://www.instagram.com/flowzonicsolutions/" icon={<Instagram size={20} />} />
             <SocialIcon href="#" icon={<Linkedin size={20} />} />
             <SocialIcon href="#" icon={<Github size={20} />} />
-            <SocialIcon href="mailto:flowzonicsolutions@gmail.com" icon={<Mail size={20} />} />
+            <SocialIcon href="mailto:contact@flowzonicsolutions.com" icon={<Mail size={20} />} />
           </div>
         </div>
 

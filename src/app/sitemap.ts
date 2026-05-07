@@ -5,7 +5,7 @@ import { MetadataRoute } from 'next'
  * Includes all core pages and service-specific detail pages.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://flowzonic.com'
+  const baseUrl = 'https://flowzonicsolutions.com/'
   const lastModified = new Date()
 
   const routes = [

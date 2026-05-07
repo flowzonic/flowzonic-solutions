@@ -73,7 +73,7 @@ function sendAutoReply(email, name, service) {
 }
 
 function sendAdminNotification(data) {
-  var adminEmail = "flowzonicsolutions@gmail.com"; 
+  var adminEmail = "contact@flowzonicsolutions.com"; 
   var subject = "🔥 NEW LEAD: " + data.name + " (" + data.service + ")";
   var body = "New inquiry from Flowzonic Solution website:\n\n" +
              "Name: " + data.name + "\n" +

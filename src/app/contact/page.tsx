@@ -132,7 +132,7 @@ export default function Contact() {
                 </p>
 
                 <div className="space-y-8">
-                  <ContactInfo icon={<Mail />} label="Email" value="flowzonicsolutions@gmail.com" />
+                  <ContactInfo icon={<Mail />} label="Email" value="contact@flowzonicsolutions.com" />
                   <ContactInfo icon={<Phone />} label="Phone" value="+91 8881907942" />
                   <ContactInfo icon={<MapPin />} label="Office" value="Lucknow, Uttar Pradesh, India" />
                 </div>
