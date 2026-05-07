@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -60,7 +61,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-[#FAFBFF] text-[#4B5563] font-body antialiased;
+    @apply bg-[#FAFBFF] text-[#4B5563] font-body antialiased min-h-screen flex flex-col;
   }
 }
 
@@ -116,6 +117,10 @@
   .badge-success {
     @apply text-xs px-3 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] border border-[#BBF7D0];
   }
+
+  .glass-premium {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-xl shadow-purple-500/5;
+  }
 }
 
 .gradient-text {
@@ -139,4 +144,9 @@
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-[#7B2FBE]/20 rounded-full hover:bg-[#7B2FBE]/40 transition-colors;
+}
+
+/* Ensure the main container grows to fill space */
+main {
+  flex: 1 0 auto;
 }
