@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -5,114 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, Rocket, Zap, Palette, Code, Star, ArrowRight, ShieldCheck, Clock, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-
-const PRICING_DATA = {
-  web: [
-    {
-      name: "Startup",
-      price: "₹15,000",
-      desc: "Perfect for single-product launches or portfolio sites.",
-      features: ["One-Page Landing", "Mobile Responsive", "Contact Form", "Basic SEO", "7-Day Delivery"],
-      button: "Get Started",
-      popular: false
-    },
-    {
-      name: "Business",
-      price: "₹35,000",
-      desc: "Full business websites with multiple pages.",
-      features: ["Up to 5 Pages", "CMS Integration", "Google Maps Integration", "Advanced SEO", "15-Day Delivery", "30-Day Support"],
-      button: "Choose Business",
-      popular: true
-    },
-    {
-      name: "Pro",
-      price: "₹60,000",
-      desc: "Scalable E-commerce engines for high-volume sales.",
-      features: ["Full Online Store", "Payment Gateway Setup", "Product Dashboard", "Stock Management", "Abandoned Cart Email", "Priority Support"],
-      button: "Go Pro",
-      popular: false
-    },
-    {
-      name: "Custom",
-      price: "Custom",
-      desc: "Enterprise-grade web applications tailored to you.",
-      features: ["Custom Web Apps", "External API Integrations", "Multi-role Dashboards", "Cloud Infrastructure", "Long-term Maintenance"],
-      button: "Book Consultation",
-      popular: false
-    }
-  ],
-  automation: [
-    {
-      name: "Essential",
-      price: "₹8,000",
-      desc: "Basic scripting to solve one core manual task.",
-      features: ["Single Script Task", "Google Sheets Logic", "PDF Generation", "Error Handlers", "3-Day Delivery"],
-      button: "Get Script",
-      popular: false
-    },
-    {
-      name: "Workflow",
-      price: "₹20,000",
-      desc: "Complete cross-app automation engines.",
-      features: ["Multi-App Sync", "Gmail & Drive Workflows", "Automated Reporting", "Custom UI Prompts", "10-Day Delivery", "Support Included"],
-      button: "Automate Now",
-      popular: true
-    },
-    {
-      name: "AI Flow",
-      price: "₹45,000",
-      desc: "Intelligent systems using Gemini AI.",
-      features: ["Gemini AI Integration", "Smart Content Synthesis", "Automated Lead Analysis", "Semantic Data Processing", "Priority AI Support"],
-      button: "Deploy AI",
-      popular: false
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      desc: "Global Workspace architecture & audits.",
-      features: ["Full Org Audit", "DLP & Security Setup", "Custom Add-on Dev", "Admin Training", "SLA-backed Support"],
-      button: "Discuss Needs",
-      popular: false
-    }
-  ],
-  design: [
-    {
-      name: "Essential",
-      price: "₹5,000",
-      desc: "The core identity for your brand launch.",
-      features: ["Primary Logo Design", "Favicon & Icons", "Color Palette", "Basic Style Guide", "3 Concepts"],
-      button: "Get Identity",
-      popular: false
-    },
-    {
-      name: "Identity",
-      price: "₹12,000",
-      desc: "Full brand voice for social presence.",
-      features: ["Logo + Variations", "Social Media Kit", "Email Signature", "Typography Suite", "Source Files Included"],
-      button: "Choose Identity",
-      popular: true
-    },
-    {
-      name: "Product",
-      price: "₹25,000",
-      desc: "High-fidelity UI/UX design for apps.",
-      features: ["Figma Wireframes", "Prototyping", "Up to 10 Screens", "Design System", "Dev Handoff File"],
-      button: "Design Product",
-      popular: false
-    },
-    {
-      name: "Elite",
-      price: "₹50,000",
-      desc: "Complete visual ecosystem for enterprises.",
-      features: ["Full Brand System", "3D Asset Creation", "Premium Pitch Decks", "Animated UI Assets", "Brand Audit"],
-      button: "Go Elite",
-      popular: false
-    }
-  ]
-};
+import { PricingData, PricingCategory } from "@/lib/pricing-data";
 
 export default function Pricing() {
-  const [activeTab, setActiveTab] = useState<keyof typeof PRICING_DATA>("web");
+  const [activeTab, setActiveTab] = useState<PricingCategory>("web");
 
   return (
     <main className="pt-32 pb-20 bg-[#FAFBFF]">
@@ -158,7 +55,7 @@ export default function Pricing() {
         {/* Pricing Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           <AnimatePresence mode="wait">
-            {PRICING_DATA[activeTab].map((plan, i) => (
+            {PricingData[activeTab].map((plan, i) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
