@@ -18,6 +18,7 @@ export interface BlogPost {
   author: string;
   content: string;
   readingTime: string;
+  featured?: boolean;
 }
 
 export async function getPostSlugs() {
@@ -28,6 +29,11 @@ export async function getPostSlugs() {
 export async function getPostBySlug(slug: string): Promise<BlogPost> {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = path.join(postsDirectory, `${realSlug}.mdx`);
+  
+  if (!fs.existsSync(fullPath)) {
+    throw new Error(`Post not found: ${fullPath}`);
+  }
+
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
@@ -47,6 +53,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     author: data.author,
     content: contentHtml,
     readingTime: stats.text,
+    featured: data.featured || false,
   };
 }
 
