@@ -62,7 +62,7 @@ const services = [
     title: "Web Development",
     description:
       "High-performance, scalable websites built with modern frameworks like React and Next.js.",
-    href: "/services/web-development",
+    href: "/services/web",
     features: [
       "Landing Pages",
       "E-Commerce Stores",
@@ -78,7 +78,7 @@ const services = [
     title: "Google Automation",
     description:
       "Custom Apps Script solutions that connect Sheets, Docs, and Gmail to save you hundreds of hours.",
-    href: "/services/google-automation",
+    href: "/services/automation",
     features: [
       "Google Sheets Automation",
       "Gmail Workflows",
@@ -94,7 +94,7 @@ const services = [
     title: "Graphic Design",
     description:
       "Glossy, premium brand identities and UI/UX designs that command attention and build trust.",
-    href: "/services/graphic-design",
+    href: "/services/design",
     features: [
       "Brand Identity",
       "Social Media Kits",
@@ -174,25 +174,25 @@ const portfolioProjects = [
     title: "EcomFlow — Shopify Store Redesign",
     category: "Web Development",
     result: "Increased conversions by 40%",
-    image: "/images/portfolio/project-1.png",
+    image: "https://picsum.photos/seed/project1/800/500",
     fallbackGradient: "from-purple-100 to-violet-50",
-    href: "/portfolio/ecomflow",
+    href: "/portfolio",
   },
   {
     title: "AutoSheet Pro — Workflow Automation",
     category: "Google Automation",
     result: "Saved 20 hours per week",
-    image: "/images/portfolio/project-2.png",
+    image: "https://picsum.photos/seed/project2/800/500",
     fallbackGradient: "from-indigo-100 to-purple-50",
-    href: "/portfolio/autosheet-pro",
+    href: "/portfolio",
   },
   {
     title: "BrandSpark — Full Brand Identity",
     category: "Graphic Design",
     result: "2x increase in brand recognition",
-    image: "/images/portfolio/project-3.png",
+    image: "https://picsum.photos/seed/project3/800/500",
     fallbackGradient: "from-violet-100 to-fuchsia-50",
-    href: "/portfolio/brandspark",
+    href: "/portfolio",
   },
 ];
 
@@ -270,7 +270,7 @@ const blogPosts = [
     excerpt:
       "How AI and new features are revolutionizing workspace automation.",
     date: "March 15, 2024",
-    image: "/images/blog/blog-1.jpg",
+    image: "https://picsum.photos/seed/blog1/600/400",
     category: "Automation",
   },
   {
@@ -278,7 +278,7 @@ const blogPosts = [
     excerpt:
       "Why high-end brands are moving towards cleaner, glossy aesthetics.",
     date: "March 10, 2024",
-    image: "/images/blog/blog-2.jpg",
+    image: "https://picsum.photos/seed/blog2/600/400",
     category: "Design",
   },
 ];

@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -72,6 +71,11 @@ export default function Services() {
   const techWoman = PlaceHolderImages.find(img => img.id === "tech-woman-pro");
   const techMan = PlaceHolderImages.find(img => img.id === "tech-man-dev");
   const teamCollab = PlaceHolderImages.find(img => img.id === "team-collab");
+
+  // Define safe fallbacks to prevent Image src="" error
+  const fallbackTechWoman = "https://picsum.photos/seed/tech-woman/800/600";
+  const fallbackTechMan = "https://picsum.photos/seed/tech-man/800/600";
+  const fallbackTeamCollab = "https://picsum.photos/seed/team-collab/1200/800";
 
   return (
     <main className="pt-32 pb-20 px-6">
@@ -171,7 +175,7 @@ export default function Services() {
             >
               <div className="glass p-4 rounded-4xl relative z-10">
                 <Image 
-                  src={techWoman?.imageUrl || ""} 
+                  src={techWoman?.imageUrl || fallbackTechWoman} 
                   alt="Tech Strategy Expert" 
                   width={800} 
                   height={600} 
@@ -202,7 +206,7 @@ export default function Services() {
                 <div className="space-y-4">
                   <div className="glass p-3 rounded-2xl">
                     <Image 
-                      src={techMan?.imageUrl || ""} 
+                      src={techMan?.imageUrl || fallbackTechMan} 
                       alt="Automation Engineer" 
                       width={400} 
                       height={400} 
@@ -226,7 +230,7 @@ export default function Services() {
                   </div>
                   <div className="glass p-3 rounded-2xl">
                     <Image 
-                      src={teamCollab?.imageUrl || ""} 
+                      src={teamCollab?.imageUrl || fallbackTeamCollab} 
                       alt="Team Collaboration" 
                       width={400} 
                       height={500} 

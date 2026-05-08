@@ -21,6 +21,8 @@ export default function SeedPage() {
     setLoading(true);
     setError(null);
 
+    const fallbackImageUrl = "https://picsum.photos/seed/placeholder/1200/800";
+
     try {
       // Seed Services
       const services = [
@@ -30,7 +32,7 @@ export default function SeedPage() {
           shortDescription: "High-performance, scalable websites built with modern frameworks like React and Next.js.",
           longDescription: "Our engineering-first approach prioritizes core web vitals and speed above all else.",
           iconName: "Code",
-          imageUrl: PlaceHolderImages.find(img => img.id === "mockup-1")?.imageUrl || ""
+          imageUrl: PlaceHolderImages.find(img => img.id === "mockup-1")?.imageUrl || fallbackImageUrl
         },
         {
           id: "automation",
@@ -38,7 +40,7 @@ export default function SeedPage() {
           shortDescription: "Custom Apps Script solutions that connect Sheets, Docs, and Gmail to save you hundreds of hours.",
           longDescription: "Eliminate human error and manual bottlenecks with intelligent scripts.",
           iconName: "Zap",
-          imageUrl: PlaceHolderImages.find(img => img.id === "mockup-3")?.imageUrl || ""
+          imageUrl: PlaceHolderImages.find(img => img.id === "mockup-3")?.imageUrl || fallbackImageUrl
         },
         {
           id: "design",
@@ -46,7 +48,7 @@ export default function SeedPage() {
           shortDescription: "Glossy, premium brand identities and UI/UX designs that command attention.",
           longDescription: "We create premium visual identities that make your brand impossible to ignore.",
           iconName: "Palette",
-          imageUrl: PlaceHolderImages.find(img => img.id === "mockup-2")?.imageUrl || ""
+          imageUrl: PlaceHolderImages.find(img => img.id === "mockup-2")?.imageUrl || fallbackImageUrl
         }
       ];
 
@@ -63,54 +65,13 @@ export default function SeedPage() {
         });
       }
 
-      // Seed Blog Posts
-      const posts = [
-        {
-          id: "script-2024",
-          title: "The Future of Google Apps Script in 2024",
-          slug: "script-2024",
-          content: "Detailed insights into how AI is changing the landscape of automation...",
-          publishDate: new Date().toISOString(),
-          authorName: "Alex Flow",
-          thumbnailImageUrl: PlaceHolderImages.find(img => img.id === "blog-1")?.imageUrl || "",
-          seoDescription: "How AI and new V8 engine features are revolutionizing workspace automation.",
-          category: "Automation",
-          status: "published"
-        },
-        {
-          id: "design-minimalism",
-          title: "Why Minimalist Design Still Dominates",
-          slug: "design-minimalism",
-          content: "Exploring the power of negative space and premium glossy finishes...",
-          publishDate: new Date().toISOString(),
-          authorName: "Sarah Design",
-          thumbnailImageUrl: PlaceHolderImages.find(img => img.id === "blog-2")?.imageUrl || "",
-          seoDescription: "Exploring the power of negative space and premium glossy finishes.",
-          category: "Design",
-          status: "published"
-        }
-      ];
-
-      for (const p of posts) {
-        const docRef = doc(db, "blog_posts_published", p.id);
-        await setDoc(docRef, p).catch(e => {
-          const permError = new FirestorePermissionError({
-            path: docRef.path,
-            operation: 'write',
-            requestResourceData: p
-          });
-          errorEmitter.emit('permission-error', permError);
-          throw e;
-        });
-      }
-
       // Seed Portfolio
       const portfolio = [
         {
           id: "ecomflow",
           title: "EcomFlow — Shopify Redesign",
           description: "A high-performance analytics dashboard for global logistics monitoring.",
-          mockupImageUrl: PlaceHolderImages.find(img => img.id === "mockup-1")?.imageUrl || "",
+          mockupImageUrl: PlaceHolderImages.find(img => img.id === "mockup-1")?.imageUrl || fallbackImageUrl,
           category: "Web Development",
           tech: ["Next.js", "Shopify", "Tailwind"],
           result: "Increased conversions by 40%"
@@ -119,7 +80,7 @@ export default function SeedPage() {
           id: "autosheet",
           title: "AutoSheet Pro",
           description: "Custom Apps Script solution syncing real-time sales data from Sheets.",
-          mockupImageUrl: PlaceHolderImages.find(img => img.id === "mockup-3")?.imageUrl || "",
+          mockupImageUrl: PlaceHolderImages.find(img => img.id === "mockup-3")?.imageUrl || fallbackImageUrl,
           category: "Google Automation",
           tech: ["Apps Script", "Gmail API"],
           result: "Saved 20 hours per week"
