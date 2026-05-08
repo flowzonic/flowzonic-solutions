@@ -1,8 +1,7 @@
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
 import readingTime from 'reading-time';
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
@@ -15,14 +14,23 @@ export interface BlogPost {
   coverImage: string;
   tags: string[];
   author: string;
-  content: string;
+  content: string; // This will now be the raw markdown content
   readingTime: string;
   featured?: boolean;
 }
 
+/**
+ * Ensures the blog directory exists.
+ */
+function ensureDirectory() {
+  if (!fs.existsSync(postsDirectory)) {
+    fs.mkdirSync(postsDirectory, { recursive: true });
+  }
+}
+
 export async function getPostSlugs() {
-  if (!fs.existsSync(postsDirectory)) return [];
-  return fs.readdirSync(postsDirectory);
+  ensureDirectory();
+  return fs.readdirSync(postsDirectory).filter(file => file.endsWith('.mdx'));
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost> {
@@ -34,12 +42,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
   }
 
   const fileContents = fs.readFileSync(fullPath, 'utf8');
+  
+  // matter() parses the file and separates metadata (data) from the body (content)
   const { data, content } = matter(fileContents);
 
-  const processedContent = await remark()
-    .use(html)
-    .process(content);
-  const contentHtml = processedContent.toString();
   const stats = readingTime(content);
 
   return {
@@ -47,10 +53,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
     title: data.title || "Untitled Post",
     description: data.description || "No description provided.",
     date: data.date || new Date().toLocaleDateString(),
-    coverImage: data.coverImage || "",
+    coverImage: data.coverImage || "https://picsum.photos/seed/default/1200/800",
     tags: data.tags || [],
     author: data.author || "Flowzonic Team",
-    content: contentHtml,
+    content: content, // Returning the raw markdown content for ReactMarkdown to handle
     readingTime: stats.text,
     featured: data.featured || false,
   };
@@ -62,6 +68,5 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     slugs.map((slug) => getPostBySlug(slug))
   );
 
-  // Sort posts by date in descending order
   return posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 }

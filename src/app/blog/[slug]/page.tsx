@@ -1,9 +1,12 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Calendar, User, Clock, ArrowLeft, Share2, ArrowRight, Bookmark, Facebook, Twitter, Linkedin, Sparkles } from "lucide-react";
 import { getPostBySlug, getPostSlugs, getAllPosts } from "@/lib/blog";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export async function generateStaticParams() {
   const slugs = await getPostSlugs();
@@ -106,15 +109,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </header>
 
           <div className="relative aspect-[21/10] rounded-[3rem] overflow-hidden shadow-2xl">
-            {post.coverImage && (
-              <Image 
-                src={post.coverImage} 
-                alt={post.title} 
-                fill 
-                className="object-cover"
-                priority
-              />
-            )}
+            <Image 
+              src={post.coverImage} 
+              alt={post.title} 
+              fill 
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
 
@@ -124,14 +125,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <aside className="hidden lg:block lg:col-span-3">
             <div className="sticky top-32 space-y-12">
               <div>
-                <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#9CA3AF] mb-6">Table of Contents</h4>
-                <nav className="space-y-4">
-                  <p className="text-sm font-bold text-[#7B2FBE] cursor-pointer hover:underline">Introduction</p>
-                  <p className="text-sm font-medium text-[#4B5563] cursor-pointer hover:text-[#7B2FBE] transition-colors">The Problem Space</p>
-                  <p className="text-sm font-medium text-[#4B5563] cursor-pointer hover:text-[#7B2FBE] transition-colors">Proposed Solutions</p>
-                  <p className="text-sm font-medium text-[#4B5563] cursor-pointer hover:text-[#7B2FBE] transition-colors">Implementation Flow</p>
-                  <p className="text-sm font-medium text-[#4B5563] cursor-pointer hover:text-[#7B2FBE] transition-colors">Conclusion</p>
-                </nav>
+                <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#9CA3AF] mb-6">Article Tools</h4>
+                <div className="p-6 bg-white border border-[#EDE9FE] rounded-2xl shadow-sm">
+                  <p className="text-xs text-[#4B5563] font-medium leading-relaxed">
+                    This article was authored by our technical strategy team to provide insights into modern workflow optimization.
+                  </p>
+                </div>
               </div>
               
               <div>
@@ -153,10 +152,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {/* Main Article Body */}
           <article className="lg:col-span-6">
-            <div 
-              className="prose prose-xl max-w-none prose-headings:text-[#1A1035] prose-headings:font-bold prose-headings:tracking-tight prose-p:text-[#4B5563] prose-p:leading-relaxed prose-a:text-[#7B2FBE] prose-a:font-bold prose-blockquote:border-l-[#7B2FBE] prose-blockquote:bg-[#F0EEFF] prose-blockquote:px-8 prose-blockquote:py-4 prose-blockquote:rounded-r-2xl prose-blockquote:italic prose-strong:text-[#1A1035] prose-code:bg-[#F0EEFF] prose-code:text-[#7B2FBE] prose-code:px-2 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-3xl prose-img:shadow-xl font-medium"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className="prose prose-xl max-w-none prose-headings:text-[#1A1035] prose-headings:font-bold prose-headings:tracking-tight prose-p:text-[#4B5563] prose-p:leading-relaxed prose-a:text-[#7B2FBE] prose-a:font-bold prose-blockquote:border-l-[#7B2FBE] prose-blockquote:bg-[#F0EEFF] prose-blockquote:px-8 prose-blockquote:py-4 prose-blockquote:rounded-r-2xl prose-blockquote:italic prose-strong:text-[#1A1035] prose-code:bg-[#F0EEFF] prose-code:text-[#7B2FBE] prose-code:px-2 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-img:rounded-3xl prose-img:shadow-xl font-medium">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {post.content}
+              </ReactMarkdown>
+            </div>
             
             <footer className="mt-20 pt-12 border-t border-[#EDE9FE]">
               <div className="bg-[#F0EEFF] p-8 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8">
@@ -210,30 +210,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </aside>
         </div>
 
-        {/* Navigation / Prev Next */}
-        <div className="max-w-5xl mx-auto px-6 mt-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <Link href="/blog" className="p-8 bg-white border border-[#EDE9FE] rounded-3xl hover:border-[#7B2FBE] transition-all flex items-center gap-6 group">
-                <div className="w-12 h-12 rounded-full bg-[#F0EEFF] flex items-center justify-center text-[#7B2FBE] group-hover:bg-[#7B2FBE] group-hover:text-white transition-all">
-                   <ArrowLeft size={20} />
-                </div>
-                <div>
-                   <p className="text-[10px] text-[#9CA3AF] uppercase tracking-widest font-bold mb-1">Previous</p>
-                   <p className="font-bold text-[#1A1035] group-hover:text-[#7B2FBE] transition-colors">Mastering Next.js 15</p>
-                </div>
-             </Link>
-             <Link href="/blog" className="p-8 bg-white border border-[#EDE9FE] rounded-3xl hover:border-[#7B2FBE] transition-all flex flex-row-reverse items-center gap-6 group">
-                <div className="w-12 h-12 rounded-full bg-[#F0EEFF] flex items-center justify-center text-[#7B2FBE] group-hover:bg-[#7B2FBE] group-hover:text-white transition-all">
-                   <ArrowRight size={20} />
-                </div>
-                <div className="text-right">
-                   <p className="text-[10px] text-[#9CA3AF] uppercase tracking-widest font-bold mb-1">Next</p>
-                   <p className="font-bold text-[#1A1035] group-hover:text-[#7B2FBE] transition-colors">Apps Script Magic</p>
-                </div>
-             </Link>
-          </div>
-        </div>
-
         {/* Related Section */}
         <section className="max-w-7xl mx-auto px-6 mt-32">
           <div className="text-center mb-16">
@@ -245,7 +221,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <Link href={`/blog/${rp.slug}`} key={rp.slug} className="group">
                 <div className="card-standard p-0 overflow-hidden h-full">
                   <div className="relative aspect-video overflow-hidden">
-                    {rp.coverImage && <Image src={rp.coverImage} alt={rp.title} fill className="object-cover transition-transform group-hover:scale-110" />}
+                    <Image src={rp.coverImage} alt={rp.title} fill className="object-cover transition-transform group-hover:scale-110" />
                   </div>
                   <div className="p-6">
                     <h4 className="font-bold text-[#1A1035] group-hover:text-[#7B2FBE] transition-colors mb-3 line-clamp-1">{rp.title}</h4>
