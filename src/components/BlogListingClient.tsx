@@ -21,13 +21,17 @@ export default function BlogListingClient({ initialPosts }: BlogListingClientPro
   const filteredPosts = useMemo(() => {
     if (!initialPosts) return [];
     return initialPosts.filter((post) => {
+      const title = post.title || "";
+      const description = post.description || "";
+      const tags = post.tags || [];
+      
       const matchesSearch = 
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.description.toLowerCase().includes(searchQuery.toLowerCase());
+        title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        description.toLowerCase().includes(searchQuery.toLowerCase());
       
       const matchesCategory = 
         activeCategory === "All Insights" || 
-        post.tags.some(tag => tag.toLowerCase() === activeCategory.toLowerCase());
+        tags.some(tag => (tag || "").toLowerCase() === activeCategory.toLowerCase());
 
       return matchesSearch && matchesCategory;
     });
@@ -81,13 +85,17 @@ export default function BlogListingClient({ initialPosts }: BlogListingClientPro
           >
             <Link href={`/blog/${featuredPost.slug}`} className="group">
               <div className="relative aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-2xl border border-[#EDE9FE]">
-                <Image 
-                  src={featuredPost.coverImage} 
-                  alt={featuredPost.title} 
-                  fill 
-                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                  priority
-                />
+                {featuredPost.coverImage ? (
+                  <Image 
+                    src={featuredPost.coverImage} 
+                    alt={featuredPost.title} 
+                    fill 
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                    priority
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-violet-50" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1035] via-[#1A1035]/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8 md:p-16 max-w-3xl">
                   <span className="bg-[#7B2FBE] text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block">
@@ -122,16 +130,20 @@ export default function BlogListingClient({ initialPosts }: BlogListingClientPro
               exit={{ opacity: 0, scale: 0.9 }}
               className="card-standard p-0 overflow-hidden group flex flex-col h-full border-[#EDE9FE]"
             >
-              <div className="relative h-64 overflow-hidden">
-                <Image 
-                  src={post.coverImage} 
-                  alt={post.title} 
-                  fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+              <div className="relative h-64 overflow-hidden bg-gray-50">
+                {post.coverImage ? (
+                  <Image 
+                    src={post.coverImage} 
+                    alt={post.title} 
+                    fill 
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-violet-50" />
+                )}
                 <div className="absolute top-4 left-4">
                   <span className="bg-white/90 backdrop-blur-md text-[#7B2FBE] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
-                    {post.tags[0] || "Article"}
+                    {(post.tags && post.tags[0]) || "Article"}
                   </span>
                 </div>
               </div>

@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -45,12 +44,12 @@ export async function getPostBySlug(slug: string): Promise<BlogPost> {
 
   return {
     slug: realSlug,
-    title: data.title,
-    description: data.description,
-    date: data.date,
-    coverImage: data.coverImage,
+    title: data.title || "Untitled Post",
+    description: data.description || "No description provided.",
+    date: data.date || new Date().toLocaleDateString(),
+    coverImage: data.coverImage || "",
     tags: data.tags || [],
-    author: data.author,
+    author: data.author || "Flowzonic Team",
     content: contentHtml,
     readingTime: stats.text,
     featured: data.featured || false,
