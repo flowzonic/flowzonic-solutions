@@ -1,24 +1,6 @@
+
 {
   "entities": {
-    "BlogPost": {
-      "title": "BlogPost",
-      "description": "Represents a blog article published on the Flowzonic Solution website.",
-      "type": "object",
-      "properties": {
-        "id": { "type": "string" },
-        "title": { "type": "string" },
-        "slug": { "type": "string" },
-        "content": { "type": "string" },
-        "publishDate": { "type": "string", "format": "date-time" },
-        "authorName": { "type": "string" },
-        "thumbnailImageUrl": { "type": "string", "format": "uri" },
-        "seoDescription": { "type": "string" },
-        "tags": { "type": "array", "items": { "type": "string" } },
-        "category": { "type": "string" },
-        "status": { "type": "string", "enum": ["draft", "published"] }
-      },
-      "required": ["id", "title", "slug", "content", "publishDate", "authorName", "status"]
-    },
     "Service": {
       "title": "Service",
       "description": "Defines a service offered by Flowzonic Solution.",
@@ -80,14 +62,6 @@
     "providers": ["password", "anonymous"]
   },
   "firestore": {
-    "/blog_posts_published/{blogPostId}": {
-      "schema": { "$ref": "#/entities/BlogPost" },
-      "description": "Publicly accessible published blog posts."
-    },
-    "/blog_posts_drafts/{blogPostId}": {
-      "schema": { "$ref": "#/entities/BlogPost" },
-      "description": "Private draft blog posts for admins."
-    },
     "/services/{serviceId}": {
       "schema": { "$ref": "#/entities/Service" },
       "description": "Publicly accessible services."

@@ -1,10 +1,11 @@
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
     /**
      * Flowzonic Solutions Security Rules
-     * Updated to allow initial seeding of public content.
+     * Updated: Removed blog rules as system is now MDX-based.
      */
 
     function isSignedIn() {
@@ -16,27 +17,17 @@ service cloud.firestore {
     }
 
     // Publicly readable content
-    // Temporarily allowed write for seeding; in production, change 'if true' to 'if isAdmin()'
-    match /blog_posts_published/{blogPostId} {
-      allow read: if true;
-      allow write: if true; 
-    }
-
     match /services/{serviceId} {
       allow read: if true;
-      allow write: if true;
+      allow write: if isAdmin();
     }
 
     match /portfolio_items/{portfolioItemId} {
       allow read: if true;
-      allow write: if true;
+      allow write: if isAdmin();
     }
 
     // Admin-only collections
-    match /blog_posts_drafts/{blogPostId} {
-      allow read, write: if isAdmin();
-    }
-
     match /roles_admin/{userId} {
       allow read, write: if isAdmin();
     }

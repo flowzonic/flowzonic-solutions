@@ -1,14 +1,12 @@
-import { MetadataRoute } from 'next'
 
-/**
- * Generates the sitemap for the Flowzonic Solution website.
- * Includes all core pages and service-specific detail pages.
- */
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://flowzonicsolutions.com/'
-  const lastModified = new Date()
+import { MetadataRoute } from 'next';
+import { getPostSlugs } from '@/lib/blog';
 
-  const routes = [
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = 'https://flowzonicsolutions.com/';
+  const lastModified = new Date();
+
+  const coreRoutes = [
     '',
     '/about',
     '/services',
@@ -19,12 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/pricing',
     '/blog',
     '/contact',
-  ]
+  ];
 
-  return routes.map((route) => ({
+  const blogSlugs = await getPostSlugs();
+  const blogRoutes = blogSlugs.map(slug => `/blog/${slug.replace(/\.mdx$/, '')}`);
+
+  const allRoutes = [...coreRoutes, ...blogRoutes];
+
+  return allRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified,
-    changeFrequency: route === '/blog' || route === '/portfolio' ? 'weekly' : 'monthly',
+    changeFrequency: route.startsWith('/blog') || route === '/blog' ? 'weekly' : 'monthly',
     priority: route === '' ? 1 : 0.8,
-  }))
+  }));
 }
