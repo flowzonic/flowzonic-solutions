@@ -22,6 +22,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/pricing',
     '/blog',
     '/contact',
+    '/privacy-policy',
+    '/terms',
   ];
 
   // Fetch all blog slugs from the local MDX content directory
