@@ -2,10 +2,15 @@
 import { MetadataRoute } from 'next';
 import { getPostSlugs } from '@/lib/blog';
 
+/**
+ * Generates the sitemap.xml file dynamically.
+ * Includes all core pages and individual blog posts.
+ */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://flowzonicsolutions.com/';
+  const baseUrl = 'https://flowzonicsolutions.com';
   const lastModified = new Date();
 
+  // Core static routes
   const coreRoutes = [
     '',
     '/about',
@@ -19,6 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/contact',
   ];
 
+  // Fetch all blog slugs from the local MDX content directory
   const blogSlugs = await getPostSlugs();
   const blogRoutes = blogSlugs.map(slug => `/blog/${slug.replace(/\.mdx$/, '')}`);
 
