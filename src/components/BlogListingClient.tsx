@@ -1,10 +1,9 @@
-
 "use client";
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, User, ArrowRight, Search, Clock, Send } from "lucide-react";
+import { Calendar, User, ArrowRight, Search, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BlogPost } from "@/lib/blog";
 import { cn } from "@/lib/utils";
@@ -20,6 +19,7 @@ export default function BlogListingClient({ initialPosts }: BlogListingClientPro
   const [activeCategory, setActiveCategory] = useState("All Insights");
 
   const filteredPosts = useMemo(() => {
+    if (!initialPosts) return [];
     return initialPosts.filter((post) => {
       const matchesSearch = 
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -33,11 +33,11 @@ export default function BlogListingClient({ initialPosts }: BlogListingClientPro
     });
   }, [initialPosts, searchQuery, activeCategory]);
 
-  const featuredPost = activeCategory === "All Insights" && searchQuery === "" ? filteredPosts[0] : null;
+  const featuredPost = activeCategory === "All Insights" && searchQuery === "" && filteredPosts.length > 0 ? filteredPosts[0] : null;
   const gridPosts = featuredPost ? filteredPosts.slice(1) : filteredPosts;
 
   return (
-    <>
+    <div className="min-h-[400px]">
       {/* Search & Categories */}
       <div className="text-center mb-16">
         <div className="relative max-w-xl mx-auto group mb-12">
@@ -86,6 +86,7 @@ export default function BlogListingClient({ initialPosts }: BlogListingClientPro
                   alt={featuredPost.title} 
                   fill 
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1035] via-[#1A1035]/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-8 md:p-16 max-w-3xl">
@@ -161,7 +162,7 @@ export default function BlogListingClient({ initialPosts }: BlogListingClientPro
 
       {/* No Results */}
       {filteredPosts.length === 0 && (
-        <div className="text-center py-20">
+        <div className="text-center py-20 bg-white border border-[#EDE9FE] rounded-[2.5rem] mb-32">
           <p className="text-xl text-[#4B5563] font-medium">No articles found matching your criteria.</p>
           <button 
             onClick={() => { setSearchQuery(""); setActiveCategory("All Insights"); }}
@@ -171,6 +172,6 @@ export default function BlogListingClient({ initialPosts }: BlogListingClientPro
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 }
