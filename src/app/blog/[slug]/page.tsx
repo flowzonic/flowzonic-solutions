@@ -1,8 +1,7 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar, User, Clock, ArrowLeft, Share2, ArrowRight, Bookmark, Facebook, Twitter, Linkedin } from "lucide-react";
+import { Calendar, User, Clock, ArrowLeft, Share2, ArrowRight, Bookmark, Facebook, Twitter, Linkedin, Sparkles } from "lucide-react";
 import { getPostBySlug, getPostSlugs, getAllPosts } from "@/lib/blog";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 
@@ -60,7 +59,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           <header className="mb-12">
             <div className="flex flex-wrap gap-4 text-xs font-bold uppercase tracking-widest text-[#7B2FBE] mb-8">
-              {post.tags.map(tag => (
+              {(post.tags || []).map(tag => (
                 <span key={tag} className="bg-[#F0EEFF] px-4 py-1.5 rounded-full border border-[#DDD6FE]">{tag}</span>
               ))}
             </div>
@@ -107,13 +106,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </header>
 
           <div className="relative aspect-[21/10] rounded-[3rem] overflow-hidden shadow-2xl">
-            <Image 
-              src={post.coverImage} 
-              alt={post.title} 
-              fill 
-              className="object-cover"
-              priority
-            />
+            {post.coverImage && (
+              <Image 
+                src={post.coverImage} 
+                alt={post.title} 
+                fill 
+                className="object-cover"
+                priority
+              />
+            )}
           </div>
         </div>
 
@@ -244,7 +245,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <Link href={`/blog/${rp.slug}`} key={rp.slug} className="group">
                 <div className="card-standard p-0 overflow-hidden h-full">
                   <div className="relative aspect-video overflow-hidden">
-                    <Image src={rp.coverImage} alt={rp.title} fill className="object-cover transition-transform group-hover:scale-110" />
+                    {rp.coverImage && <Image src={rp.coverImage} alt={rp.title} fill className="object-cover transition-transform group-hover:scale-110" />}
                   </div>
                   <div className="p-6">
                     <h4 className="font-bold text-[#1A1035] group-hover:text-[#7B2FBE] transition-colors mb-3 line-clamp-1">{rp.title}</h4>
