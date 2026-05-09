@@ -64,9 +64,9 @@ export default function About() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="card-standard p-4 rounded-4xl bg-white/50 backdrop-blur-sm">
+            <div className="  rounded-4xl bg-white/50 backdrop-blur-sm">
               <Image 
-                src={visionImage?.imageUrl || "https://picsum.photos/seed/about1/800/600"} 
+                src="/about-space.png"
                 alt="About our vision" 
                 width={800} 
                 height={600} 
