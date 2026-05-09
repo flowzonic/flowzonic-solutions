@@ -20,30 +20,17 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when sidebar open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+    return () => { document.body.style.overflow = "auto"; };
   }, [isOpen]);
 
   return (
@@ -79,7 +66,6 @@ export default function Navbar() {
                 const isActive =
                   pathname === item.href ||
                   (item.href !== "/" && pathname.startsWith(item.href));
-
                 return (
                   <Link
                     key={item.name}
@@ -92,16 +78,11 @@ export default function Navbar() {
                     )}
                   >
                     {item.name}
-
                     {isActive && (
                       <motion.div
                         layoutId="nav-pill"
                         className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
-                        transition={{
-                          type: "spring",
-                          bounce: 0.2,
-                          duration: 0.6,
-                        }}
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
                   </Link>
@@ -123,6 +104,7 @@ export default function Navbar() {
               <button
                 className="md:hidden w-11 h-11 rounded-2xl border border-[#EDE9FE] bg-white/80 backdrop-blur-xl flex items-center justify-center text-[#1A1035] shadow-sm"
                 onClick={() => setIsOpen(true)}
+                aria-label="Open menu"
               >
                 <Menu size={22} />
               </button>
@@ -131,11 +113,11 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* MOBILE SIDEBAR */}
+      {/* ── MOBILE SIDEBAR ─────────────────────────────────────── */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Overlay */}
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -149,15 +131,13 @@ export default function Navbar() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{
-                type: "spring",
-                damping: 24,
-                stiffness: 220,
-              }}
-              className="fixed top-0 right-0 h-screen w-[85%] max-w-[360px] bg-white z-[60] md:hidden shadow-2xl border-l border-[#EDE9FE]"
+              transition={{ type: "spring", damping: 24, stiffness: 220 }}
+              className="fixed top-0 right-0 h-screen w-[85%] max-w-[360px] bg-white z-[60] md:hidden shadow-2xl border-l border-[#EDE9FE] flex flex-col"
+              // ↑ flex flex-col is the key — splits header / scroll area / footer
             >
-              {/* Top */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-[#F3F4F6]">
+
+              {/* ── TOP HEADER (fixed height) */}
+              <div className="flex-shrink-0 flex items-center justify-between px-6 py-5 border-b border-[#F3F4F6]">
                 <Image
                   src="/header-logo.png"
                   alt="Flowzonic Solutions"
@@ -165,32 +145,29 @@ export default function Navbar() {
                   height={40}
                   className="h-8 w-auto object-contain"
                 />
-
                 <button
                   onClick={() => setIsOpen(false)}
+                  aria-label="Close menu"
                   className="w-10 h-10 rounded-xl bg-[#F8F5FF] flex items-center justify-center text-[#7B2FBE]"
                 >
                   <X size={20} />
                 </button>
               </div>
 
-              {/* Nav Links */}
-              <div className="flex flex-col p-5">
-                {[...NAV_ITEMS, { name: "Contact", href: "/contact" }].map(
+              {/* ── SCROLLABLE NAV LINKS (fills remaining space) */}
+              {/* overflow-y-auto + flex-1 = scrolls when content is taller than available space */}
+              <div className="flex-1 overflow-y-auto overscroll-contain p-5">
+                {NAV_ITEMS.map(
                   (item, index) => {
                     const isActive =
                       pathname === item.href ||
-                      (item.href !== "/" &&
-                        pathname.startsWith(item.href));
-
+                      (item.href !== "/" && pathname.startsWith(item.href));
                     return (
                       <motion.div
                         key={item.name}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          delay: index * 0.06,
-                        }}
+                        transition={{ delay: index * 0.06 }}
                       >
                         <Link
                           href={item.href}
@@ -203,7 +180,6 @@ export default function Navbar() {
                           )}
                         >
                           {item.name}
-
                           <ArrowRight
                             size={18}
                             className={cn(
@@ -218,27 +194,26 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Bottom CTA */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 border-t border-[#F3F4F6] bg-white">
+              {/* ── BOTTOM CTA (fixed height, never overlaps links) */}
+              <div className="flex-shrink-0 p-5 border-t border-[#F3F4F6] bg-white">
                 <div className="rounded-3xl bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] p-5 text-white">
-                  <p className="text-lg font-bold mb-2">
+                  <p className="text-base font-bold mb-1">
                     Ready to grow your business?
                   </p>
-
-                  <p className="text-sm text-white/80 mb-4">
-                    Let’s automate and scale your workflow together.
+                  <p className="text-xs text-white/80 mb-4">
+                    Let's automate and scale your workflow together.
                   </p>
-
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 bg-white text-[#7B2FBE] py-3 rounded-2xl font-semibold"
+                    className="w-full flex items-center justify-center gap-2 bg-white text-[#7B2FBE] py-3 rounded-2xl font-semibold text-sm"
                   >
                     Contact Us
                     <ArrowRight size={16} />
                   </Link>
                 </div>
               </div>
+
             </motion.div>
           </>
         )}
