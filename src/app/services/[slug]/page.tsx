@@ -1,8 +1,6 @@
 import { notFound } from "next/navigation";
 import ServiceDetailClient from "@/components/ServiceDetailClient";
-import { 
-  Globe, Bot, Layers
-} from "lucide-react";
+import { Globe, Bot, Layers } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const SERVICE_DATA: Record<string, any> = {
@@ -11,84 +9,80 @@ const SERVICE_DATA: Record<string, any> = {
     icon: <Globe className="text-primary" size={48} />,
     headline: "Websites that Outpace the Competition",
     subHeadline: "Stop losing leads to slow, outdated platforms. We build lightning-fast digital engines that convert visitors into loyal customers.",
-    image: PlaceHolderImages[1].imageUrl,
+    image: PlaceHolderImages.find(img => img.id === "mockup-1")?.imageUrl,
     whyUs: [
-      "Our engineering-first approach prioritizes core web vitals and speed above all else. In a world where milliseconds cost millions, we ensure your site is the fastest in its niche.",
-      "We don't just 'build sites'; we architect digital ecosystems. Every line of code is optimized for SEO and scalability, ensuring your brand grows without technical friction.",
-      "Security and reliability are non-negotiable. Using modern stacks like Next.js and Firebase, we provide enterprise-grade protection for your data and your users' privacy."
+      "Our engineering-first approach prioritizes core web vitals and speed above all else.",
+      "We architect digital ecosystems optimized for SEO and scalability.",
+      "Security and reliability are non-negotiable using modern stacks like Next.js and Firebase."
     ],
     process: [
-      { title: "Discovery", desc: "We deep-dive into your business goals, user personas, and competitor landscape to define a technical roadmap." },
-      { title: "Strategy", desc: "Architecting the sitemap, wireframes, and tech-stack choice to ensure the foundation is future-proof." },
-      { title: "Execution", desc: "High-speed development phase where design meets code, utilizing modern frameworks for maximum performance." },
-      { title: "QA & Testing", desc: "Rigorous stress tests across all devices and browsers to ensure a pixel-perfect, bug-free experience." },
-      { title: "Launch & Support", desc: "Deploying your asset to the world and providing the ongoing maintenance needed to stay ahead." }
+      { title: "Discovery", desc: "We deep-dive into your business goals to define a technical roadmap." },
+      { title: "Strategy", desc: "Architecting sitemaps and tech-stack choices for future-proof foundations." },
+      { title: "Execution", desc: "High-speed development phase where design meets precision code." },
+      { title: "QA & Testing", desc: "Rigorous stress tests across all devices to ensure a bug-free experience." },
+      { title: "Launch", desc: "Deploying your asset and providing ongoing support." }
     ],
-    tech: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Firebase", "CloudOps"],
-    roi: "Expect a significant reduction in bounce rates and a direct increase in user session duration. Our optimized performance leads to better SEO rankings, lower customer acquisition costs, and a premium brand perception that drives higher average order values.",
+    tech: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Firebase"],
+    roi: "Expect a significant reduction in bounce rates and a direct increase in user session duration through elite performance engineering.",
     faqs: [
-      { q: "Will my website be mobile-responsive?", a: "Every site we build is mobile-first. It will look and function perfectly on smartphones, tablets, and desktops." },
-      { q: "How long does a typical build take?", a: "Most enterprise-grade websites take between 4 to 8 weeks, depending on the complexity and integrations required." },
-      { q: "Do you offer post-launch maintenance?", a: "Yes, we provide ongoing support packages to keep your site updated, secure, and performing at its peak." }
+      { q: "Will my website be mobile-responsive?", a: "Every site we build is mobile-first and functions perfectly on all screen sizes." },
+      { q: "How long does a typical build take?", a: "Most enterprise-grade websites take between 4 to 8 weeks." }
     ]
   },
   automation: {
     title: "Google Automation",
     icon: <Bot className="text-primary" size={48} />,
     headline: "Your Business on Autopilot",
-    subHeadline: "Eliminate human error and manual bottlenecks with intelligent scripts that connect your favorite Google Workspace tools seamlessly.",
-    image: PlaceHolderImages[3].imageUrl,
+    subHeadline: "Eliminate human error and manual bottlenecks with intelligent scripts that connect your Google Workspace seamlessly.",
+    image: PlaceHolderImages.find(img => img.id === "mockup-3")?.imageUrl,
     whyUs: [
-      "We specialize in the intersection of Google Apps Script and Generative AI. This allows us to build systems that don't just move data, but understand it.",
-      "Our solutions are lightweight and reside directly within your Google Workspace. There's no expensive third-party software to subscribe to—you own the automation.",
-      "We focus on 'Zero-Friction' workflows. If a task requires more than one click, we find a way to make it zero. Our goal is to make your backend operations invisible."
+      "We specialize in the intersection of Google Apps Script and Generative AI.",
+      "Our solutions are lightweight and reside directly within your Google Workspace.",
+      "We focus on 'Zero-Friction' workflows to make backend operations invisible."
     ],
     process: [
-      { title: "Audit", desc: "We map out your manual workflows and identify the highest-impact areas for immediate automation." },
-      { title: "Architecture", desc: "Designing the data flow between Sheets, Docs, Gmail, and external APIs to ensure a seamless bridge." },
-      { title: "Scripting", desc: "Development of custom Google Apps Script and AI integrations tailored specifically to your internal logic." },
-      { title: "Testing", desc: "Edge-case testing and user acceptance phases to ensure the automation handles data with 100% accuracy." },
-      { title: "Deployment", desc: "Integration into your active Workspace with comprehensive training for your team." }
+      { title: "Audit", desc: "Mapping manual workflows to identify high-impact automation areas." },
+      { title: "Architecture", desc: "Designing data flow between Sheets, Docs, and external APIs." },
+      { title: "Scripting", desc: "Development of custom Apps Script and AI integrations." },
+      { title: "Testing", desc: "Edge-case testing to ensure 100% data accuracy." },
+      { title: "Deployment", desc: "Integration into your Workspace with team training." }
     ],
-    tech: ["Google Apps Script", "Gemini AI", "Sheets API", "Drive API", "Gmail API", "Firebase Functions"],
-    roi: "Our clients save an average of 10-20 hours per week per department. By eliminating manual data entry, you remove the 3-5% error rate typical in human processes, leading to cleaner data and faster decision-making that directly impacts your bottom line.",
+    tech: ["Apps Script", "Gemini AI", "Sheets API", "Gmail API", "Firebase Functions"],
+    roi: "Clients save an average of 10-20 hours per week per department by eliminating manual data entry tasks.",
     faqs: [
-      { q: "Is my data secure within the scripts?", a: "Yes. The scripts run within your own Google account or organization, meaning you retain full control over data access and permissions." },
-      { q: "Can scripts connect to non-Google apps?", a: "Absolutely. We use APIs to connect your Google Workspace to tools like Slack, Shopify, Stripe, and more." },
-      { q: "What if the automation breaks?", a: "Our code is built with robust error-logging. If a script fails, it automatically notifies us so we can resolve it instantly." }
+      { q: "Is my data secure within the scripts?", a: "Yes, scripts run within your own Google account, retaining full control over access." },
+      { q: "Can scripts connect to non-Google apps?", a: "Absolutely, we use APIs to connect to Slack, Shopify, Stripe, and more." }
     ]
   },
   design: {
     title: "Graphic Designing",
     icon: <Layers className="text-primary" size={48} />,
     headline: "Aesthetics That Drive Authority",
-    subHeadline: "Generic design is invisible. We create premium visual identities that make your brand impossible to ignore and command higher trust.",
-    image: PlaceHolderImages[2].imageUrl,
+    subHeadline: "Generic design is invisible. We create premium visual identities that command authority and trust.",
+    image: PlaceHolderImages.find(img => img.id === "mockup-2")?.imageUrl,
     whyUs: [
-      "Our design philosophy is rooted in 'Glossy Minimalism'. We use negative space and premium textures to create a look that feels futuristic and expensive.",
-      "We design for conversion, not just beauty. Every color choice, font weight, and layout structure is engineered to guide the user's eye toward your primary call to action.",
-      "We provide a complete visual system. From your logo to your UI components, we ensure a consistent aesthetic that builds brand recognition across every touchpoint."
+      "Our philosophy is rooted in 'Glossy Minimalism' and premium textures.",
+      "We design for conversion, engineering layouts to guide users to your CTA.",
+      "We provide a complete visual system for brand consistency across all touchpoints."
     ],
     process: [
-      { title: "Branding Deep-Dive", desc: "We analyze your brand values and audience psychology to establish a visual tone of voice." },
-      { title: "Conceptualization", desc: "Development of diverse design directions and moodboards to align on the futuristic vision." },
-      { title: "Refinement", desc: "Iterative design phase where we polish the chosen concepts into high-fidelity assets." },
-      { title: "Asset Production", desc: "Generating all final deliverables, from web-ready UI to high-resolution print and social assets." },
-      { title: "Handoff", desc: "Delivery of a comprehensive brand style guide to ensure consistent application of your new look." }
+      { title: "Deep-Dive", desc: "Analyzing brand values and audience psychology for a visual tone." },
+      { title: "Conceptualization", desc: "Development of diverse design directions and moodboards." },
+      { title: "Refinement", desc: "Iterative design phase polishing chosen concepts into final assets." },
+      { title: "Production", desc: "Generating final deliverables from UI to high-res print assets." },
+      { title: "Handoff", desc: "Delivery of a comprehensive brand style guide." }
     ],
-    tech: ["Figma", "Adobe Creative Suite", "Framer", "Blender 3D", "After Effects"],
-    roi: "Premium design allows you to command premium pricing. A professional, futuristic visual identity builds instant trust, reducing the 'skepticism barrier' for new customers and lowering your customer acquisition costs through better engagement.",
+    tech: ["Figma", "Adobe Suite", "Blender 3D", "After Effects"],
+    roi: "Premium design allows you to command premium pricing and builds instant trust with high-value prospects.",
     gallery: [
-      { type: "image", src: "https://picsum.photos/seed/design-1/800/1000", span: "md:col-span-2 md:row-span-2", alt: "Premium Brand System" },
-      { type: "video", src: "https://assets.mixkit.co/videos/preview/mixkit-abstract-glowing-particles-in-fluid-34444-large.mp4", span: "md:col-span-1 md:row-span-1", alt: "Motion Design Showcase" },
-      { type: "image", src: "https://picsum.photos/seed/design-2/800/600", span: "md:col-span-1 md:row-span-1", alt: "Modern UI Architecture" },
-      { type: "image", src: "https://picsum.photos/seed/design-3/800/600", span: "md:col-span-1 md:row-span-2", alt: "Social Identity Kit" },
-      { type: "video", src: "https://assets.mixkit.co/videos/preview/mixkit-liquid-bubbles-and-colorful-background-34440-large.mp4", span: "md:col-span-2 md:row-span-1", alt: "Dynamic Visual Assets" },
+      { type: "image", src: "https://picsum.photos/seed/design-1/800/1000", span: "md:col-span-2 md:row-span-2", alt: "Premium Brand System", hint: "branding design" },
+      { type: "image", src: "https://picsum.photos/seed/design-2/800/600", span: "md:col-span-1 md:row-span-1", alt: "Modern UI Architecture", hint: "ui design" },
+      { type: "image", src: "https://picsum.photos/seed/design-3/800/600", span: "md:col-span-1 md:row-span-1", alt: "Social Identity Kit", hint: "social graphic" },
+      { type: "image", src: "https://picsum.photos/seed/design-4/1200/800", span: "md:col-span-2 md:row-span-1", alt: "Dynamic Visual Assets", hint: "abstract art" },
     ],
     faqs: [
-      { q: "Do I get ownership of the source files?", a: "Yes. Once the project is complete, you receive all source files (Figma, AI, PSD) and full intellectual property rights." },
-      { q: "How many revisions do we get?", a: "Our standard process includes 3 rounds of major revisions to ensure the final result is exactly what you envisioned." },
-      { q: "Can you design for both web and print?", a: "Absolutely. We provide high-fidelity assets optimized for both digital displays and high-end physical printing." }
+      { q: "Do I get ownership of the source files?", a: "Yes, you receive all Figma, AI, and PSD source files upon completion." },
+      { q: "How many revisions do we get?", a: "Our process includes 3 rounds of major revisions to ensure perfect alignment." }
     ]
   }
 };
