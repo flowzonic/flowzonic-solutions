@@ -78,6 +78,13 @@ const SERVICE_DATA: Record<string, any> = {
     ],
     tech: ["Figma", "Adobe Creative Suite", "Framer", "Blender 3D", "After Effects"],
     roi: "Premium design allows you to command premium pricing. A professional, futuristic visual identity builds instant trust, reducing the 'skepticism barrier' for new customers and lowering your customer acquisition costs through better engagement.",
+    gallery: [
+      { type: "image", src: "https://picsum.photos/seed/design-1/800/1000", span: "md:col-span-2 md:row-span-2", alt: "Premium Brand System" },
+      { type: "video", src: "https://assets.mixkit.co/videos/preview/mixkit-abstract-glowing-particles-in-fluid-34444-large.mp4", span: "md:col-span-1 md:row-span-1", alt: "Motion Design Showcase" },
+      { type: "image", src: "https://picsum.photos/seed/design-2/800/600", span: "md:col-span-1 md:row-span-1", alt: "Modern UI Architecture" },
+      { type: "image", src: "https://picsum.photos/seed/design-3/800/600", span: "md:col-span-1 md:row-span-2", alt: "Social Identity Kit" },
+      { type: "video", src: "https://assets.mixkit.co/videos/preview/mixkit-liquid-bubbles-and-colorful-background-34440-large.mp4", span: "md:col-span-2 md:row-span-1", alt: "Dynamic Visual Assets" },
+    ],
     faqs: [
       { q: "Do I get ownership of the source files?", a: "Yes. Once the project is complete, you receive all source files (Figma, AI, PSD) and full intellectual property rights." },
       { q: "How many revisions do we get?", a: "Our standard process includes 3 rounds of major revisions to ensure the final result is exactly what you envisioned." },
