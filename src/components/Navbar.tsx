@@ -133,10 +133,9 @@ export default function Navbar() {
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 24, stiffness: 220 }}
               className="fixed top-0 right-0 h-screen w-[85%] max-w-[360px] bg-white z-[60] md:hidden shadow-2xl border-l border-[#EDE9FE] flex flex-col"
-              // ↑ flex flex-col is the key — splits header / scroll area / footer
             >
 
-              {/* ── TOP HEADER (fixed height) */}
+              {/* ── TOP HEADER (Logo + Close) */}
               <div className="flex-shrink-0 flex items-center justify-between px-6 py-5 border-b border-[#F3F4F6]">
                 <Image
                   src="/header-logo.png"
@@ -154,11 +153,10 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* ── SCROLLABLE NAV LINKS (fills remaining space) */}
-              {/* overflow-y-auto + flex-1 = scrolls when content is taller than available space */}
+              {/* ── SCROLLABLE NAV LINKS */}
               <div className="flex-1 overflow-y-auto overscroll-contain p-5">
-                {NAV_ITEMS.map(
-                  (item, index) => {
+                <div className="flex flex-col gap-2">
+                  {NAV_ITEMS.map((item, index) => {
                     const isActive =
                       pathname === item.href ||
                       (item.href !== "/" && pathname.startsWith(item.href));
@@ -173,7 +171,7 @@ export default function Navbar() {
                           href={item.href}
                           onClick={() => setIsOpen(false)}
                           className={cn(
-                            "group flex items-center justify-between px-5 py-4 rounded-2xl mb-2 text-base font-semibold transition-all duration-300",
+                            "group flex items-center justify-between px-5 py-4 rounded-2xl text-base font-semibold transition-all duration-300",
                             isActive
                               ? "bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] text-white shadow-lg"
                               : "text-[#1A1035] hover:bg-[#F8F5FF]"
@@ -190,23 +188,23 @@ export default function Navbar() {
                         </Link>
                       </motion.div>
                     );
-                  }
-                )}
+                  })}
+                </div>
               </div>
 
-              {/* ── BOTTOM CTA (fixed height, never overlaps links) */}
+              {/* ── BOTTOM CTA SECTION (Never Hidden) */}
               <div className="flex-shrink-0 p-5 border-t border-[#F3F4F6] bg-white">
                 <div className="rounded-3xl bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] p-5 text-white">
                   <p className="text-base font-bold mb-1">
-                    Ready to grow your business?
+                    Ready to grow?
                   </p>
-                  <p className="text-xs text-white/80 mb-4">
+                  <p className="text-[10px] text-white/80 mb-4">
                     Let's automate and scale your workflow together.
                   </p>
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 bg-white text-[#7B2FBE] py-3 rounded-2xl font-semibold text-sm"
+                    className="w-full flex items-center justify-center gap-2 bg-white text-[#7B2FBE] py-3 rounded-2xl font-bold text-sm shadow-xl"
                   >
                     Contact Us
                     <ArrowRight size={16} />
