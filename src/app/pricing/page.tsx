@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -12,48 +11,50 @@ export default function Pricing() {
   const [activeTab, setActiveTab] = useState<PricingCategory>("web");
 
   return (
-    <main className="pt-32 pb-20 bg-[#FAFBFF]">
-      <div className="max-w-7xl mx-auto px-6">
+    <main className="pt-24 sm:pt-32 pb-20 bg-[#FAFBFF]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header Section */}
-        <section className="text-center mb-16">
+        <section className="text-center mb-12 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             <span className="badge-pill">Transparent Pricing</span>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-[#1A1035]">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 text-[#1A1035] leading-tight">
               Plans for Every <span className="gradient-text">Flow</span>
             </h1>
-            <p className="text-xl text-[#4B5563] max-w-2xl mx-auto mb-12 font-medium">
+            <p className="text-base sm:text-lg md:text-xl text-[#4B5563] max-w-2xl mx-auto mb-8 sm:mb-12 font-medium px-2">
               Fixed, upfront pricing with no hidden costs. Choose the expertise your business needs today.
             </p>
           </motion.div>
 
-          {/* Service Switcher */}
-          <div className="flex justify-center p-1.5 bg-white border border-[#EDE9FE] rounded-full max-w-fit mx-auto shadow-sm">
-            <TabButton 
-              active={activeTab === "web"} 
-              onClick={() => setActiveTab("web")}
-              icon={<Code size={18} />}
-              label="Web Dev" 
-            />
-            <TabButton 
-              active={activeTab === "automation"} 
-              onClick={() => setActiveTab("automation")}
-              icon={<Zap size={18} />}
-              label="Automation" 
-            />
-            <TabButton 
-              active={activeTab === "design"} 
-              onClick={() => setActiveTab("design")}
-              icon={<Palette size={18} />}
-              label="Design" 
-            />
+          {/* Service Switcher - Scrollable on mobile */}
+          <div className="w-full overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 no-scrollbar">
+            <div className="flex justify-start sm:justify-center p-1.5 bg-white border border-[#EDE9FE] rounded-full max-w-fit mx-auto shadow-sm min-w-max">
+              <TabButton 
+                active={activeTab === "web"} 
+                onClick={() => setActiveTab("web")}
+                icon={<Code size={18} />}
+                label="Web Dev" 
+              />
+              <TabButton 
+                active={activeTab === "automation"} 
+                onClick={() => setActiveTab("automation")}
+                icon={<Zap size={18} />}
+                label="Automation" 
+              />
+              <TabButton 
+                active={activeTab === "design"} 
+                onClick={() => setActiveTab("design")}
+                icon={<Palette size={18} />}
+                label="Design" 
+              />
+            </div>
           </div>
         </section>
 
         {/* Pricing Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           <AnimatePresence mode="wait">
             {PricingData[activeTab].map((plan, i) => (
               <motion.div
@@ -63,7 +64,7 @@ export default function Pricing() {
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ delay: i * 0.1, duration: 0.3 }}
                 className={cn(
-                  "card-standard p-8 flex flex-col h-full",
+                  "card-standard p-6 sm:p-8 flex flex-col h-full",
                   plan.popular ? "border-[#7B2FBE] shadow-xl shadow-purple-100 ring-2 ring-[#7B2FBE]/10" : "bg-white/70 backdrop-blur-md"
                 )}
               >
@@ -74,9 +75,9 @@ export default function Pricing() {
                 )}
                 <div className="mb-6">
                   <h3 className="text-xl font-bold text-[#1A1035] mb-2">{plan.name}</h3>
-                  <p className="text-sm text-[#4B5563] font-medium leading-relaxed mb-6 h-10">{plan.desc}</p>
+                  <p className="text-sm text-[#4B5563] font-medium leading-relaxed mb-6 h-12 sm:h-10">{plan.desc}</p>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-bold text-[#1A1035] tracking-tight">{plan.price}</span>
+                    <span className="text-3xl sm:text-4xl font-bold text-[#1A1035] tracking-tight">{plan.price}</span>
                   </div>
                 </div>
 
@@ -108,12 +109,12 @@ export default function Pricing() {
         </div>
 
         {/* Guarantees Section */}
-        <section className="bg-[#1A1035] text-white rounded-[3rem] p-12 md:p-20 overflow-hidden relative mb-20">
+        <section className="bg-[#1A1035] text-white rounded-3xl sm:rounded-[3rem] p-8 sm:p-12 md:p-20 overflow-hidden relative mb-20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 blur-[120px] rounded-full translate-x-1/3 -translate-y-1/3" />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">Our <span className="text-primary">Quality</span> Guarantee</h2>
-              <p className="text-[#C4B5FD] text-lg mb-10 font-medium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">Our <span className="text-primary">Quality</span> Guarantee</h2>
+              <p className="text-[#C4B5FD] text-base sm:text-lg mb-10 font-medium">
                 We treat your investment as our own. Every project is backed by our four core pillars of delivery excellence.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -123,13 +124,13 @@ export default function Pricing() {
                 <BenefitItem icon={<Star />} title="Expert Support" text="30-day post-launch help." />
               </div>
             </div>
-            <div className="bg-white/5 border border-white/10 p-10 rounded-4xl backdrop-blur-sm">
-              <h3 className="text-2xl font-bold mb-8">Ready to initiate your flow?</h3>
-              <p className="text-[#C4B5FD] mb-10 font-medium text-sm">
+            <div className="bg-white/5 border border-white/10 p-6 sm:p-10 rounded-3xl sm:rounded-4xl backdrop-blur-sm">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Ready to initiate your flow?</h3>
+              <p className="text-[#C4B5FD] mb-8 sm:mb-10 font-medium text-sm">
                 Get a response within 2 hours. Our automation experts are standing by.
               </p>
               <div className="flex flex-col gap-4">
-                <Link href="/contact" className="btn-white text-center py-4 flex items-center justify-center gap-2">
+                <Link href="/contact" className="btn-white text-center py-4 flex items-center justify-center gap-2 text-sm sm:text-base">
                   Book a Consultation <Rocket size={18} />
                 </Link>
                 <a href="https://wa.me/918881907942" className="text-white text-sm font-bold flex items-center justify-center gap-2 hover:opacity-80">
@@ -149,7 +150,7 @@ function TabButton({ active, onClick, label, icon }: any) {
     <button
       onClick={onClick}
       className={cn(
-        "flex items-center gap-2 px-8 py-3 rounded-full font-bold text-sm transition-all duration-300",
+        "flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold text-xs sm:text-sm transition-all duration-300 whitespace-nowrap",
         active 
           ? "bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] text-white shadow-md" 
           : "text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F0EEFF]"
