@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { name: "Pricing", href: "/pricing" },
   { name: "Portfolio", href: "/portfolio" },
   { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -192,24 +193,11 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* ── BOTTOM CTA SECTION (Never Hidden) */}
-              <div className="flex-shrink-0 p-5 border-t border-[#F3F4F6] bg-white">
-                <div className="rounded-3xl bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] p-5 text-white">
-                  <p className="text-base font-bold mb-1">
-                    Ready to grow?
-                  </p>
-                  <p className="text-[10px] text-white/80 mb-4">
-                    Let's automate and scale your workflow together.
-                  </p>
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 bg-white text-[#7B2FBE] py-3 rounded-2xl font-bold text-sm shadow-xl"
-                  >
-                    Contact Us
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
+              {/* ── FOOTER INFO */}
+              <div className="p-8 border-t border-[#F3F4F6] text-center">
+                <p className="text-xs text-[#9CA3AF] font-medium uppercase tracking-widest">
+                  © 2026 Flowzonic Solutions
+                </p>
               </div>
 
             </motion.div>
