@@ -2,12 +2,39 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Award, Heart, Sparkles, Target, Zap, ShieldCheck, Users } from "lucide-react";
+import { Award, Heart, Sparkles, Target, Zap, ShieldCheck, Users, Mail, Linkedin } from "lucide-react";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import Link from "next/link";
+
+const TEAM = [
+  {
+    name: "Mohammad Suhail",
+    role: "Founder",
+    bio: "Visionary lead architecting the future of digital flow.",
+    image: "https://picsum.photos/seed/suhail/400/400",
+  },
+  {
+    name: "Mohammad Hammad",
+    role: "Co-founder",
+    bio: "Strategist focused on scaling business operations and growth.",
+    image: "https://picsum.photos/seed/hammad/400/400",
+  },
+  {
+    name: "Mohammad Tauifiq Qureshi",
+    role: "Senior Software Developer",
+    bio: "Engineering elite systems with precision code and logic.",
+    image: "https://picsum.photos/seed/tauifiq/400/400",
+  },
+  {
+    name: "Mohd Shuaib",
+    role: "Senior Graphic Designer",
+    bio: "Crafting the visual language of high-end brands.",
+    image: "https://picsum.photos/seed/shuaib/400/400",
+  },
+];
 
 export default function About() {
   const visionImage = PlaceHolderImages.find(img => img.id === "tech-env");
-  const founderImage = PlaceHolderImages.find(img => img.id === "team-member");
 
   return (
     <main className="pt-32 pb-20 px-6 bg-[#FAFBFF]">
@@ -96,46 +123,71 @@ export default function About() {
           </div>
         </section>
 
-        {/* Founder/Team Section Snippet */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-8 text-[#1A1035]">The Minds Behind the Flow</h2>
-            <p className="text-lg text-[#4B5563] mb-8 leading-relaxed font-medium">
-              Flowzonic was founded on the principle that technology should be invisible. We are a boutique team of specialists who treat every client project as a piece of digital architecture.
+        {/* Team Section */}
+        <section className="mb-32">
+          <div className="text-center mb-16">
+            <span className="badge-pill">The Minds Behind</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#1A1035]">Our Elite <span className="gradient-text">Team</span></h2>
+            <p className="text-lg text-[#4B5563] max-w-2xl mx-auto font-medium">
+              Flowzonic was founded on the principle that technology should be invisible. Meet the specialists treating every client project as a piece of digital architecture.
             </p>
-            <div className="flex items-center gap-6 p-6 bg-white border border-[#EDE9FE] rounded-2xl shadow-sm">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 bg-gray-50 flex items-center justify-center">
-                <Image 
-                  src={founderImage?.imageUrl || "https://picsum.photos/seed/alexflow/400/400"} 
-                  alt="Founder" 
-                  width={64} 
-                  height={64} 
-                  className="object-cover" 
-                />
-              </div>
-              <div>
-                <p className="font-bold text-[#1A1035]">Alex Flow</p>
-                <p className="text-sm text-[#4B5563]">Founder & Lead Architect</p>
-              </div>
-            </div>
-          </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {TEAM.map((member, idx) => (
+              <motion.div
+                key={member.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group card-standard p-6 text-center hover:shadow-2xl hover:shadow-purple-200 transition-all duration-500 bg-white/70 backdrop-blur-md"
+              >
+                <div className="relative w-32 h-32 mx-auto mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#7B2FBE] to-[#A855F7] rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500 opacity-20" />
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden border border-[#EDE9FE] shadow-lg bg-gray-50">
+                    <Image 
+                      src={member.image} 
+                      alt={member.name} 
+                      fill 
+                      className="object-cover group-hover:scale-110 transition-transform duration-500" 
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-[#1A1035] mb-1">{member.name}</h3>
+                <p className="text-[#7B2FBE] text-xs font-bold uppercase tracking-widest mb-4">{member.role}</p>
+                <p className="text-sm text-[#4B5563] font-medium leading-relaxed mb-6">
+                  {member.bio}
+                </p>
+                <div className="flex justify-center gap-3">
+                   <button className="w-8 h-8 rounded-lg bg-[#F0EEFF] text-[#7B2FBE] flex items-center justify-center hover:bg-[#7B2FBE] hover:text-white transition-all">
+                      <Linkedin size={14} />
+                   </button>
+                   <button className="w-8 h-8 rounded-lg bg-[#F0EEFF] text-[#7B2FBE] flex items-center justify-center hover:bg-[#7B2FBE] hover:text-white transition-all">
+                      <Mail size={14} />
+                   </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-[#1A1035] p-12 rounded-4xl text-white relative overflow-hidden shadow-2xl"
+            className="mt-20 bg-[#1A1035] p-12 rounded-[3rem] text-white relative overflow-hidden shadow-2xl text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-10"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl rounded-full" />
-            <Users className="text-[#A855F7] mb-6" size={48} />
-            <h3 className="text-2xl font-bold mb-4 text-white">Join the Network</h3>
-            <p className="text-[#C4B5FD] mb-8 font-medium">We're always looking for elite talent to help us redefine the digital landscape.</p>
-            <button className="px-8 py-3 rounded-full font-bold text-[#7B2FBE] bg-white hover:bg-[#F0EEFF] transition-all">
+            <div className="max-w-xl">
+              <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-[#A855F7] mb-6">
+                <Users size={32} />
+              </div>
+              <h3 className="text-3xl font-bold mb-4 text-white">Join the Network</h3>
+              <p className="text-[#C4B5FD] text-lg font-medium">We're always looking for elite talent to help us redefine the digital landscape. Ready to enter the flow?</p>
+            </div>
+            <Link href="/contact" className="px-10 py-4 rounded-full font-bold text-[#7B2FBE] bg-white hover:bg-[#F0EEFF] transition-all whitespace-nowrap shadow-xl">
               View Careers
-            </button>
+            </Link>
           </motion.div>
         </section>
       </div>
