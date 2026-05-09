@@ -34,6 +34,9 @@ export default function Navbar() {
     return () => { document.body.style.overflow = "auto"; };
   }, [isOpen]);
 
+  // Filter items for desktop to avoid redundancy with the CTA button
+  const desktopNavItems = NAV_ITEMS.filter(item => item.name !== "Contact");
+
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50">
@@ -61,9 +64,9 @@ export default function Navbar() {
               />
             </Link>
 
-            {/* Desktop Nav */}
+            {/* Desktop Nav - Contact is excluded here */}
             <div className="hidden md:flex items-center gap-1">
-              {NAV_ITEMS.map((item) => {
+              {desktopNavItems.map((item) => {
                 const isActive =
                   pathname === item.href ||
                   (item.href !== "/" && pathname.startsWith(item.href));
@@ -154,7 +157,7 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* ── SCROLLABLE NAV LINKS */}
+              {/* ── SCROLLABLE NAV LINKS - Includes Contact */}
               <div className="flex-1 overflow-y-auto overscroll-contain p-5">
                 <div className="flex flex-col gap-2">
                   {NAV_ITEMS.map((item, index) => {
