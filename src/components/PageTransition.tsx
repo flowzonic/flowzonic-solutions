@@ -3,23 +3,13 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { useContext, useRef, ReactNode, createContext } from "react";
-
-// Context to "freeze" the route during exit animations
-const LayoutRouterContext = createContext<any>(null);
-
-function FrozenRoute({ children }: { children: ReactNode }) {
-  const context = useContext(LayoutRouterContext);
-  const frozen = useRef(children);
-
-  return <>{frozen.current}</>;
-}
+import { ReactNode } from "react";
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="popLayout" initial={false}>
+    <AnimatePresence mode="wait">
       <motion.div
         key={pathname}
         initial={{ opacity: 0, y: 10 }}
@@ -27,9 +17,9 @@ export default function PageTransition({ children }: { children: React.ReactNode
         exit={{ opacity: 0, y: -10 }}
         transition={{ 
           duration: 0.3, 
-          ease: [0.22, 1, 0.36, 1], // Custom easeOutExpo for smoother arrival
+          ease: "easeInOut" 
         }}
-        className="w-full"
+        className="w-full flex-grow flex flex-col"
       >
         {children}
       </motion.div>

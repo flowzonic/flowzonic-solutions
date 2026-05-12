@@ -28,7 +28,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-[#FAFBFF] text-[#4B5563] antialiased selection:bg-[#7B2FBE]/20 selection:text-[#7B2FBE] overflow-x-hidden">
+      <body className="bg-[#FAFBFF] text-[#4B5563] antialiased selection:bg-[#7B2FBE]/20 selection:text-[#7B2FBE] overflow-x-hidden min-h-screen flex flex-col">
         {/* Google Analytics Script */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-R5QTW9ZZHC"

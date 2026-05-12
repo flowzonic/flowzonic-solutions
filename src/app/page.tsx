@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -467,7 +468,12 @@ export default function Home() {
       {/* ── SECTION 3: SERVICES ─────────────────────────────────── */}
       <section className="py-20 px-6 bg-[#F0EEFF]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <span className="badge-pill">Our Expertise</span>
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#1A1035]">
               What We Do <span className="gradient-text">Best</span>
@@ -475,10 +481,18 @@ export default function Home() {
             <p className="text-[#4B5563] text-lg max-w-2xl mx-auto font-medium">
               Precision engineering meets high-end creative design.
             </p>
-          </div>
+          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((svc) => (
-              <ServiceCard key={svc.title} {...svc} />
+            {services.map((svc, i) => (
+              <motion.div
+                key={svc.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <ServiceCard {...svc} />
+              </motion.div>
             ))}
           </div>
         </div>
@@ -487,7 +501,12 @@ export default function Home() {
       {/* ── SECTION 4: REAL RESULTS ─────────────────────────────── */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <span className="badge-pill">Proven Impact</span>
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#1A1035]">
               Real <span className="gradient-text">Results</span>
@@ -495,11 +514,15 @@ export default function Home() {
             <p className="text-[#4B5563] text-lg max-w-2xl mx-auto font-medium">
               Numbers that show what we actually deliver for our clients.
             </p>
-          </div>
+          </motion.div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {results.map((r) => (
-              <div
+            {results.map((r, i) => (
+              <motion.div
                 key={r.tag}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
                 className="bg-white border border-[#EDE9FE] rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg hover:shadow-purple-100 hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="w-10 h-10 bg-[#F0EEFF] rounded-xl flex items-center justify-center text-[#7B2FBE] mb-4">
@@ -514,7 +537,7 @@ export default function Home() {
                 <span className="text-sm text-[#9CA3AF] leading-snug">
                   {r.desc}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -523,7 +546,12 @@ export default function Home() {
       {/* ── SECTION 5: WHY US / STATS ───────────────────────────── */}
       <section className="py-20 px-6 bg-[#1A1035] text-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <span className="text-[#A855F7] uppercase tracking-widest text-xs font-semibold mb-4 block">
               Why Flowzonic
             </span>
@@ -535,22 +563,31 @@ export default function Home() {
               We don't just deliver projects — we deliver results, on time,
               every time.
             </p>
-          </div>
+          </motion.div>
 
           {/* Guarantee badges */}
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {guarantees.map((g) => (
-              <div
+            {guarantees.map((g, i) => (
+              <motion.div
                 key={g.label}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
                 className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-5 py-2.5 text-sm font-semibold text-white"
               >
                 <span>{g.icon}</span> {g.label}
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Comparison table */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden mb-16"
+          >
             <div className="grid grid-cols-3 bg-white/10 px-6 py-4">
               <span className="text-xs font-bold uppercase tracking-widest text-[#C4B5FD]">
                 Feature
@@ -582,7 +619,7 @@ export default function Home() {
                 </span>
               </div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center border-t border-[#2D1B69] pt-20">
@@ -590,16 +627,19 @@ export default function Home() {
               value="500+"
               label="Hours Saved"
               icon={<Clock size={24} className="text-[#A855F7]" />}
+              delay={0.1}
             />
             <StatItem
               value="100+"
               label="Custom Scripts"
               icon={<Terminal size={24} className="text-[#A855F7]" />}
+              delay={0.2}
             />
             <StatItem
               value="50+"
               label="Sites Launched"
               icon={<TrendingUp size={24} className="text-[#A855F7]" />}
+              delay={0.3}
             />
           </div>
         </div>
@@ -608,7 +648,12 @@ export default function Home() {
       {/* ── SECTION 6: PROCESS ──────────────────────────────────── */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <span className="badge-pill">Step-by-Step</span>
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#1A1035]">
               Our <span className="gradient-text">Process</span>
@@ -616,7 +661,7 @@ export default function Home() {
             <p className="text-[#4B5563] text-lg font-medium">
               From first call to live launch — here's exactly how we work.
             </p>
-          </div>
+          </motion.div>
           <div className="space-y-12 relative">
             <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-[#F0EEFF] rounded-full -translate-x-1/2 hidden md:block" />
             <ProcessItem
@@ -627,6 +672,7 @@ export default function Home() {
               timeframe="Day 1–2"
               deliverable="Project brief document"
               align="left"
+              delay={0.1}
             />
             <ProcessItem
               icon={<Cpu />}
@@ -636,6 +682,7 @@ export default function Home() {
               timeframe="Day 3–4"
               deliverable="Detailed project plan"
               align="right"
+              delay={0.2}
             />
             <ProcessItem
               icon={<Palette />}
@@ -645,6 +692,7 @@ export default function Home() {
               timeframe="Day 5–7"
               deliverable="Design mockup for approval"
               align="left"
+              delay={0.3}
             />
             <ProcessItem
               icon={<Code />}
@@ -654,6 +702,7 @@ export default function Home() {
               timeframe="Day 8–13"
               deliverable="Staging site for testing"
               align="right"
+              delay={0.4}
             />
             <ProcessItem
               icon={<Rocket />}
@@ -663,6 +712,7 @@ export default function Home() {
               timeframe="Day 14–15"
               deliverable="Live site + handover docs"
               align="left"
+              delay={0.5}
             />
           </div>
         </div>
@@ -673,7 +723,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <Carousel className="w-full">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-              <div className="max-w-2xl text-left">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="max-w-2xl text-left"
+              >
                 <span className="badge-pill">Showcase</span>
                 <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#1A1035]">
                   Featured <span className="gradient-text">Projects</span>
@@ -681,7 +736,7 @@ export default function Home() {
                 <p className="text-[#4B5563] text-lg font-medium">
                   Real work. Real results. Real clients.
                 </p>
-              </div>
+              </motion.div>
               <div className="flex gap-3">
                 <CarouselPrevious className="static translate-y-0 h-12 w-12 rounded-xl border border-[#EDE9FE] bg-white text-[#7B2FBE] hover:bg-[#F0EEFF] transition-all" />
                 <CarouselNext className="static translate-y-0 h-12 w-12 rounded-xl border border-[#EDE9FE] bg-white text-[#7B2FBE] hover:bg-[#F0EEFF] transition-all" />
@@ -693,7 +748,13 @@ export default function Home() {
                   key={index}
                   className="pl-6 basis-full md:basis-1/2 lg:basis-1/3"
                 >
-                  <div className="card-standard h-full flex flex-col p-0 overflow-hidden">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="card-standard h-full flex flex-col p-0 overflow-hidden"
+                  >
                     {/* Image with gradient fallback */}
                     <div
                       className={cn(
@@ -738,7 +799,7 @@ export default function Home() {
                         View Details <ArrowRight size={18} />
                       </Link>
                     </div>
-                  </div>
+                  </motion.div>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -749,7 +810,12 @@ export default function Home() {
       {/* ── SECTION 8: TESTIMONIALS ─────────────────────────────── */}
       <section className="py-20 px-6 bg-[#F0EEFF]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <span className="badge-pill">Testimonials</span>
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#1A1035]">
               Trusted by <span className="gradient-text">Visionaries</span>
@@ -757,10 +823,18 @@ export default function Home() {
             <p className="text-[#4B5563] text-lg font-medium">
               Real impact on businesses like yours.
             </p>
-          </div>
+          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((t) => (
-              <TestimonialCard key={t.author} {...t} />
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.author}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <TestimonialCard {...t} />
+              </motion.div>
             ))}
           </div>
           {/* Google reviews link */}
@@ -780,16 +854,30 @@ export default function Home() {
       {/* ── SECTION 9: BLOG PREVIEW ─────────────────────────────── */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto text-center">
-          <span className="badge-pill">Insights</span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#1A1035]">
-            Latest <span className="gradient-text">Insights</span>
-          </h2>
-          <p className="text-[#4B5563] text-lg mb-12 font-medium">
-            Expert advice on automation, design, and growth.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="badge-pill">Insights</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#1A1035]">
+              Latest <span className="gradient-text">Insights</span>
+            </h2>
+            <p className="text-[#4B5563] text-lg mb-12 font-medium">
+              Expert advice on automation, design, and growth.
+            </p>
+          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            {blogPosts.map((post) => (
-              <BlogPreviewCard key={post.title} {...post} />
+            {blogPosts.map((post, i) => (
+              <motion.div
+                key={post.title}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <BlogPreviewCard {...post} />
+              </motion.div>
             ))}
           </div>
           <Link
@@ -804,7 +892,12 @@ export default function Home() {
       {/* ── SECTION 10: FAQ ──────────────────────────────────────── */}
       <section className="py-20 px-6 bg-[#FAFBFF]">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <span className="badge-pill">Got Questions?</span>
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#1A1035]">
               Frequently Asked <span className="gradient-text">Questions</span>
@@ -812,10 +905,18 @@ export default function Home() {
             <p className="text-[#4B5563] text-lg font-medium">
               Everything you need to know before getting started.
             </p>
-          </div>
+          </motion.div>
           <div className="flex flex-col gap-3">
             {faqs.map((faq, i) => (
-              <FAQItem key={i} question={faq.question} answer={faq.answer} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+              >
+                <FAQItem question={faq.question} answer={faq.answer} />
+              </motion.div>
             ))}
           </div>
           <p className="text-center text-sm text-[#9CA3AF] mt-10">
@@ -832,7 +933,12 @@ export default function Home() {
 
       {/* ── SECTION 11: CTA BANNER ──────────────────────────────── */}
       <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#1A1035] to-[#2D1B69] rounded-3xl p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="max-w-6xl mx-auto bg-gradient-to-br from-[#1A1035] to-[#2D1B69] rounded-3xl p-12 md:p-20 text-center relative overflow-hidden shadow-2xl"
+        >
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Ready to Elevate Your Flow?
@@ -864,7 +970,7 @@ export default function Home() {
               ✓ We respond within 2 hours on business days · No commitment required
             </p>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );
@@ -886,7 +992,7 @@ function ServiceCard({
   return (
     <div
       className={cn(
-        "rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1",
+        "rounded-2xl p-8 flex flex-col h-full transition-all duration-300 hover:-translate-y-1",
         featured
           ? "bg-gradient-to-br from-[#7B2FBE] to-[#A855F7] text-white shadow-xl shadow-purple-200"
           : "bg-white border border-[#EDE9FE] hover:shadow-lg hover:shadow-purple-100"
@@ -982,7 +1088,7 @@ function TestimonialCard({
   color: string;
 }) {
   return (
-    <div className="bg-white border border-[#EDE9FE] rounded-2xl p-8 flex flex-col hover:shadow-lg hover:shadow-purple-100 hover:-translate-y-1 transition-all duration-300">
+    <div className="bg-white border border-[#EDE9FE] rounded-2xl p-8 flex flex-col h-full hover:shadow-lg hover:shadow-purple-100 hover:-translate-y-1 transition-all duration-300">
       <div className="flex gap-1 mb-6 text-[#7B2FBE]">
         {[1, 2, 3, 4, 5].map((i) => (
           <Star key={i} size={14} fill="currentColor" />
@@ -1013,7 +1119,7 @@ function TestimonialCard({
 }
 
 function ProcessItem({
-  icon, step, title, description, timeframe, deliverable, align,
+  icon, step, title, description, timeframe, deliverable, align, delay
 }: {
   icon: React.ReactNode;
   step: string;
@@ -1022,9 +1128,14 @@ function ProcessItem({
   timeframe: string;
   deliverable: string;
   align: "left" | "right";
+  delay: number;
 }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, x: align === 'left' ? -30 : 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
       className={cn(
         "flex items-center gap-8 w-full",
         align === "right" ? "md:flex-row-reverse text-right" : ""
@@ -1052,25 +1163,32 @@ function ProcessItem({
           You receive: {deliverable}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 function StatItem({
-  value, label, icon,
+  value, label, icon, delay
 }: {
   value: string;
   label: string;
   icon: React.ReactNode;
+  delay: number;
 }) {
   return (
-    <div className="flex flex-col items-center">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      className="flex flex-col items-center"
+    >
       <div className="mb-6 p-4 bg-white/5 rounded-2xl">{icon}</div>
       <span className="text-5xl font-bold mb-2 text-white">{value}</span>
       <span className="text-[#C4B5FD] font-bold uppercase tracking-[0.2em] text-[10px]">
         {label}
       </span>
-    </div>
+    </motion.div>
   );
 }
 
@@ -1112,8 +1230,8 @@ function BlogPreviewCard({
   category: string;
 }) {
   return (
-    <div className="bg-white border border-[#EDE9FE] rounded-2xl p-0 overflow-hidden flex flex-col sm:flex-row hover:shadow-lg hover:shadow-purple-100 transition-all">
-      <div className="relative w-full sm:w-48 h-48 bg-gradient-to-br from-purple-100 to-violet-50 flex-shrink-0">
+    <div className="bg-white border border-[#EDE9FE] rounded-2xl p-0 overflow-hidden flex flex-col sm:flex-row hover:shadow-lg hover:shadow-purple-100 transition-all h-full">
+      <div className="relative w-full sm:w-48 h-48 sm:h-auto bg-gradient-to-br from-purple-100 to-violet-50 flex-shrink-0">
         <Image
           src={image}
           alt={title}
