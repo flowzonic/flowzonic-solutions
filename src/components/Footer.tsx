@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -69,7 +70,7 @@ export default function Footer() {
               <FooterLink href="/">Home</FooterLink>
               <FooterLink href="/about">About</FooterLink>
               <FooterLink href="/pricing">Pricing</FooterLink>
-              <FooterLink href="/portfolio">Portfolio</FooterLink>
+              <FooterLink href="/portfolio">Our Work</FooterLink>
               <FooterLink href="/blog">Blog</FooterLink>
             </FooterColumn>
 

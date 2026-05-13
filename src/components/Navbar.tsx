@@ -1,10 +1,11 @@
+
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, ChevronDown, Globe, Zap, Palette } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, Globe, Zap, Palette, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import {
@@ -20,18 +21,11 @@ const SERVICE_LINKS = [
   { name: "Graphic Design", href: "/services/design", icon: <Palette size={16} /> },
 ];
 
-const NAV_ITEMS = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Blog", href: "/blog" },
-];
-
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileWorkOpen, setMobileWorkOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -74,39 +68,8 @@ export default function Navbar() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-1">
-              <Link
-                href="/"
-                className={cn(
-                  "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
-                  pathname === "/" ? "text-[#7B2FBE]" : "text-[#4B5563] hover:text-[#7B2FBE]"
-                )}
-              >
-                Home
-                {pathname === "/" && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
-
-              <Link
-                href="/about"
-                className={cn(
-                  "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
-                  pathname === "/about" ? "text-[#7B2FBE]" : "text-[#4B5563] hover:text-[#7B2FBE]"
-                )}
-              >
-                About
-                {pathname === "/about" && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
+              <NavLink href="/" name="Home" isActive={pathname === "/"} />
+              <NavLink href="/about" name="About" isActive={pathname === "/about"} />
 
               {/* Services Dropdown */}
               <DropdownMenu>
@@ -136,56 +99,63 @@ export default function Navbar() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Link
-                href="/pricing"
-                className={cn(
-                  "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
-                  pathname === "/pricing" ? "text-[#7B2FBE]" : "text-[#4B5563] hover:text-[#7B2FBE]"
-                )}
-              >
-                Pricing
-                {pathname === "/pricing" && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
+              <NavLink href="/pricing" name="Pricing" isActive={pathname === "/pricing"} />
 
-              <Link
-                href="/portfolio"
-                className={cn(
-                  "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
-                  pathname === "/portfolio" ? "text-[#7B2FBE]" : "text-[#4B5563] hover:text-[#7B2FBE]"
-                )}
-              >
-                Portfolio
-                {pathname === "/portfolio" && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
+              {/* Our Work Dropdown (Replaces Portfolio) */}
+              <DropdownMenu>
+                <DropdownMenuTrigger className="relative px-4 py-2 rounded-full text-sm font-semibold text-[#4B5563] hover:text-[#7B2FBE] transition-all duration-300 flex items-center gap-1 outline-none group">
+                  Our Work
+                  <ChevronDown size={14} className="group-data-[state=open]:rotate-180 transition-transform" />
+                  {pathname === "/portfolio" && (
+                    <motion.div
+                      layoutId="nav-pill"
+                      className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="p-2 min-w-[200px] rounded-2xl border-[#EDE9FE] bg-white/95 backdrop-blur-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="/services/web"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
+                    >
+                      <span className="text-[#7B2FBE]"><Globe size={16} /></span>
+                      Web Development
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="/services/automation"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
+                    >
+                      <span className="text-[#7B2FBE]"><Zap size={16} /></span>
+                      Google Automation
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="/services/design"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
+                    >
+                      <span className="text-[#7B2FBE]"><Palette size={16} /></span>
+                      Graphic Design
+                    </Link>
+                  </DropdownMenuItem>
+                  <div className="h-px bg-[#F3F4F6] my-1 mx-2" />
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="/portfolio"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
+                    >
+                      <span className="text-[#7B2FBE]"><Briefcase size={16} /></span>
+                      Full Portfolio
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-              <Link
-                href="/blog"
-                className={cn(
-                  "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
-                  pathname === "/blog" || pathname.startsWith("/blog/") ? "text-[#7B2FBE]" : "text-[#4B5563] hover:text-[#7B2FBE]"
-                )}
-              >
-                Blog
-                {(pathname === "/blog" || pathname.startsWith("/blog/")) && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
+              <NavLink href="/blog" name="Blog" isActive={pathname === "/blog" || pathname.startsWith("/blog/")} />
             </div>
 
             {/* Right Buttons */}
@@ -232,8 +202,7 @@ export default function Navbar() {
               transition={{ type: "spring", damping: 24, stiffness: 220 }}
               className="fixed top-0 right-0 h-screen w-[85%] max-w-[360px] bg-white z-[60] md:hidden shadow-2xl border-l border-[#EDE9FE] flex flex-col"
             >
-
-              {/* ── TOP HEADER (Logo + Close) */}
+              {/* TOP HEADER */}
               <div className="flex-shrink-0 flex items-center justify-between px-6 py-5 border-b border-[#F3F4F6]">
                 <Image
                   src="/header-logo.png"
@@ -251,67 +220,71 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* ── SCROLLABLE NAV LINKS */}
+              {/* SCROLLABLE NAV */}
               <div className="flex-1 overflow-y-auto overscroll-contain p-5">
                 <div className="flex flex-col gap-2">
                   <MobileNavLink href="/" name="Home" isActive={pathname === "/"} onClick={() => setIsOpen(false)} />
                   <MobileNavLink href="/about" name="About" isActive={pathname === "/about"} onClick={() => setIsOpen(false)} />
                   
                   {/* Mobile Services Submenu */}
-                  <div className="flex flex-col">
-                    <button
-                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className={cn(
-                        "flex items-center justify-between px-5 py-4 rounded-2xl text-base font-semibold transition-all",
-                        mobileServicesOpen ? "bg-[#F8F5FF] text-[#7B2FBE]" : "text-[#1A1035]"
-                      )}
-                    >
-                      Services
-                      <ChevronDown size={18} className={cn("transition-transform duration-300", mobileServicesOpen && "rotate-180")} />
-                    </button>
-                    <AnimatePresence>
-                      {mobileServicesOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden bg-[#F8F5FF]/50 rounded-2xl mt-1"
-                        >
-                          {SERVICE_LINKS.map((service) => (
-                            <Link
-                              key={service.href}
-                              href={service.href}
-                              onClick={() => setIsOpen(false)}
-                              className="flex items-center gap-3 px-8 py-3 text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE]"
-                            >
-                              {service.icon}
-                              {service.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  <MobileSubMenu 
+                    name="Services" 
+                    isOpen={mobileServicesOpen} 
+                    toggle={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    links={SERVICE_LINKS}
+                    onClose={() => setIsOpen(false)}
+                  />
 
                   <MobileNavLink href="/pricing" name="Pricing" isActive={pathname === "/pricing"} onClick={() => setIsOpen(false)} />
-                  <MobileNavLink href="/portfolio" name="Portfolio" isActive={pathname === "/portfolio"} onClick={() => setIsOpen(false)} />
+
+                  {/* Mobile Our Work Submenu */}
+                  <MobileSubMenu 
+                    name="Our Work" 
+                    isOpen={mobileWorkOpen} 
+                    toggle={() => setMobileWorkOpen(!mobileWorkOpen)}
+                    links={[
+                      ...SERVICE_LINKS,
+                      { name: "Full Portfolio", href: "/portfolio", icon: <Briefcase size={16} /> }
+                    ]}
+                    onClose={() => setIsOpen(false)}
+                  />
+
                   <MobileNavLink href="/blog" name="Blog" isActive={pathname === "/blog" || pathname.startsWith("/blog/")} onClick={() => setIsOpen(false)} />
                   <MobileNavLink href="/contact" name="Contact" isActive={pathname === "/contact"} onClick={() => setIsOpen(false)} />
                 </div>
               </div>
 
-              {/* ── FOOTER INFO */}
               <div className="p-8 border-t border-[#F3F4F6] text-center">
                 <p className="text-xs text-[#9CA3AF] font-medium uppercase tracking-widest">
                   © 2026 Flowzonic Solutions
                 </p>
               </div>
-
             </motion.div>
           </>
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+function NavLink({ href, name, isActive }: { href: string; name: string; isActive: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
+        isActive ? "text-[#7B2FBE]" : "text-[#4B5563] hover:text-[#7B2FBE]"
+      )}
+    >
+      {name}
+      {isActive && (
+        <motion.div
+          layoutId="nav-pill"
+          className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
+          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+        />
+      )}
+    </Link>
   );
 }
 
@@ -336,5 +309,44 @@ function MobileNavLink({ href, name, isActive, onClick }: { href: string; name: 
         )}
       />
     </Link>
+  );
+}
+
+function MobileSubMenu({ name, isOpen, toggle, links, onClose }: any) {
+  return (
+    <div className="flex flex-col">
+      <button
+        onClick={toggle}
+        className={cn(
+          "flex items-center justify-between px-5 py-4 rounded-2xl text-base font-semibold transition-all",
+          isOpen ? "bg-[#F8F5FF] text-[#7B2FBE]" : "text-[#1A1035]"
+        )}
+      >
+        {name}
+        <ChevronDown size={18} className={cn("transition-transform duration-300", isOpen && "rotate-180")} />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden bg-[#F8F5FF]/50 rounded-2xl mt-1"
+          >
+            {links.map((link: any) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={onClose}
+                className="flex items-center gap-3 px-8 py-3 text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE]"
+              >
+                {link.icon}
+                {link.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
