@@ -46,9 +46,12 @@ export default function RootLayout({
 
         <FirebaseClientProvider>
           <Navbar />
-          <PageTransition>
-            {children}
-          </PageTransition>
+          {/* Main content wrapper with min-height to prevent layout shifts */}
+          <div className="flex-grow flex flex-col min-h-[60vh]">
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </div>
           <Footer />
           <Toaster />
         </FirebaseClientProvider>

@@ -59,14 +59,8 @@ export default function GraphicDesignWork() {
               Visual <span className="gradient-text">Masterpieces</span>
             </h1>
 
-            <div className="flex justify-center items-center gap-2 text-[#9CA3AF] font-semibold text-xs uppercase tracking-widest mb-8">
-              <Link href="/" className="hover:text-[#7B2FBE] transition-colors">Home</Link>
-              <ChevronRight size={14} />
-              <span className="text-[#7B2FBE]">Graphic Design Work</span>
-            </div>
-
             <p className="text-[#4B5563] text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
-              We blend aesthetics with strategy to create high-end visual experiences that define industry leaders.
+            This portfolio showcases our graphic design and branding work, including logos, brochures, social media creatives, marketing banners, packaging, and brand identity designs. Our design approach focuses on clarity, attractiveness, and brand recall. We help businesses create strong visual impressions that communicate their message effectively.
             </p>
           </motion.div>
         </div>
