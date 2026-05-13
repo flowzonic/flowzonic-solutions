@@ -5,6 +5,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const SERVICE_DATA: Record<string, any> = {
   web: {
+    id: "web",
     title: "Web Development",
     icon: <Globe className="text-primary" size={48} />,
     headline: "Websites that Outpace the Competition",
@@ -30,6 +31,7 @@ const SERVICE_DATA: Record<string, any> = {
     ]
   },
   automation: {
+    id: "automation",
     title: "Google Automation",
     icon: <Bot className="text-primary" size={48} />,
     headline: "Your Business on Autopilot",
@@ -55,11 +57,59 @@ const SERVICE_DATA: Record<string, any> = {
     ]
   },
   design: {
+    id: "design",
     title: "Graphic Designing",
     icon: <Layers className="text-primary" size={48} />,
-    headline: "Aesthetics That Drive Authority",
-    subHeadline: "Generic design is invisible. We create premium visual identities that command authority and trust.",
+    headline: "Portfolio Graphic Design Services",
+    subHeadline: "This portfolio showcases our graphic design and branding work, including logos, brochures, social media creatives, marketing banners, packaging, and brand identity designs. Our design approach focuses on clarity, attractiveness, and brand recall. We help businesses create strong visual impressions that communicate their message effectively.",
     image: PlaceHolderImages.find(img => img.id === "mockup-2")?.imageUrl,
+    isPortfolioStyle: true,
+    categories: [
+      {
+        id: "logo",
+        name: "Logo",
+        items: [
+          { src: "https://picsum.photos/seed/logo1/400/300", alt: "Brand Identity 1" },
+          { src: "https://picsum.photos/seed/logo2/400/300", alt: "Brand Identity 2" },
+          { src: "https://picsum.photos/seed/logo3/400/300", alt: "Brand Identity 3" },
+          { src: "https://picsum.photos/seed/logo4/400/300", alt: "Brand Identity 4" },
+        ]
+      },
+      {
+        id: "social",
+        name: "Social Media Creative",
+        items: [
+          { src: "https://picsum.photos/seed/social1/400/300", alt: "Insta Post Design" },
+          { src: "https://picsum.photos/seed/social2/400/300", alt: "Ads Creative" },
+          { src: "https://picsum.photos/seed/social3/400/300", alt: "Carousel Design" },
+          { src: "https://picsum.photos/seed/social4/400/300", alt: "Story Branding" },
+        ]
+      },
+      {
+        id: "packaging",
+        name: "Packaging Design",
+        items: [
+          { src: "https://picsum.photos/seed/pkg1/400/300", alt: "Box Mockup" },
+          { src: "https://picsum.photos/seed/pkg2/400/300", alt: "Label Design" },
+        ]
+      },
+      {
+        id: "print",
+        name: "Print Design",
+        items: [
+          { src: "https://picsum.photos/seed/print1/400/300", alt: "Brochure Design" },
+          { src: "https://picsum.photos/seed/print2/400/300", alt: "Business Card" },
+        ]
+      },
+      {
+        id: "banner",
+        name: "Web Banner",
+        items: [
+          { src: "https://picsum.photos/seed/web1/400/300", alt: "Hero Banner" },
+          { src: "https://picsum.photos/seed/web2/400/300", alt: "Display Ad" },
+        ]
+      }
+    ],
     whyUs: [
       "Our philosophy is rooted in 'Glossy Minimalism' and premium textures.",
       "We design for conversion, engineering layouts to guide users to your CTA.",
@@ -74,12 +124,6 @@ const SERVICE_DATA: Record<string, any> = {
     ],
     tech: ["Figma", "Adobe Suite", "Blender 3D", "After Effects"],
     roi: "Premium design allows you to command premium pricing and builds instant trust with high-value prospects.",
-    gallery: [
-      { type: "image", src: "https://picsum.photos/seed/design-1/800/1000", span: "md:col-span-2 md:row-span-2", alt: "Premium Brand System", hint: "branding design" },
-      { type: "image", src: "https://picsum.photos/seed/design-2/800/600", span: "md:col-span-1 md:row-span-1", alt: "Modern UI Architecture", hint: "ui design" },
-      { type: "image", src: "https://picsum.photos/seed/design-3/800/600", span: "md:col-span-1 md:row-span-1", alt: "Social Identity Kit", hint: "social graphic" },
-      { type: "image", src: "https://picsum.photos/seed/design-4/1200/800", span: "md:col-span-2 md:row-span-1", alt: "Dynamic Visual Assets", hint: "abstract art" },
-    ],
     faqs: [
       { q: "Do I get ownership of the source files?", a: "Yes, you receive all Figma, AI, and PSD source files upon completion." },
       { q: "How many revisions do we get?", a: "Our process includes 3 rounds of major revisions to ensure perfect alignment." }
