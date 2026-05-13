@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -101,20 +100,24 @@ const markdownComponents = {
       {children}
     </a>
   ),
-  img: ({ src, alt, node, children, ...props }: any) => (
-    <span className="block my-10">
-      <img 
-        src={src} 
-        alt={alt || ""} 
-        className="rounded-3xl shadow-xl w-full object-cover" 
-      />
-      {alt && (
-        <span className="block text-center text-xs text-[#9CA3AF] mt-3 font-semibold uppercase tracking-widest">
-          {alt}
-        </span>
-      )}
-    </span>
-  ),
+  img: ({ src, alt, node, children, ...props }: any) => {
+    // Explicitly destructure children and node to avoid passing them to the void 'img' element
+    return (
+      <span className="block my-10">
+        <img 
+          src={src} 
+          alt={alt || ""} 
+          className="rounded-3xl shadow-xl w-full object-cover" 
+          {...props}
+        />
+        {alt && (
+          <span className="block text-center text-xs text-[#9CA3AF] mt-3 font-semibold uppercase tracking-widest">
+            {alt}
+          </span>
+        )}
+      </span>
+    );
+  },
   hr: () => <hr className="border-[#EDE9FE] my-12" />,
   table: ({ children }: any) => (
     <div className="overflow-x-auto my-8 rounded-2xl border border-[#EDE9FE]">

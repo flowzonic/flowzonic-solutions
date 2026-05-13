@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -35,8 +34,14 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
-    return () => { document.body.style.overflow = "auto"; };
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = isOpen ? "hidden" : "auto";
+    }
+    return () => { 
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = "auto"; 
+      }
+    };
   }, [isOpen]);
 
   return (
