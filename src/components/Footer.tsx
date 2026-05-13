@@ -53,7 +53,7 @@ export default function Footer() {
                   icon={<Instagram size={18} />}
                 />
                 <SocialIcon
-                  href="#"
+                  href="https://www.linkedin.com/in/flowzonic-solutions-63443740a/"
                   label="LinkedIn"
                   icon={<Linkedin size={18} />}
                 />
@@ -70,7 +70,7 @@ export default function Footer() {
               <FooterLink href="/">Home</FooterLink>
               <FooterLink href="/about">About</FooterLink>
               <FooterLink href="/pricing">Pricing</FooterLink>
-              <FooterLink href="/portfolio">Our Work</FooterLink>
+              <FooterLink href="/work/web-development">Our Work</FooterLink>
               <FooterLink href="/blog">Blog</FooterLink>
             </FooterColumn>
 
