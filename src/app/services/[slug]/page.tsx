@@ -60,56 +60,9 @@ const SERVICE_DATA: Record<string, any> = {
     id: "design",
     title: "Graphic Designing",
     icon: <Layers className="text-primary" size={48} />,
-    headline: "Portfolio Graphic Design Services",
-    subHeadline: "This portfolio showcases our graphic design and branding work, including logos, brochures, social media creatives, marketing banners, packaging, and brand identity designs. Our design approach focuses on clarity, attractiveness, and brand recall. We help businesses create strong visual impressions that communicate their message effectively.",
+    headline: "Glossy Branding & Design",
+    subHeadline: "We create premium visual identities that make your brand impossible to ignore. From custom logos to high-end UI/UX, we design for authority.",
     image: PlaceHolderImages.find(img => img.id === "mockup-2")?.imageUrl,
-    isPortfolioStyle: true,
-    categories: [
-      {
-        id: "logo",
-        name: "Logo",
-        items: [
-          { src: "https://picsum.photos/seed/logo1/400/300", alt: "Brand Identity 1" },
-          { src: "https://picsum.photos/seed/logo2/400/300", alt: "Brand Identity 2" },
-          { src: "https://picsum.photos/seed/logo3/400/300", alt: "Brand Identity 3" },
-          { src: "https://picsum.photos/seed/logo4/400/300", alt: "Brand Identity 4" },
-        ]
-      },
-      {
-        id: "social",
-        name: "Social Media Creative",
-        items: [
-          { src: "https://picsum.photos/seed/social1/400/300", alt: "Insta Post Design" },
-          { src: "https://picsum.photos/seed/social2/400/300", alt: "Ads Creative" },
-          { src: "https://picsum.photos/seed/social3/400/300", alt: "Carousel Design" },
-          { src: "https://picsum.photos/seed/social4/400/300", alt: "Story Branding" },
-        ]
-      },
-      {
-        id: "packaging",
-        name: "Packaging Design",
-        items: [
-          { src: "https://picsum.photos/seed/pkg1/400/300", alt: "Box Mockup" },
-          { src: "https://picsum.photos/seed/pkg2/400/300", alt: "Label Design" },
-        ]
-      },
-      {
-        id: "print",
-        name: "Print Design",
-        items: [
-          { src: "https://picsum.photos/seed/print1/400/300", alt: "Brochure Design" },
-          { src: "https://picsum.photos/seed/print2/400/300", alt: "Business Card" },
-        ]
-      },
-      {
-        id: "banner",
-        name: "Web Banner",
-        items: [
-          { src: "https://picsum.photos/seed/web1/400/300", alt: "Hero Banner" },
-          { src: "https://picsum.photos/seed/web2/400/300", alt: "Display Ad" },
-        ]
-      }
-    ],
     whyUs: [
       "Our philosophy is rooted in 'Glossy Minimalism' and premium textures.",
       "We design for conversion, engineering layouts to guide users to your CTA.",
