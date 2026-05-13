@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, ChevronDown, Globe, Zap, Palette, Briefcase } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, Globe, Zap, Palette } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import {
@@ -101,7 +101,7 @@ export default function Navbar() {
 
               <NavLink href="/pricing" name="Pricing" isActive={pathname === "/pricing"} />
 
-              {/* Our Work Dropdown (Replaces Portfolio) */}
+              {/* Our Work Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger className="relative px-4 py-2 rounded-full text-sm font-semibold text-[#4B5563] hover:text-[#7B2FBE] transition-all duration-300 flex items-center gap-1 outline-none group">
                   Our Work
@@ -115,43 +115,17 @@ export default function Navbar() {
                   )}
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="p-2 min-w-[200px] rounded-2xl border-[#EDE9FE] bg-white/95 backdrop-blur-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href="/services/web"
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
-                    >
-                      <span className="text-[#7B2FBE]"><Globe size={16} /></span>
-                      Web Development
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href="/services/automation"
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
-                    >
-                      <span className="text-[#7B2FBE]"><Zap size={16} /></span>
-                      Google Automation
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href="/services/design"
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
-                    >
-                      <span className="text-[#7B2FBE]"><Palette size={16} /></span>
-                      Graphic Design
-                    </Link>
-                  </DropdownMenuItem>
-                  <div className="h-px bg-[#F3F4F6] my-1 mx-2" />
-                  <DropdownMenuItem asChild>
-                    <Link
-                      href="/portfolio"
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
-                    >
-                      <span className="text-[#7B2FBE]"><Briefcase size={16} /></span>
-                      Full Portfolio
-                    </Link>
-                  </DropdownMenuItem>
+                  {SERVICE_LINKS.map((service) => (
+                    <DropdownMenuItem key={service.href} asChild>
+                      <Link
+                        href={service.href}
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
+                      >
+                        <span className="text-[#7B2FBE]">{service.icon}</span>
+                        {service.name}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
                 </DropdownMenuContent>
               </DropdownMenu>
 
@@ -242,10 +216,7 @@ export default function Navbar() {
                     name="Our Work" 
                     isOpen={mobileWorkOpen} 
                     toggle={() => setMobileWorkOpen(!mobileWorkOpen)}
-                    links={[
-                      ...SERVICE_LINKS,
-                      { name: "Full Portfolio", href: "/portfolio", icon: <Briefcase size={16} /> }
-                    ]}
+                    links={SERVICE_LINKS}
                     onClose={() => setIsOpen(false)}
                   />
 

@@ -299,7 +299,6 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="z-20 text-center lg:text-left"
           >
-            {/* Updated badge with social proof */}
             <span className="badge-pill mb-4">
               ⭐ 5.0 Rated · 50+ Projects Delivered
             </span>
@@ -314,7 +313,6 @@ export default function Home() {
               that refuse to be ordinary.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
                 href="/contact"
@@ -330,7 +328,6 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Trust Stats Row */}
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start mt-8">
               {heroStats.map((stat) => (
                 <div
@@ -347,13 +344,11 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Response promise */}
             <p className="text-xs text-[#9CA3AF] mt-4 text-center lg:text-left">
               ✓ We respond within 2 hours on business days
             </p>
           </motion.div>
 
-          {/* Mockup Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -436,7 +431,6 @@ export default function Home() {
       {/* ── SECTION 2: TECH STACK MARQUEE ───────────────────────── */}
       <section className="py-10 bg-white border-y border-[#EDE9FE]">
         <div className="max-w-7xl mx-auto px-6 overflow-hidden">
-          {/* Label row */}
           <div className="flex items-center justify-between mb-6">
             <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-widest">
               Technologies We Use
@@ -565,7 +559,6 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Guarantee badges */}
           <div className="flex flex-wrap justify-center gap-4 mb-16">
             {guarantees.map((g, i) => (
               <motion.div
@@ -581,7 +574,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Comparison table */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -621,7 +613,6 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center border-t border-[#2D1B69] pt-20">
             <StatItem
               value="500+"
@@ -755,7 +746,6 @@ export default function Home() {
                     transition={{ delay: index * 0.1 }}
                     className="card-standard h-full flex flex-col p-0 overflow-hidden"
                   >
-                    {/* Image with gradient fallback */}
                     <div
                       className={cn(
                         "relative aspect-[16/10] bg-gradient-to-br",
@@ -767,11 +757,7 @@ export default function Home() {
                         alt={project.title}
                         fill
                         className="object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = "none";
-                        }}
                       />
-                      {/* Overlay on hover */}
                       <div className="absolute inset-0 bg-[#1A1035]/60 opacity-0 hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                         <Link
                           href={project.href}
@@ -788,7 +774,6 @@ export default function Home() {
                       <h3 className="text-xl font-semibold mb-2 text-[#1A1035]">
                         {project.title}
                       </h3>
-                      {/* Result metric */}
                       <p className="text-sm text-[#7B2FBE] font-semibold mb-4 flex items-center gap-1">
                         <TrendingUp size={14} /> {project.result}
                       </p>
@@ -837,7 +822,6 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-          {/* Google reviews link */}
           <div className="text-center mt-10">
             <a
               href="https://g.page/r/YOUR_GOOGLE_REVIEW_LINK"
@@ -948,7 +932,6 @@ export default function Home() {
               Flowzonic Solutions.
             </p>
 
-            {/* Two CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/contact"
@@ -1028,7 +1011,6 @@ function ServiceCard({
         {description}
       </p>
 
-      {/* Deliverables checklist */}
       <ul className="flex flex-col gap-2 mb-6">
         {features.map((f) => (
           <li
@@ -1053,7 +1035,6 @@ function ServiceCard({
         ))}
       </ul>
 
-      {/* Price + CTA */}
       <div className="mt-auto pt-4 border-t border-dashed border-current/10 flex items-center justify-between">
         <span
           className={cn(
@@ -1098,7 +1079,6 @@ function TestimonialCard({
         &ldquo;{quote}&rdquo;
       </p>
       <div className="flex items-center gap-3">
-        {/* Initials avatar — no random stock photos */}
         <div
           className={cn(
             "w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0",
@@ -1237,9 +1217,6 @@ function BlogPreviewCard({
           alt={title}
           fill
           className="object-cover"
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = "none";
-          }}
         />
       </div>
       <div className="p-6 flex-1 flex flex-col">

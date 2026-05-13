@@ -1,7 +1,8 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar, User, Clock, ArrowLeft, Share2, ArrowRight, Bookmark, Facebook, Twitter, Linkedin, Sparkles } from "lucide-react";
+import { Calendar, User, Clock, ArrowLeft, Share2, Bookmark, Facebook, Twitter, Linkedin, Sparkles } from "lucide-react";
 import { getPostBySlug, getPostSlugs, getAllPosts } from "@/lib/blog";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import ReactMarkdown from "react-markdown";
@@ -35,7 +36,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-// ─── Custom Markdown Components ───────────────────────────────────────────────
 const markdownComponents = {
   h1: ({ children }: any) => (
     <h1 className="text-4xl md:text-5xl font-bold text-[#1A1035] mt-14 mb-6 leading-tight tracking-tight">
@@ -64,7 +64,7 @@ const markdownComponents = {
   ol: ({ children }: any) => (
     <ol className="list-decimal list-outside space-y-3 mb-8 pl-6 text-[#4B5563]">{children}</ol>
   ),
-  li: ({ children, ...props }: any) => (
+  li: ({ children }: any) => (
     <li className="flex items-start gap-3 text-[#4B5563] text-base font-medium leading-relaxed">
       <span className="mt-2 w-2 h-2 rounded-full bg-[#7B2FBE] shrink-0" />
       <span>{children}</span>
@@ -101,9 +101,13 @@ const markdownComponents = {
       {children}
     </a>
   ),
-  img: ({ src, alt }: any) => (
+  img: ({ src, alt, node, children, ...props }: any) => (
     <span className="block my-10">
-      <img src={src} alt={alt} className="rounded-3xl shadow-xl w-full object-cover" />
+      <img 
+        src={src} 
+        alt={alt || ""} 
+        className="rounded-3xl shadow-xl w-full object-cover" 
+      />
       {alt && (
         <span className="block text-center text-xs text-[#9CA3AF] mt-3 font-semibold uppercase tracking-widest">
           {alt}
@@ -129,7 +133,6 @@ const markdownComponents = {
     <td className="px-6 py-4 border-t border-[#EDE9FE] text-[#4B5563] font-medium">{children}</td>
   ),
 };
-// ──────────────────────────────────────────────────────────────────────────────
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -149,7 +152,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <ReadingProgressBar />
       <main className="pt-32 pb-20 bg-[#FAFBFF]">
-        {/* Post Hero */}
         <div className="max-w-5xl mx-auto px-6 mb-16">
           <Link href="/blog" className="inline-flex items-center gap-2 text-[#7B2FBE] font-bold mb-10 hover:gap-3 transition-all group">
             <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" /> Back to Insights
@@ -214,9 +216,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
-        {/* Content Section */}
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
-          {/* Side Info */}
           <aside className="hidden lg:block lg:col-span-3">
             <div className="sticky top-32 space-y-12">
               <div>
@@ -245,9 +245,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           </aside>
 
-          {/* Main Article Body */}
           <article className="lg:col-span-6">
-            {/* ✅ Custom components replace the prose plugin dependency */}
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={markdownComponents}
@@ -278,7 +276,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </footer>
           </article>
 
-          {/* Right Gutter / Stats */}
           <aside className="hidden lg:block lg:col-span-3">
             <div className="sticky top-32">
               <div className="p-8 bg-white border border-[#EDE9FE] rounded-3xl shadow-sm mb-8">
@@ -307,7 +304,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </aside>
         </div>
 
-        {/* Related Section */}
         <section className="max-w-7xl mx-auto px-6 mt-32">
           <div className="text-center mb-16">
             <span className="badge-pill">Keep Reading</span>
