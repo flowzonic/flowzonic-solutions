@@ -1,4 +1,3 @@
-
 import { MetadataRoute } from 'next';
 import { getPostSlugs } from '@/lib/blog';
 
@@ -18,6 +17,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/services/web',
     '/services/automation',
     '/services/design',
+    '/work/web-development',
+    '/work/google-automation',
+    '/work/graphic-design',
     '/portfolio',
     '/pricing',
     '/blog',

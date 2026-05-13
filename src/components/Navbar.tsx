@@ -20,6 +20,12 @@ const SERVICE_LINKS = [
   { name: "Graphic Design", href: "/services/design", icon: <Palette size={16} /> },
 ];
 
+const WORK_LINKS = [
+  { name: "Web Development", href: "/work/web-development", icon: <Globe size={16} /> },
+  { name: "Google Automation", href: "/work/google-automation", icon: <Zap size={16} /> },
+  { name: "Graphic Design", href: "/work/graphic-design", icon: <Palette size={16} /> },
+];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -111,7 +117,7 @@ export default function Navbar() {
                 <DropdownMenuTrigger className="relative px-4 py-2 rounded-full text-sm font-semibold text-[#4B5563] hover:text-[#7B2FBE] transition-all duration-300 flex items-center gap-1 outline-none group">
                   Our Work
                   <ChevronDown size={14} className="group-data-[state=open]:rotate-180 transition-transform" />
-                  {pathname === "/portfolio" && (
+                  {pathname.startsWith("/work") && (
                     <motion.div
                       layoutId="nav-pill"
                       className="absolute inset-0 bg-[#F3E8FF] rounded-full -z-10 border border-[#E9D5FF]"
@@ -120,14 +126,14 @@ export default function Navbar() {
                   )}
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="p-2 min-w-[200px] rounded-2xl border-[#EDE9FE] bg-white/95 backdrop-blur-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-                  {SERVICE_LINKS.map((service) => (
-                    <DropdownMenuItem key={service.href} asChild>
+                  {WORK_LINKS.map((work) => (
+                    <DropdownMenuItem key={work.href} asChild>
                       <Link
-                        href={service.href}
+                        href={work.href}
                         className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[#4B5563] hover:text-[#7B2FBE] hover:bg-[#F8F5FF] transition-colors cursor-pointer"
                       >
-                        <span className="text-[#7B2FBE]">{service.icon}</span>
-                        {service.name}
+                        <span className="text-[#7B2FBE]">{work.icon}</span>
+                        {work.name}
                       </Link>
                     </DropdownMenuItem>
                   ))}
@@ -221,7 +227,7 @@ export default function Navbar() {
                     name="Our Work" 
                     isOpen={mobileWorkOpen} 
                     toggle={() => setMobileWorkOpen(!mobileWorkOpen)}
-                    links={SERVICE_LINKS}
+                    links={WORK_LINKS}
                     onClose={() => setIsOpen(false)}
                   />
 
