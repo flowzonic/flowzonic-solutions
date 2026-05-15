@@ -42,10 +42,10 @@ import {
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-[#FAFBFF]">
+    <main aria-label="Flowzonic Solutions Homepage" className="overflow-hidden bg-[#FAFBFF]">
 
       {/* ── SECTION 1: HERO ─────────────────────────────────────── */}
-      <section className="relative pt-32 pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-32 px-6 bg-[#FAFBFF]">
+      <section aria-label="Introduction" className="relative pt-32 pb-16 md:pt-36 md:pb-24 lg:pt-40 lg:pb-32 px-6 bg-[#FAFBFF]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -71,12 +71,14 @@ export default function Home() {
               <Link
                 href="/contact"
                 className="px-8 py-3.5 rounded-full font-bold text-white bg-gradient-to-r from-[#7B2FBE] to-[#A855F7] hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 transition-all duration-200 flex items-center justify-center gap-2 text-base"
+                aria-label="Book a free consultation with our experts"
               >
                 Book Free Consultation <Rocket size={18} />
               </Link>
               <Link
                 href="/work/web-development"
                 className="px-8 py-3.5 rounded-full font-bold text-[#7B2FBE] border-2 border-[#7B2FBE] bg-transparent hover:bg-[#F0EEFF] transition-all duration-200 flex items-center justify-center text-base"
+                aria-label="Browse our portfolio of digital projects"
               >
                 View Our Work
               </Link>
@@ -108,6 +110,7 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
             className="relative hidden md:flex items-center justify-center w-full max-w-[440px] lg:max-w-none mx-auto"
+            aria-hidden="true"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-purple-100/40 rounded-full blur-[80px] -z-10" />
             <div className="relative z-10 w-full aspect-[16/10] bg-white rounded-3xl shadow-2xl border border-[#EDE9FE] overflow-hidden p-3 md:p-5 animate-float">
@@ -170,7 +173,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 2: TECH MARQUEE ──────────────────────────────── */}
-      <section aria-label="Technology stack" className="py-12 bg-white border-y border-[#EDE9FE]">
+      <section aria-label="Technology stack we use" className="py-12 bg-white border-y border-[#EDE9FE]">
         <div className="max-w-7xl mx-auto px-6 overflow-hidden">
           <div className="flex whitespace-nowrap animate-marquee items-center gap-16 md:gap-24">
             {[...techStack, ...techStack].map((tech, i) => (
@@ -188,14 +191,14 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 3: AUTOMATION ENGINE HIGHLIGHT ───────────────── */}
-      <section aria-label="Google Automation Services" className="py-24 px-6">
+      <section aria-label="Google Apps Script Automation Services" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-[#EDE9FE]">
               <div className="relative h-64 md:h-80">
                 <Image
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=85"
-                  alt="Google Sheets automation dashboard analytics India"
+                  alt="Dashboard showing Google Sheets real-time automation analytics"
                   fill
                   className="object-cover"
                 />
@@ -221,7 +224,7 @@ export default function Home() {
             </div>
 
             <div>
-              <span className="badge-pill">Google Automation Agency India</span>
+              <span className="badge-pill">Automation Experts India</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1A1035]">
                 Reclaim <span className="gradient-text">20+ Hours</span> Every Single Week
               </h2>
@@ -244,7 +247,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <Link href="/services/automation" className="btn-primary inline-flex items-center gap-2">
+              <Link href="/services/automation" className="btn-primary inline-flex items-center gap-2" aria-label="Learn more about our automation engines">
                 Explore Automation Services <ArrowRight size={18} />
               </Link>
             </div>
@@ -253,10 +256,10 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 4: SERVICE GRID ─────────────────────────────── */}
-      <section aria-label="Flowzonic Services" className="py-24 px-6 bg-[#F0EEFF] rounded-[4rem]">
+      <section aria-label="Our core agency services" className="py-24 px-6 bg-[#F0EEFF] rounded-[4rem]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <span className="badge-pill bg-white">Our Services</span>
+            <span className="badge-pill bg-white">Expert Offerings</span>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1A1035]">
               Three Pillars of <span className="gradient-text">Digital Growth</span>
             </h2>
@@ -270,10 +273,10 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 5: STATS ──────────────────────────────────────── */}
-      <section aria-label="Agency statistics and results" className="py-24 px-6">
+      <section aria-label="Agency performance and results" className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <span className="badge-pill">By the Numbers</span>
+            <span className="badge-pill">Impact Metrics</span>
             <h2 className="text-4xl font-bold text-[#1A1035]">
               Results That <span className="gradient-text">Speak for Themselves</span>
             </h2>
@@ -288,7 +291,7 @@ export default function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="text-center p-8 bg-white border border-[#EDE9FE] rounded-3xl shadow-sm hover:shadow-xl transition-all"
               >
-                <div className="w-12 h-12 rounded-2xl bg-[#F0EEFF] flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#F0EEFF] flex items-center justify-center mx-auto mb-4" aria-hidden="true">
                   {stat.icon}
                 </div>
                 <div className="text-4xl md:text-5xl font-bold text-[#1A1035] mb-1">{stat.value}</div>
@@ -301,10 +304,10 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 6: INDUSTRIES SERVED ─────────────────────────── */}
-      <section aria-label="Industries Flowzonic serves" className="py-24 px-6 bg-white">
+      <section aria-label="Industries we serve" className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <span className="badge-pill">Industry Expertise</span>
+            <span className="badge-pill">Sector Experience</span>
             <h2 className="text-4xl font-bold text-[#1A1035] mb-4">
               We've Built For <span className="gradient-text">Every Vertical</span>
             </h2>
@@ -312,7 +315,7 @@ export default function Home() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {industryServed.map((ind) => (
               <div key={ind.name} className="group p-6 bg-[#FAFBFF] border border-[#EDE9FE] rounded-3xl text-center hover:border-primary hover:shadow-lg transition-all cursor-default">
-                <div className="text-4xl mb-3">{ind.icon}</div>
+                <div className="text-4xl mb-3" aria-hidden="true">{ind.icon}</div>
                 <p className="font-bold text-[#1A1035] text-sm">{ind.name}</p>
                 <p className="text-xs text-[#9CA3AF] mt-1">{ind.count}</p>
               </div>
@@ -322,7 +325,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 7: PROCESS ──────────────────────────────────── */}
-      <section aria-label="Our project process" className="py-24 px-6 bg-[#FAFBFF]">
+      <section aria-label="Our streamlined workflow" className="py-24 px-6 bg-[#FAFBFF]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <span className="badge-pill">The Roadmap</span>
@@ -343,7 +346,7 @@ export default function Home() {
                 <div className="relative aspect-video rounded-3xl overflow-hidden mb-6 border border-[#EDE9FE] shadow-sm">
                   <Image
                     src={item.image}
-                    alt={item.alt}
+                    alt={`${item.title} phase in our project lifecycle`}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -353,7 +356,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-2xl bg-[#F0EEFF] text-primary flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-2xl bg-[#F0EEFF] text-primary flex items-center justify-center" aria-hidden="true">
                     {item.icon}
                   </div>
                   <h3 className="text-xl font-bold text-[#1A1035]">{item.title}</h3>
@@ -366,16 +369,16 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 8: PORTFOLIO CAROUSEL ───────────────────────── */}
-      <section aria-label="Portfolio case studies" className="py-24 px-6 bg-white">
+      <section aria-label="Featured case studies" className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
             <div className="max-w-xl text-center md:text-left">
-              <span className="badge-pill">Case Studies</span>
+              <span className="badge-pill">Portfolio Highlights</span>
               <h2 className="text-4xl md:text-5xl font-bold text-[#1A1035]">
                 Real Work, <span className="gradient-text">Real Results</span>
               </h2>
             </div>
-            <Link href="/work/web-development" className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
+            <Link href="/work/web-development" className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all" aria-label="View all of our agency projects">
               View All Projects <ArrowRight size={18} />
             </Link>
           </div>
@@ -384,12 +387,12 @@ export default function Home() {
             <CarouselContent>
               {portfolioProjects.map((project, i) => (
                 <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3 p-4">
-                  <Link href={project.href} className="group block h-full">
+                  <Link href={project.href} className="group block h-full" aria-label={`View details for ${project.title}`}>
                     <article className="card-standard p-0 overflow-hidden h-full">
                       <div className="relative aspect-video overflow-hidden">
                         <Image
                           src={project.image}
-                          alt={project.alt}
+                          alt={`Case study: ${project.title}`}
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
@@ -413,20 +416,20 @@ export default function Home() {
               ))}
             </CarouselContent>
             <div className="flex justify-center gap-4 mt-12">
-              <CarouselPrevious className="relative translate-y-0 left-0" />
-              <CarouselNext className="relative translate-y-0 right-0" />
+              <CarouselPrevious className="relative translate-y-0 left-0" aria-label="Previous portfolio project" />
+              <CarouselNext className="relative translate-y-0 right-0" aria-label="Next portfolio project" />
             </div>
           </Carousel>
         </div>
       </section>
 
       {/* ── SECTION 9: TESTIMONIALS ─────────────────────────────── */}
-      <section aria-label="Client testimonials and reviews" className="py-24 px-6 bg-[#F0EEFF] rounded-[4rem]">
+      <section aria-label="What our clients say" className="py-24 px-6 bg-[#F0EEFF] rounded-[4rem]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <span className="badge-pill bg-white">Client Reviews</span>
+            <span className="badge-pill bg-white">Client Success Stories</span>
             <h2 className="text-4xl font-bold text-[#1A1035] mb-4">
-              Trusted by <span className="gradient-text">30+ Indian Businesses</span>
+              Trusted by <span className="gradient-text">30+ Global Businesses</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -441,7 +444,7 @@ export default function Home() {
                 itemScope
                 itemType="https://schema.org/Review"
               >
-                <div className="flex gap-1 mb-4" aria-label={`${t.rating} star rating`}>
+                <div className="flex gap-1 mb-4" aria-label={`Rated ${t.rating} out of 5 stars`}>
                   {[...Array(t.rating)].map((_, j) => (
                     <Star key={j} size={16} className="text-yellow-400 fill-yellow-400" />
                   ))}
@@ -451,17 +454,20 @@ export default function Home() {
                 </blockquote>
                 <div className="flex items-center gap-3">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#EDE9FE] shrink-0">
-                    <Image src={t.avatar} alt={`${t.name} - Flowzonic client`} fill className="object-cover" />
+                    <Image src={t.avatar} alt={`${t.name}, ${t.role}`} fill className="object-cover" />
                   </div>
                   <div>
-                    <p className="font-bold text-[#1A1035] text-sm" itemProp="author">{t.name}</p>
+                    <p className="font-bold text-[#1A1035] text-sm" itemProp="author" itemScope itemType="https://schema.org/Person">
+                      <span itemProp="name">{t.name}</span>
+                    </p>
                     <p className="text-xs text-[#9CA3AF]">{t.role}</p>
                     <div className="flex items-center gap-1 mt-1">
-                      <MapPin size={10} className="text-primary" />
+                      <MapPin size={10} className="text-primary" aria-hidden="true" />
                       <span className="text-[10px] text-[#9CA3AF]">{t.location}</span>
                     </div>
                   </div>
                 </div>
+                <meta itemProp="reviewRating" itemScope itemType="https://schema.org/Rating" content={String(t.rating)} />
               </motion.article>
             ))}
           </div>
@@ -469,16 +475,16 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 10: WHY US COMPARISON ───────────────────────── */}
-      <section aria-label="Why choose Flowzonic over other agencies" className="py-24 px-6 bg-white">
+      <section aria-label="Competitive advantage comparison" className="py-24 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <span className="badge-pill">The Difference</span>
+            <span className="badge-pill">The Edge</span>
             <h2 className="text-4xl font-bold text-[#1A1035] mb-4">
               Why <span className="gradient-text">Flowzonic</span> vs Other Agencies?
             </h2>
           </div>
           <div className="border border-[#EDE9FE] rounded-3xl overflow-hidden shadow-sm">
-            <table className="w-full text-left" role="table" aria-label="Flowzonic vs other agencies comparison">
+            <table className="w-full text-left" aria-label="Comparison between Flowzonic and typical digital agencies">
               <thead>
                 <tr className="bg-[#F0EEFF] text-[#1A1035]">
                   <th className="p-6 text-sm font-bold uppercase tracking-widest">Feature</th>
@@ -501,16 +507,16 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 11: BLOG / RESOURCES ────────────────────────── */}
-      <section aria-label="Blog and resources" className="py-24 px-6 bg-[#FAFBFF]">
+      <section aria-label="Latest insights and articles" className="py-24 px-6 bg-[#FAFBFF]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
             <div className="max-w-xl text-center md:text-left">
-              <span className="badge-pill">Resources & Insights</span>
+              <span className="badge-pill">Expert Insights</span>
               <h2 className="text-4xl font-bold text-[#1A1035]">
                 Learn From the <span className="gradient-text">Engineers</span>
               </h2>
             </div>
-            <Link href="/blog" className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
+            <Link href="/blog" className="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all" aria-label="Read all articles on our blog">
               All Articles <ArrowRight size={18} />
             </Link>
           </div>
@@ -525,7 +531,7 @@ export default function Home() {
                 itemScope
                 itemType="https://schema.org/BlogPosting"
               >
-                <Link href={post.href} className="group block">
+                <Link href={post.href} className="group block" aria-label={`Read full article: ${post.title}`}>
                   <div className="relative aspect-video rounded-3xl overflow-hidden mb-5 border border-[#EDE9FE] shadow-sm">
                     <Image
                       src={post.image}
@@ -539,8 +545,8 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs text-[#9CA3AF]">{post.date}</span>
-                    <span className="text-xs text-[#9CA3AF]">·</span>
+                    <span className="text-xs text-[#9CA3AF]"><time itemProp="datePublished" dateTime={post.date}>{post.date}</time></span>
+                    <span className="text-xs text-[#9CA3AF]" aria-hidden="true">·</span>
                     <span className="text-xs text-[#9CA3AF]">{post.readTime}</span>
                   </div>
                   <h3 className="font-bold text-[#1A1035] text-base group-hover:text-primary transition-colors leading-snug mb-2" itemProp="headline">
@@ -560,7 +566,7 @@ export default function Home() {
       <section aria-label="Frequently asked questions" className="py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <span className="badge-pill">FAQs</span>
+            <span className="badge-pill">Support Center</span>
             <h2 className="text-4xl font-bold text-[#1A1035] mb-4">Everything You Want to Know</h2>
           </div>
           <div itemScope itemType="https://schema.org/FAQPage">
@@ -583,7 +589,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 13: CTA ─────────────────────────────────────── */}
-      <section aria-label="Contact Flowzonic" className="py-24 px-6">
+      <section aria-label="Contact and booking" className="py-24 px-6">
         <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#1A1035] to-[#2D1B69] rounded-[3.5rem] overflow-hidden shadow-2xl relative">
           <div className="absolute inset-0">
             <Image
@@ -607,7 +613,7 @@ export default function Home() {
               <Link
                 href="/contact"
                 className="px-10 py-5 rounded-full font-bold text-primary bg-white hover:bg-[#F0EEFF] transition-all text-lg flex items-center gap-3 shadow-xl"
-                aria-label="Book a free consultation with Flowzonic"
+                aria-label="Request a free proposal for your project"
               >
                 Book Free Consultation <Rocket size={20} />
               </Link>
@@ -616,20 +622,20 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-10 py-5 rounded-full font-bold text-white bg-[#25D366] hover:bg-[#20BA5A] transition-all text-lg flex items-center gap-3 shadow-xl"
-                aria-label="Chat with Flowzonic on WhatsApp"
+                aria-label="Direct message us on WhatsApp for quick inquiry"
               >
                 <MessageCircle size={22} /> Chat on WhatsApp
               </a>
             </div>
             <div className="flex flex-wrap justify-center gap-8 pt-8 border-t border-white/10">
               <div className="flex items-center gap-2 text-white/50 text-sm">
-                <Mail size={14} /> hello@flowzonic.in
+                <Mail size={14} aria-hidden="true" /> hello@flowzonic.in
               </div>
               <div className="flex items-center gap-2 text-white/50 text-sm">
-                <Phone size={14} /> +91 88819 07942
+                <Phone size={14} aria-hidden="true" /> +91 88819 07942
               </div>
               <div className="flex items-center gap-2 text-white/50 text-sm">
-                <MapPin size={14} /> India · Remote-First
+                <MapPin size={14} aria-hidden="true" /> India · Remote-First
               </div>
             </div>
           </div>
@@ -676,7 +682,7 @@ function ServiceCard({
         <div className={cn(
           "absolute bottom-4 left-4 w-12 h-12 rounded-2xl flex items-center justify-center",
           featured ? "bg-primary text-white shadow-lg shadow-primary/30" : "bg-white text-primary shadow"
-        )}>
+        )} aria-hidden="true">
           {icon}
         </div>
       </div>
@@ -692,7 +698,7 @@ function ServiceCard({
         <ul className="flex flex-col gap-3 mb-8">
           {features.map((f) => (
             <li key={f} className={cn("flex items-center gap-3 text-sm font-bold", featured ? "text-white/90" : "text-[#1A1035]")}>
-              <div className={cn("w-5 h-5 rounded-full flex items-center justify-center shrink-0", featured ? "bg-primary/30 text-white" : "bg-[#F0EEFF] text-primary")}>
+              <div className={cn("w-5 h-5 rounded-full flex items-center justify-center shrink-0", featured ? "bg-primary/30 text-white" : "bg-[#F0EEFF] text-primary")} aria-hidden="true">
                 <CheckCircle2 size={12} />
               </div>
               {f}
@@ -707,6 +713,7 @@ function ServiceCard({
               "font-bold flex items-center justify-center gap-1 group/btn transition-all text-sm",
               featured ? "text-white" : "text-primary"
             )}
+            aria-label={`Detailed information about our ${title} services`}
           >
             Learn More
             <ChevronRight
@@ -723,6 +730,7 @@ function ServiceCard({
                 ? "bg-white text-primary hover:bg-[#F0EEFF]"
                 : "bg-[#F0EEFF] text-primary hover:bg-primary hover:text-white"
             )}
+            aria-label={`Inquire about ${title} for your business`}
           >
             Get a Free Proposal
           </Link>

@@ -9,10 +9,51 @@ import { Toaster } from "@/components/ui/toaster";
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'Flowzonic Solutions | Automate, Build, Grow',
-  description: 'Expert Web Development, Google Workspace Automation, and High-End Graphic Design.',
+  title: 'Flowzonic Solutions | Web Development & Google Automation Agency',
+  description: 'Transform your business with expert Web Development (Next.js, React), Google Workspace Automation (Apps Script), and high-end Graphic Design. Fast turnaround, transparent pricing.',
+  keywords: ['Web Development India', 'Google Apps Script Automation', 'Graphic Design Agency', 'Next.js Developer', 'Automation Expert', 'Flowzonic Solutions'],
+  authors: [{ name: 'Flowzonic Team' }],
+  metadataBase: new URL('https://flowzonicsolutions.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Flowzonic Solutions | Automate, Build, Grow',
+    description: 'Engineering elite digital systems and automation for modern businesses.',
+    url: 'https://flowzonicsolutions.com',
+    siteName: 'Flowzonic Solutions',
+    images: [
+      {
+        url: '/header-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Flowzonic Solutions Branding',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Flowzonic Solutions | Web & Automation Experts',
+    description: 'Reclaim your time with intelligent automation and high-performance web development.',
+    images: ['/header-logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: '/flowzone-icon.png',
+    shortcut: '/flowzone-icon.png',
+    apple: '/flowzone-icon.png',
   },
 };
 
