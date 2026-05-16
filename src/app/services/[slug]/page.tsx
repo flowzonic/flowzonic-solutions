@@ -11,7 +11,7 @@ const SERVICE_DATA: Record<string, any> = {
     icon: <Globe className="text-primary" size={48} />,
     headline: "Websites that Outpace the Competition",
     subHeadline: "Stop losing leads to slow, outdated platforms. We build lightning-fast digital engines that convert visitors into loyal customers.",
-    image: PlaceHolderImages.find(img => img.id === "mockup-1")?.imageUrl,
+    image:'/web-development-flowzonic.png',
     whyUs: [
       "Our engineering-first approach prioritizes core web vitals and speed above all else.",
       "We architect digital ecosystems optimized for SEO and scalability.",
@@ -38,7 +38,7 @@ const SERVICE_DATA: Record<string, any> = {
     icon: <Bot className="text-primary" size={48} />,
     headline: "Your Business on Autopilot",
     subHeadline: "Eliminate human error and manual bottlenecks with intelligent scripts that connect your Google Workspace seamlessly.",
-    image: PlaceHolderImages.find(img => img.id === "mockup-3")?.imageUrl,
+    image:"/google-automation-flowzonic.png",
     whyUs: [
       "We specialize in the intersection of Google Apps Script and Generative AI.",
       "Our solutions are lightweight and reside directly within your Google Workspace.",
@@ -65,7 +65,7 @@ const SERVICE_DATA: Record<string, any> = {
     icon: <Layers className="text-primary" size={48} />,
     headline: "Glossy Branding & Design",
     subHeadline: "We create premium visual identities that make your brand impossible to ignore. From custom logos to high-end UI/UX, we design for authority.",
-    image: PlaceHolderImages.find(img => img.id === "mockup-2")?.imageUrl,
+    image: "/graphic-design-flowzonic.png",
     whyUs: [
       "Our philosophy is rooted in 'Glossy Minimalism' and premium textures.",
       "We design for conversion, engineering layouts to guide users to your CTA.",
