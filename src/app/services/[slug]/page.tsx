@@ -6,6 +6,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 const SERVICE_DATA: Record<string, any> = {
   web: {
     id: "web",
+    slug: "web",
     title: "Web Development",
     icon: <Globe className="text-primary" size={48} />,
     headline: "Websites that Outpace the Competition",
@@ -32,6 +33,7 @@ const SERVICE_DATA: Record<string, any> = {
   },
   automation: {
     id: "automation",
+    slug: "automation",
     title: "Google Automation",
     icon: <Bot className="text-primary" size={48} />,
     headline: "Your Business on Autopilot",
@@ -58,6 +60,7 @@ const SERVICE_DATA: Record<string, any> = {
   },
   design: {
     id: "design",
+    slug: "design",
     title: "Graphic Designing",
     icon: <Layers className="text-primary" size={48} />,
     headline: "Glossy Branding & Design",
